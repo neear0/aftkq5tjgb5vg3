@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Melanotan II 10 mg — ULTRA PEPTIDY</title>
-<meta name="description" content="Melanotan II. Referenčná látka na laboratórne a výskumné použitie. Referenčná látka na laboratórne a výskumné použitie.">
+<meta name="description" content="Cyklický analóg alfa-MSH, neselektívny agonista melanokortínových receptorov. Sedem aminokyselín v cyklickej štruktúre, dodávaný ako lyofilizát. Referenčná látka na laboratórne a výskumné použitie.">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/ultrapeptidy.css">
@@ -113,9 +113,10 @@
       <button class="icon-btn" aria-label="Hľadať">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg>
       </button>
-      <button class="icon-btn" aria-label="Košík, 0 položiek">
+      <a class="icon-btn" href="kosik.html" aria-label="Košík">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4.5 8.5h15l-1.7 11H6.2z"/><path d="M8.5 8.5V8a3.5 3.5 0 017 0v.5"/></svg>
-      </button>
+        <span class="icon-btn__badge" data-cart-count hidden>0</span>
+      </a>
     </div>
   </div>
 </header>
@@ -143,7 +144,7 @@
 
     <div>
       <h1 class="pdp__title"><span class="holo-text">Melanotan II</span></h1>
-      <p class="pdp__subtitle">Melanotan II. Referenčná látka na laboratórne a výskumné použitie.</p>
+      <p class="pdp__subtitle">Cyklický analóg alfa-MSH, neselektívny agonista melanokortínových receptorov. Sedem aminokyselín v cyklickej štruktúre, dodávaný ako lyofilizát.</p>
 
       <div class="pdp__meta">
         <span class="stock-pill" data-stock-pill>Na sklade</span>
@@ -152,7 +153,9 @@
         <span class="coa-badge"><svg fill="none" stroke-width="1.5"><use href="#i-micro"/></svg> Čistota <span data-purity>99,21 %</span> <a href="#coa">COA ↓</a></span>
       </div>
 
-      <div class="price-box glass" data-qty data-price1="25" data-price3="20" data-tier-qty="3">
+      <div class="price-box glass" data-qty data-tier-qty="3"
+           data-slug="melanotan-2" data-name="Melanotan II" data-ref="UP-MT2-10" data-mg="10 mg"
+           data-price1="25" data-price3="20">
         <div class="price-tiers">
           <div class="price-row">
             <span class="price-row__label">1 ks</span>
@@ -177,7 +180,7 @@
         <p class="price-save" data-save hidden></p>
       </div>
 
-      <button class="btn-holo btn-block" data-cta-anchor style="margin-bottom:16px">◆ Pridať do košíka</button>
+      <button class="btn-holo btn-block" data-cta-anchor data-add-to-cart style="margin-bottom:16px">◆ Pridať do košíka</button>
 
       <div class="notice">
         <svg fill="none" stroke-width="1.5"><use href="#i-clock"/></svg>
@@ -207,10 +210,48 @@
   <div class="up-container">
     <div class="infoblocks">
       <div class="infoblock">
-        <div class="infoblock__head"><span class="brush-label">Popis</span></div>
-        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6">
-          Popis tejto položky pripravujeme. Analytické údaje sú v špecifikácii nižšie
-          a v certifikáte analýzy.</p>
+        <div class="infoblock__head"><span class="brush-label">Čo je Melanotan II</span></div>
+        <ul>
+          <li>Syntetický cyklický heptapeptid, analóg alfa-melanocyty stimulujúceho hormónu (alfa-MSH).</li>
+          <li>Cyklická štruktúra ho robí odolnejším voči rozkladu než lineárny alfa-MSH.</li>
+          <li>Je **neselektívny** — pôsobí na viacero melanokortínových receptorov vrátane MC1R, MC3R, MC4R a MC5R. To je hlavný rozdiel oproti Melanotanu I.</li>
+        </ul>
+      </div>
+
+      <div class="infoblock">
+        <div class="infoblock__head"><span class="brush-label">Dokumentovaný mechanizmus</span></div>
+        <ul>
+          <li>Agonizmus MC1R je v literatúre spájaný so stimuláciou melanogenézy.</li>
+          <li>Pôsobenie na MC4R sa skúma v súvislosti s reguláciou príjmu potravy a so sexuálnou funkciou — práve táto neselektívnosť stojí za širším spektrom opisovaných účinkov.</li>
+          <li>Zapojenie MC3R a MC5R je menej preskúmané.</li>
+        </ul>
+      </div>
+
+      <div class="infoblock">
+        <div class="infoblock__head"><span class="brush-label">Oblasti výskumu</span></div>
+        <ul>
+          <li>Melanogenéza a pigmentácia.</li>
+          <li>Signalizácia melanokortínových receptorov.</li>
+          <li>Regulácia príjmu potravy prostredníctvom MC4R.</li>
+        </ul>
+      </div>
+
+      <div class="infoblock">
+        <div class="infoblock__head"><span class="brush-label">Stav poznania</span></div>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">Melanotan II nikdy nedokončil klinický vývoj. Publikovaná literatúra je</p>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">prevažne z preklinických modelov a z opisov prípadov, nie z kontrolovaných</p>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">štúdií. V literatúre sú opisované aj nežiaduce javy spojené s neselektívnym</p>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">pôsobením a s nekontrolovaným použitím.</p>
+      </div>
+
+      <div class="infoblock">
+        <div class="infoblock__head"><span class="brush-label">Regulačné upozornenie</span></div>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">Melanotan II nie je registrovaný ako liek v žiadnej jurisdikcii, ktorú</p>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">poznáme, a viaceré liekové agentúry pred jeho použitím u ľudí verejne</p>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">varovali. Táto položka je **referenčný štandard určený výhradne na</p>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">laboratórne a výskumné použitie**. Nie je liekom ani kozmetikou, nesmie</p>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">sa použiť na podávanie ľuďom ani zvieratám a neposkytujeme k nej dávkovanie</p>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">ani zdravotné odporúčania.</p>
       </div>
     </div>
 
@@ -343,7 +384,7 @@
     <span class="price-row__label" style="display:block" data-mcta-title="Melanotan II">Melanotan II 10 mg</span>
     <span class="mobile-cta__price">25,00 €</span>
   </div>
-  <button class="btn-holo">Do košíka</button>
+  <button class="btn-holo" data-add-to-cart>Do košíka</button>
 </div>
 </main>
 
@@ -474,21 +515,19 @@
         <h4>Informácie</h4>
         <ul>
           <li><a href="#" data-open-cennik>Cenník</a></li>
-          <li><a href="#">Doprava a platba</a></li>
-          <li><a href="#">Skladovanie a stabilita</a></li>
-          <li><a href="#coa">Certifikáty analýzy</a></li>
+          <li><a href="doprava-a-platba.html">Doprava a platba</a></li>
           <li><a href="index.html#faq">Časté otázky</a></li>
         </ul>
       </div>
       <div>
         <h4>Právne</h4>
         <ul>
-          <li><a href="#">Všeobecné obchodné podmienky</a></li>
-          <li><a href="#">Reklamačný poriadok</a></li>
-          <li><a href="#">Odstúpenie od zmluvy</a></li>
-          <li><a href="#">Ochrana osobných údajov</a></li>
-          <li><a href="#">Cookies</a></li>
-          <li><a href="#">Alternatívne riešenie sporov</a></li>
+          <li><a href="obchodne-podmienky.html">Všeobecné obchodné podmienky</a></li>
+          <li><a href="odstupenie-od-zmluvy.html">Odstúpenie od zmluvy</a></li>
+          <li><a href="reklamacny-poriadok.html">Reklamačný poriadok</a></li>
+          <li><a href="ochrana-osobnych-udajov.html">Ochrana osobných údajov</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+          <li><a href="riesenie-sporov.html">Riešenie sporov</a></li>
         </ul>
       </div>
     </div>

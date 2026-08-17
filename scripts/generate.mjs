@@ -104,6 +104,114 @@ if (problems.length) {
   process.exit(1);
 }
 
+/* ── inline formátovanie v texte ─────────────────────────────────────────
+   Zámerne minimum: tučné, odkaz a kód. Nič viac právne stránky nepotrebujú
+   a každá ďalšia značka je ďalšie miesto, kde sa dá pokaziť escapovanie.
+   Poradie je dôležité — najprv escapujeme, až potom vkladáme značky. */
+function inline(text) {
+  return esc(text)
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, label, href) =>
+      `<a href="${href}">${label}</a>`);
+}
+
+/* ── stránky (právne dokumenty a informácie) ─────────────────────────────
+   Metadáta sú riadky `:: kľúč: hodnota` na začiatku súboru. */
+function readPages() {
+  const dir = join(ROOT, 'content/stranky');
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir)
+    .filter((f) => f.endsWith('.md') && !f.startsWith('_'))
+    .map((f) => {
+      const slug = f.replace(/\.md$/, '');
+      const src = readFileSync(join(dir, f), 'utf8');
+      const meta = {};
+      const body = [];
+      for (const raw of src.split(/\r?\n/)) {
+        const m = raw.match(/^::\s*(\w+):\s*(.*)$/);
+        if (m) meta[m[1]] = m[2].trim();
+        else body.push(raw);
+      }
+      return { slug, meta, body: body.join('\n') };
+    })
+    .sort((a, b) => Number(a.meta.order ?? 99) - Number(b.meta.order ?? 99));
+}
+
+/**
+ * Telo stránky. Podporuje ##, ###, odrážky, odstavce, markdown tabuľky
+ * a bloky ```…``` (tie sa nechávajú doslovne, používajú sa na vzorové formuláre).
+ */
+function renderPageBody(md) {
+  const lines = md.split(/\r?\n/);
+  const out = [];
+  let list = null;      // otvorený <ul>
+  let table = null;     // { head: [], rows: [][] }
+  let code = null;      // otvorený blok kódu
+
+  const closeList = () => { if (list) { out.push(`    <ul>\n${list.join('\n')}\n    </ul>`); list = null; } };
+  const closeTable = () => {
+    if (!table) return;
+    out.push(
+      `    <div class="legal__tablewrap"><table class="legal__table">\n` +
+      `      <thead><tr>${table.head.map((h) => `<th>${inline(h)}</th>`).join('')}</tr></thead>\n` +
+      `      <tbody>\n${table.rows.map((r) =>
+        `        <tr>${r.map((c) => `<td>${inline(c)}</td>`).join('')}</tr>`).join('\n')}\n` +
+      `      </tbody>\n    </table></div>`
+    );
+    table = null;
+  };
+  const closeAll = () => { closeList(); closeTable(); };
+
+  for (const raw of lines) {
+    const line = raw.trim();
+
+    if (line.startsWith('```')) {
+      if (code) { out.push(`    <pre class="legal__pre">${esc(code.join('\n'))}</pre>`); code = null; }
+      else { closeAll(); code = []; }
+      continue;
+    }
+    if (code) { code.push(raw); continue; }
+
+    if (!line) { closeAll(); continue; }
+
+    // tabuľka: | a | b |   (oddeľovací riadok |---|---| sa zahodí)
+    if (line.startsWith('|') && line.endsWith('|')) {
+      const cells = line.slice(1, -1).split('|').map((c) => c.trim());
+      if (cells.every((c) => /^:?-{2,}:?$/.test(c))) continue;
+      closeList();
+      if (!table) table = { head: cells, rows: [] };
+      else table.rows.push(cells);
+      continue;
+    }
+    closeTable();
+
+    if (line.startsWith('### ')) {
+      closeList();
+      out.push(`    <h3>${inline(line.slice(4))}</h3>`);
+    } else if (line.startsWith('## ')) {
+      closeList();
+      // podpora {#anchor} na konci nadpisu
+      const m = line.slice(3).match(/^(.*?)\s*\{#([\w-]+)\}$/);
+      const [txt, id] = m ? [m[1], m[2]] : [line.slice(3), null];
+      out.push(`    <h2${id ? ` id="${id}"` : ''}>${inline(txt)}</h2>`);
+    } else if (line.startsWith('- ')) {
+      if (!list) list = [];
+      list.push(`      <li>${inline(line.slice(2))}</li>`);
+    } else if (list) {
+      // pokračovanie zalomenej odrážky
+      list[list.length - 1] = list[list.length - 1].replace(/<\/li>$/, ' ' + inline(line) + '</li>');
+    } else {
+      out.push(`    <p>${inline(line)}</p>`);
+    }
+  }
+  closeAll();
+  if (code) out.push(`    <pre class="legal__pre">${esc(code.join('\n'))}</pre>`);
+
+  // spoj susedné odstavce, ktoré vznikli zo zalomených riadkov jedného odstavca
+  return out.join('\n');
+}
+
 /* ── obsah z markdownu ───────────────────────────────────────────────────── */
 function loadContent(slug) {
   const file = join(ROOT, 'content/produkty', `${slug}.md`);
@@ -323,6 +431,7 @@ function renderProductPage(tpl, p, pricelist) {
     NAME: esc(p.name),
     TITLE: esc(title),
     MG: esc(v0.mg || '—'),
+    MG_RAW: esc(v0.mg || ''),
     MG_CHIP: v0.mg ? `<span class="chip" data-chip-mg>${esc(v0.mg)}</span>` : '',
     SLUG: p.slug,
     REFERENCE: esc(v0.reference),
@@ -352,6 +461,7 @@ function renderProductPage(tpl, p, pricelist) {
     BLOCKS: renderBlocks(blocks),
     RELATED: renderRelated(p),
     PRICELIST: pricelist,
+    NAV_INFO, NAV_LEGAL,
     SAVING_NOTE: saving > 0 ? `Pri 3 kusoch ušetríš ${eurFull(saving)}.` : 'Pri tejto položke nie je stanovená množstevná cena.',
   };
   return tpl.replace(/\{\{(\w+)\}\}/g, (m, k) => (k in map ? map[k] : m));
@@ -366,6 +476,20 @@ function inject(html, key, content) {
 
 /* ── beh ─────────────────────────────────────────────────────────────────── */
 const pricelist = renderPricelist();
+
+/* ── stránky + navigácia v pätičke (musí byť pred produktmi) ─────────────── */
+const pages = readPages();
+const navList = (kind) => pages
+  .filter((p) => (p.meta.nav ?? "info") === kind)
+  .map((p) => `          <li><a href="${p.slug}.html">${esc(p.meta.title)}</a></li>`)
+  .join('\n');
+const NAV_INFO = [
+  '          <li><a href="#" data-open-cennik>Cenník</a></li>',
+  navList('info'),
+  '          <li><a href="index.html#faq">Časté otázky</a></li>',
+].filter(Boolean).join('\n');
+const NAV_LEGAL = navList("legal");
+
 const written = [];
 const write = (path, content) => {
   if (!CHECK) writeFileSync(path, content, 'utf8');
@@ -376,11 +500,15 @@ let index = readFileSync(join(SITE, 'index.html'), 'utf8');
 index = inject(index, 'kategorie', renderChips());
 index = inject(index, 'featured', renderFeatured());
 index = inject(index, 'cennik', pricelist);
+index = inject(index, 'navinfo', NAV_INFO);
+index = inject(index, 'navlegal', NAV_LEGAL);
 write(join(SITE, 'index.html'), index);
 
 let katalog = readFileSync(join(SITE, 'katalog.html'), 'utf8');
 katalog = inject(katalog, 'katalog', renderCatalogue());
 katalog = inject(katalog, 'cennik', pricelist);
+katalog = inject(katalog, 'navinfo', NAV_INFO);
+katalog = inject(katalog, 'navlegal', NAV_LEGAL);
 write(join(SITE, 'katalog.html'), katalog);
 
 const tpl = readFileSync(join(ROOT, 'templates/produkt.html'), 'utf8');
@@ -393,7 +521,31 @@ for (const f of readdirSync(SITE)) {
 }
 for (const p of products) write(join(SITE, `produkt-${p.slug}.html`), renderProductPage(tpl, p, pricelist));
 
-const urls = ['', 'katalog.html', ...products.map((p) => `produkt-${p.slug}.html`)];
+const pageTpl = readFileSync(join(ROOT, 'templates/stranka.html'), 'utf8');
+for (const pg of pages) {
+  const html = pageTpl.replace(/\{\{(\w+)\}\}/g, (m, k) => ({
+    TITLE: esc(pg.meta.title ?? pg.slug),
+    EYEBROW: esc(pg.meta.eyebrow ?? 'Informácie'),
+    PEREX: esc(pg.meta.perex ?? ''),
+    UPDATED: esc(pg.meta.updated ?? ''),
+    ROBOTS: esc(pg.meta.robots ?? 'index,follow'),
+    BODY: renderPageBody(pg.body),
+    NAV_INFO, NAV_LEGAL,
+  }[k] ?? m));
+  write(join(SITE, `${pg.slug}.html`), html);
+}
+
+/* ── košík ───────────────────────────────────────────────────────────────── */
+const cartTpl = readFileSync(join(ROOT, 'templates/kosik.html'), 'utf8');
+write(join(SITE, 'kosik.html'), cartTpl.replace(/\{\{(\w+)\}\}/g, (m, k) =>
+  ({ NAV_INFO, NAV_LEGAL, PRICELIST: pricelist }[k] ?? m)));
+
+/* ── sitemap ─────────────────────────────────────────────────────────────── */
+const urls = [
+  '', 'katalog.html', 'kosik.html',
+  ...products.map((p) => `produkt-${p.slug}.html`),
+  ...pages.map((p) => `${p.slug}.html`),
+];
 write(join(SITE, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   urls.map((u) => `  <url><loc>/${u}</loc></url>`).join('\n') + `\n</urlset>\n`);

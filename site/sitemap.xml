@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>/</loc></url>
   <url><loc>/katalog.html</loc></url>
+  <url><loc>/kosik.html</loc></url>
   <url><loc>/produkt-reta.html</loc></url>
   <url><loc>/produkt-mounjaro.html</loc></url>
   <url><loc>/produkt-ghk-cu.html</loc></url>
@@ -25,4 +26,11 @@
   <url><loc>/produkt-5-amino-1mq.html</loc></url>
   <url><loc>/produkt-klow.html</loc></url>
   <url><loc>/produkt-bac-water.html</loc></url>
+  <url><loc>/doprava-a-platba.html</loc></url>
+  <url><loc>/obchodne-podmienky.html</loc></url>
+  <url><loc>/odstupenie-od-zmluvy.html</loc></url>
+  <url><loc>/reklamacny-poriadok.html</loc></url>
+  <url><loc>/ochrana-osobnych-udajov.html</loc></url>
+  <url><loc>/cookies.html</loc></url>
+  <url><loc>/riesenie-sporov.html</loc></url>
 </urlset>

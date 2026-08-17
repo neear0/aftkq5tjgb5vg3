@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!-- GENEROVANÉ — needituj v site/. Zdroj: templates/kosik.html -->
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Košík — ULTRA PEPTIDY</title>
+<meta name="description" content="Zhrnutie vybraných položiek s množstevnými cenami.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/ultrapeptidy.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <path d="M4.5 8.5h15l-1.7 11H6.2z"/><path d="M8.5 8.5V8a3.5 3.5 0 017 0v.5"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round">
+    <path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+    <path d="M12 3l9.5 17H2.5L12 3z"/><path d="M12 9v5M12 17h.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+    <circle cx="12" cy="12" r="9"/><path d="M12 11.2v5M12 8.2h.01"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round">
+    <rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round">
+    <rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7a2 2 0 002 2h3"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round">
+    <path d="M6 6l12 12M18 6L6 18"/></symbol>
+</defs></svg>
+
+<div class="molecular-bg" aria-hidden="true">
+  <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+    <g stroke="#3B82F6" stroke-opacity=".38" stroke-width="1" fill="none">
+      <path d="M1180 40l120 90 -60 130 90 110M1300 130l110 -40M1240 260l150 60M1330 410l90 -70"/>
+      <path d="M60 700l110 -70 130 60 90 -110M170 630l-40 -120M300 690l120 90"/>
+    </g>
+    <g fill="#60A5FA" fill-opacity=".65">
+      <circle cx="1180" cy="40" r="3"/><circle cx="1300" cy="130" r="4"/>
+      <circle cx="1240" cy="260" r="3"/><circle cx="1330" cy="410" r="4"/>
+    </g>
+    <g fill="#A855F7" fill-opacity=".6">
+      <circle cx="60" cy="700" r="4"/><circle cx="170" cy="630" r="3"/>
+      <circle cx="300" cy="690" r="4"/><circle cx="390" cy="580" r="2.5"/>
+    </g>
+  </svg>
+</div>
+
+<header class="up-header">
+  <div class="up-container up-header__inner">
+    <a class="up-logo" href="index.html">
+      <span class="holo-logo holo-logo--mark"><img src="assets/img/logo-mark.png" alt="" width="122" height="120"></span>
+      <span class="up-logo__text">Ultra<small>peptidy</small></span>
+    </a>
+    <nav class="up-nav" aria-label="Hlavná navigácia">
+      <a href="katalog.html">Katalóg</a>
+      <a href="#" data-open-cennik>Cenník</a>
+      <a href="index.html#cistota">Kvalita</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <div class="up-actions">
+      <a class="icon-btn" href="kosik.html" aria-label="Košík" aria-current="page">
+        <svg width="16" height="16" fill="none" stroke="currentColor"><use href="#i-cart"/></svg>
+        <span class="icon-btn__badge" data-cart-count hidden>0</span>
+      </a>
+    </div>
+  </div>
+  <div class="hdr__spectral" aria-hidden="true" style="height:1px;background:var(--up-holo);opacity:.5"></div>
+</header>
+
+<main data-cart-page>
+<div class="up-container">
+  <nav class="breadcrumb" aria-label="Navigácia">
+    <a href="index.html">Domov</a> › <span aria-current="page">Košík</span>
+  </nav>
+
+  <div class="section-head" style="margin-top:var(--up-sp-4)">
+    <div>
+      <p class="eyebrow">Ceny s DPH · množstevná cena od 3 kusov</p>
+      <h1 class="section-title" style="font-size:var(--up-fs-h1)">Košík</h1>
+    </div>
+    <button class="btn-ghost" data-cart-clear hidden style="padding:9px 18px;font-size:.8125rem">
+      Vyprázdniť košík
+    </button>
+  </div>
+
+  <!-- prázdny košík -->
+  <div class="cart-empty" data-cart-empty hidden>
+    <svg width="34" height="34" fill="none" stroke="var(--up-text-mute)" stroke-width="1.4" aria-hidden="true"><use href="#i-cart"/></svg>
+    <p>V košíku zatiaľ nič nie je.</p>
+    <a class="btn-holo" href="katalog.html">◆ Prehliadať katalóg</a>
+  </div>
+
+  <!-- obsah košíka -->
+  <div class="cart" data-cart-body hidden>
+    <div class="cart__items" data-cart-items></div>
+
+    <aside class="cart__side">
+      <div class="cart__totals glass">
+        <div class="cart__row">
+          <span>Položky</span><strong data-cart-subcount>0</strong>
+        </div>
+        <div class="cart__row">
+          <span>Medzisúčet</span><strong data-cart-subtotal>0,00 €</strong>
+        </div>
+        <div class="cart__row cart__row--save" data-cart-saverow hidden>
+          <span>Množstevná zľava</span><strong data-cart-saved>0,00 €</strong>
+        </div>
+        <div class="cart__row cart__row--total">
+          <span>Celkom s DPH</span><strong data-cart-total>0,00 €</strong>
+        </div>
+        <p class="cart__note">Doprava sa doúčtuje podľa zvoleného spôsobu.
+          Ceny sú konečné vrátane DPH.</p>
+      </div>
+
+      <div class="notice" style="margin-bottom:0">
+        <svg fill="none" stroke-width="1.5"><use href="#i-info"/></svg>
+        <span><strong>Objednávka e-mailom.</strong> Tento web zatiaľ nemá platobnú
+        bránu. Zhrnutie nižšie pošli e-mailom a my ti potvrdíme dostupnosť,
+        cenu dopravy a spôsob platby.</span>
+      </div>
+
+      <div class="cart__order">
+        <p class="label">Zhrnutie objednávky</p>
+        <textarea data-cart-summary rows="10" readonly aria-label="Zhrnutie objednávky"></textarea>
+        <div class="cart__order-actions">
+          <a class="btn-holo" data-cart-mail href="#">
+            <svg width="15" height="15" fill="none" stroke="currentColor" aria-hidden="true"><use href="#i-mail"/></svg>
+            Odoslať e-mailom
+          </a>
+          <button class="btn-ghost" data-cart-copy>
+            <svg width="15" height="15" fill="none" stroke="currentColor" aria-hidden="true"><use href="#i-copy"/></svg>
+            Skopírovať
+          </button>
+        </div>
+        <p class="cart__note" data-cart-copied hidden>Skopírované do schránky.</p>
+      </div>
+
+      <p class="disclaimer" style="margin-top:var(--up-sp-4)">
+        <svg fill="none" stroke-width="1.5"><use href="#i-warn"/></svg>
+        <span>Odoslaním potvrdzuješ, že máš <strong>18 rokov alebo viac</strong>
+        a že položky nadobúdaš <strong>výhradne na laboratórne a výskumné
+        použitie</strong>. Nie sú liekmi a nie sú určené na podávanie ľuďom
+        ani zvieratám. Podrobne vo
+        <a href="obchodne-podmienky.html">Všeobecných obchodných podmienkach</a>,
+        článok 3 a 4.</span>
+      </p>
+    </aside>
+  </div>
+</div>
+</main>
+
+<dialog class="modal" id="cennik-modal" aria-labelledby="cennik-modal-t">
+  <div class="modal__head">
+    <div>
+      <p class="eyebrow">Ceny s DPH · množstevná cena od 3 kusov</p>
+      <h2 id="cennik-modal-t">Cenník</h2>
+    </div>
+    <button class="modal__close" data-close-modal aria-label="Zavrieť cenník">
+      <svg width="17" height="17" fill="none" stroke="currentColor"><use href="#i-x"/></svg>
+    </button>
+  </div>
+  <div class="modal__body">
+      <div class="pricelist">
+        <div class="pl-group">
+          <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-syringe"/></svg><h3 class="pl-group__title">Na chudnutie</h3></div>
+          <table class="pl-table">
+            <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
+            <tbody>
+              <tr><td><a href="produkt-reta.html">Reta 10 mg</a></td><td class="pl-1ks">85 €</td><td class="pl-3ks">80 €</td></tr>
+              <tr><td><a href="produkt-reta.html">Reta 30 mg</a></td><td class="pl-1ks">260 €</td><td class="pl-3ks">240 €</td></tr>
+              <tr><td><a href="produkt-reta.html">Reta 40 mg</a></td><td class="pl-1ks">350 €</td><td class="pl-3ks">340 €</td></tr>
+              <tr><td><a href="produkt-mounjaro.html">Mounjaro 20 mg</a></td><td class="pl-1ks">170 €</td><td class="pl-3ks">165 €</td></tr>
+              <tr><td><a href="produkt-mounjaro.html">Mounjaro 50 mg</a></td><td class="pl-1ks">480 €</td><td class="pl-3ks">460 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pl-group">
+          <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-face"/></svg><h3 class="pl-group__title">Krása</h3></div>
+          <table class="pl-table">
+            <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
+            <tbody>
+              <tr><td><a href="produkt-ghk-cu.html">GHK-Cu 100 mg</a></td><td class="pl-1ks">43 €</td><td class="pl-3ks">40 €</td></tr>
+              <tr><td><a href="produkt-bpc-157.html">BPC-157 10 mg</a></td><td class="pl-1ks">35 €</td><td class="pl-3ks">30 €</td></tr>
+              <tr><td><a href="produkt-bpc-tb500.html">BPC-157 + TB-500 10 mg</a></td><td class="pl-1ks">46 €</td><td class="pl-3ks">44 €</td></tr>
+              <tr><td><a href="produkt-bpc-tb500.html">BPC-157 + TB-500 20 mg</a></td><td class="pl-1ks">84 €</td><td class="pl-3ks">80 €</td></tr>
+              <tr><td><a href="produkt-melanotan-2.html">Melanotan II 10 mg</a></td><td class="pl-1ks">25 €</td><td class="pl-3ks">20 €</td></tr>
+              <tr><td><a href="produkt-melanotan-1.html">Melanotan I 10 mg</a></td><td class="pl-1ks">25 €</td><td class="pl-3ks">20 €</td></tr>
+              <tr><td><a href="produkt-epithalon.html">Epithalon 50 mg</a></td><td class="pl-1ks">87 €</td><td class="pl-3ks">80 €</td></tr>
+              <tr><td><a href="produkt-nad.html">NAD+ 1000 mg</a></td><td class="pl-1ks">80 €</td><td class="pl-3ks">74 €</td></tr>
+              <tr><td><a href="produkt-glutathione.html">Glutathione 600 mg</a></td><td class="pl-1ks">40 €</td><td class="pl-3ks">37 €</td></tr>
+              <tr><td><a href="produkt-glutathione.html">Glutathione 1500 mg</a></td><td class="pl-1ks">90 €</td><td class="pl-3ks">85 €</td></tr>
+              <tr><td><a href="produkt-lipo-c-b12.html">Lipo-C + B12 10 mg</a></td><td class="pl-1ks">40 €</td><td class="pl-3ks">35 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pl-group">
+          <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-heart"/></svg><h3 class="pl-group__title">Regenerácia a zdravie</h3></div>
+          <table class="pl-table">
+            <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
+            <tbody>
+              <tr><td><a href="produkt-kpv.html">KPV 10 mg</a></td><td class="pl-1ks">25 €</td><td class="pl-none">–</td></tr>
+              <tr><td><a href="produkt-kpv.html">KPV 30 mg</a></td><td class="pl-1ks">53 €</td><td class="pl-none">–</td></tr>
+              <tr><td><a href="produkt-mots-c.html">MOTS-C 40 mg</a></td><td class="pl-1ks">75 €</td><td class="pl-3ks">70 €</td></tr>
+              <tr><td><a href="produkt-dsip.html">DSIP 10 mg</a></td><td class="pl-1ks">27 €</td><td class="pl-3ks">25 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pl-group">
+          <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-growth"/></svg><h3 class="pl-group__title">Rastové hormóny a peptidy</h3></div>
+          <table class="pl-table">
+            <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
+            <tbody>
+              <tr><td><a href="produkt-cjc-ipamorelin.html">CJC + Ipamorelin 10 mg</a></td><td class="pl-1ks">45 €</td><td class="pl-3ks">42 €</td></tr>
+              <tr><td><a href="produkt-cjc-ipamorelin.html">CJC + Ipamorelin 20 mg</a></td><td class="pl-1ks">85 €</td><td class="pl-3ks">80 €</td></tr>
+              <tr><td><a href="produkt-ipamorelin.html">Ipamorelin 10 mg</a></td><td class="pl-1ks">40 €</td><td class="pl-3ks">37 €</td></tr>
+              <tr><td><a href="produkt-ghrp-6.html">GHRP-6 5 mg</a></td><td class="pl-1ks">16 €</td><td class="pl-none">–</td></tr>
+              <tr><td><a href="produkt-tesamorelin.html">Tesamorelin 5 mg</a></td><td class="pl-1ks">40 €</td><td class="pl-3ks">37 €</td></tr>
+              <tr><td><a href="produkt-tesamorelin.html">Tesamorelin 10 mg</a></td><td class="pl-1ks">65 €</td><td class="pl-3ks">63 €</td></tr>
+              <tr><td><a href="produkt-tesamorelin.html">Tesamorelin 20 mg</a></td><td class="pl-1ks">87 €</td><td class="pl-3ks">82 €</td></tr>
+              <tr><td><a href="produkt-igf-1-lr3.html">IGF-1 LR3 1 mg</a></td><td class="pl-1ks">75 €</td><td class="pl-3ks">70 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pl-group">
+          <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-brain"/></svg><h3 class="pl-group__title">Kognícia a fokus</h3></div>
+          <table class="pl-table">
+            <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
+            <tbody>
+              <tr><td><a href="produkt-semax.html">Semax 10 mg</a></td><td class="pl-1ks">25 €</td><td class="pl-3ks">23 €</td></tr>
+              <tr><td><a href="produkt-5-amino-1mq.html">5-Amino-1MQ</a></td><td class="pl-1ks">35 €</td><td class="pl-3ks">30 €</td></tr>
+              <tr><td><a href="produkt-klow.html">Klow 80 mg</a></td><td class="pl-1ks">90 €</td><td class="pl-3ks">84 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pl-group">
+          <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-drop"/></svg><h3 class="pl-group__title">Pomocné produkty</h3></div>
+          <table class="pl-table">
+            <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
+            <tbody>
+              <tr><td><a href="produkt-bac-water.html">Bac Water 3 ml</a></td><td class="pl-1ks">3 €</td><td class="pl-none">–</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+  <p class="modal__foot">
+    Pomlčka v stĺpci „3+ ks“ znamená, že pre danú položku nie je stanovená množstevná cena.
+  </p>
+</dialog>
+
+<footer class="up-footer">
+  <div class="up-container">
+    <div class="up-footer__grid">
+      <div>
+        <a class="up-logo" href="index.html" style="margin-bottom:16px">
+          <span class="holo-logo holo-logo--mark"><img src="assets/img/logo-mark.png" alt="" width="122" height="120"></span>
+          <span class="up-logo__text">Ultra<small>peptidy</small></span>
+        </a>
+        <p style="font-size:var(--up-fs-sm);color:var(--up-text-mute);max-width:32ch;line-height:1.7">
+          Výskumné peptidy s certifikátom analýzy pre každú šaržu.
+        </p>
+      </div>
+      <div>
+        <h4>Katalóg</h4>
+        <ul>
+          <li><a href="katalog.html#na-chudnutie">Na chudnutie</a></li>
+          <li><a href="katalog.html#krasa">Krása</a></li>
+          <li><a href="katalog.html#regeneracia">Regenerácia a zdravie</a></li>
+          <li><a href="katalog.html#rastove-hormony">Rastové hormóny</a></li>
+          <li><a href="katalog.html#kognicia">Kognícia a fokus</a></li>
+          <li><a href="katalog.html#pomocne">Pomocné produkty</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informácie</h4>
+        <ul>
+          <li><a href="#" data-open-cennik>Cenník</a></li>
+          <li><a href="doprava-a-platba.html">Doprava a platba</a></li>
+          <li><a href="index.html#faq">Časté otázky</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Právne</h4>
+        <ul>
+          <li><a href="obchodne-podmienky.html">Všeobecné obchodné podmienky</a></li>
+          <li><a href="odstupenie-od-zmluvy.html">Odstúpenie od zmluvy</a></li>
+          <li><a href="reklamacny-poriadok.html">Reklamačný poriadok</a></li>
+          <li><a href="ochrana-osobnych-udajov.html">Ochrana osobných údajov</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+          <li><a href="riesenie-sporov.html">Riešenie sporov</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="ruo-strip">
+      <strong>FOR RESEARCH USE ONLY.</strong> Všetky produkty na tejto stránke sú určené výhradne na
+      laboratórne a výskumné použitie. Nie sú liekmi, výživovými doplnkami, kozmetikou ani
+      zdravotníckymi pomôckami a nie sú určené na diagnostiku, prevenciu, liečbu ani na podávanie
+      ľuďom či zvieratám. Neposkytujeme dávkovanie ani zdravotné odporúčania. Nákup je možný len
+      osobám nad 18 rokov.
+    </p>
+
+    <div class="up-footer__legal">
+      <span>© 2026 ULTRA PEPTIDY · IČO 00 000 000 · DIČ 0000000000</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

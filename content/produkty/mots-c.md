@@ -1,16 +1,17 @@
 > Mitochondriálny peptid spojený s energetickým metabolizmom.
 > 16 aminokyselín, dodávaný ako lyofilizát.
 
-## Čo je MOTS-C?
+## Čo je MOTS-C
 - MOTS-c je 16-aminokyselinový mitochondriálny peptid.
-- Je kódovaný v géne pre mitochondriálnu 12S rRNA.
+- Je kódovaný v géne pre mitochondriálnu 12S rRNA — nie v jadrovej DNA.
 - Patrí medzi mitochondriálne odvodené peptidy (MDPs).
 - Podieľa sa na komunikácii medzi mitochondriou a jadrom.
 
 ## Dokumentovaný mechanizmus
 - V modeloch aktivuje dráhu folát → AICAR → AMPK.
 - Publikované práce opisujú vplyv na glukózovú toleranciu a inzulínovú citlivosť.
-- Sledovaný v súvislosti s využitím energie a metabolickou flexibilitou.
+- Sledovaný v súvislosti s využitím energetických substrátov a metabolickou
+  flexibilitou.
 - V experimentálnych modeloch opisovaný vplyv na odpoveď na oxidačný stres.
 
 ## Súvis s fyzickou záťažou

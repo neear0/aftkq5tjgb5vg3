@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!-- GENEROVANÉ — needituj v site/. Zdroj: templates/kosik.html -->
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Košík — ULTRA PEPTIDY</title>
+<meta name="description" content="Zhrnutie vybraných položiek s množstevnými cenami.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/ultrapeptidy.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <path d="M4.5 8.5h15l-1.7 11H6.2z"/><path d="M8.5 8.5V8a3.5 3.5 0 017 0v.5"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round">
+    <path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+    <path d="M12 3l9.5 17H2.5L12 3z"/><path d="M12 9v5M12 17h.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+    <circle cx="12" cy="12" r="9"/><path d="M12 11.2v5M12 8.2h.01"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round">
+    <rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round">
+    <rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7a2 2 0 002 2h3"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round">
+    <path d="M6 6l12 12M18 6L6 18"/></symbol>
+</defs></svg>
+
+<div class="molecular-bg" aria-hidden="true">
+  <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+    <g stroke="#3B82F6" stroke-opacity=".38" stroke-width="1" fill="none">
+      <path d="M1180 40l120 90 -60 130 90 110M1300 130l110 -40M1240 260l150 60M1330 410l90 -70"/>
+      <path d="M60 700l110 -70 130 60 90 -110M170 630l-40 -120M300 690l120 90"/>
+    </g>
+    <g fill="#60A5FA" fill-opacity=".65">
+      <circle cx="1180" cy="40" r="3"/><circle cx="1300" cy="130" r="4"/>
+      <circle cx="1240" cy="260" r="3"/><circle cx="1330" cy="410" r="4"/>
+    </g>
+    <g fill="#A855F7" fill-opacity=".6">
+      <circle cx="60" cy="700" r="4"/><circle cx="170" cy="630" r="3"/>
+      <circle cx="300" cy="690" r="4"/><circle cx="390" cy="580" r="2.5"/>
+    </g>
+  </svg>
+</div>
+
+<header class="up-header">
+  <div class="up-container up-header__inner">
+    <a class="up-logo" href="index.html">
+      <span class="holo-logo holo-logo--mark"><img src="assets/img/logo-mark.png" alt="" width="122" height="120"></span>
+      <span class="up-logo__text">Ultra<small>peptidy</small></span>
+    </a>
+    <nav class="up-nav" aria-label="Hlavná navigácia">
+      <a href="katalog.html">Katalóg</a>
+      <a href="#" data-open-cennik>Cenník</a>
+      <a href="index.html#cistota">Kvalita</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <div class="up-actions">
+      <a class="icon-btn" href="kosik.html" aria-label="Košík" aria-current="page">
+        <svg width="16" height="16" fill="none" stroke="currentColor"><use href="#i-cart"/></svg>
+        <span class="icon-btn__badge" data-cart-count hidden>0</span>
+      </a>
+    </div>
+  </div>
+  <div class="hdr__spectral" aria-hidden="true" style="height:1px;background:var(--up-holo);opacity:.5"></div>
+</header>
+
+<main data-cart-page>
+<div class="up-container">
+  <nav class="breadcrumb" aria-label="Navigácia">
+    <a href="index.html">Domov</a> › <span aria-current="page">Košík</span>
+  </nav>
+
+  <div class="section-head" style="margin-top:var(--up-sp-4)">
+    <div>
+      <p class="eyebrow">Ceny s DPH · množstevná cena od 3 kusov</p>
+      <h1 class="section-title" style="font-size:var(--up-fs-h1)">Košík</h1>
+    </div>
+    <button class="btn-ghost" data-cart-clear hidden style="padding:9px 18px;font-size:.8125rem">
+      Vyprázdniť košík
+    </button>
+  </div>
+
+  <!-- prázdny košík -->
+  <div class="cart-empty" data-cart-empty hidden>
+    <svg width="34" height="34" fill="none" stroke="var(--up-text-mute)" stroke-width="1.4" aria-hidden="true"><use href="#i-cart"/></svg>
+    <p>V košíku zatiaľ nič nie je.</p>
+    <a class="btn-holo" href="katalog.html">◆ Prehliadať katalóg</a>
+  </div>
+
+  <!-- obsah košíka -->
+  <div class="cart" data-cart-body hidden>
+    <div class="cart__items" data-cart-items></div>
+
+    <aside class="cart__side">
+      <div class="cart__totals glass">
+        <div class="cart__row">
+          <span>Položky</span><strong data-cart-subcount>0</strong>
+        </div>
+        <div class="cart__row">
+          <span>Medzisúčet</span><strong data-cart-subtotal>0,00 €</strong>
+        </div>
+        <div class="cart__row cart__row--save" data-cart-saverow hidden>
+          <span>Množstevná zľava</span><strong data-cart-saved>0,00 €</strong>
+        </div>
+        <div class="cart__row cart__row--total">
+          <span>Celkom s DPH</span><strong data-cart-total>0,00 €</strong>
+        </div>
+        <p class="cart__note">Doprava sa doúčtuje podľa zvoleného spôsobu.
+          Ceny sú konečné vrátane DPH.</p>
+      </div>
+
+      <div class="notice" style="margin-bottom:0">
+        <svg fill="none" stroke-width="1.5"><use href="#i-info"/></svg>
+        <span><strong>Objednávka e-mailom.</strong> Tento web zatiaľ nemá platobnú
+        bránu. Zhrnutie nižšie pošli e-mailom a my ti potvrdíme dostupnosť,
+        cenu dopravy a spôsob platby.</span>
+      </div>
+
+      <div class="cart__order">
+        <p class="label">Zhrnutie objednávky</p>
+        <textarea data-cart-summary rows="10" readonly aria-label="Zhrnutie objednávky"></textarea>
+        <div class="cart__order-actions">
+          <a class="btn-holo" data-cart-mail href="#">
+            <svg width="15" height="15" fill="none" stroke="currentColor" aria-hidden="true"><use href="#i-mail"/></svg>
+            Odoslať e-mailom
+          </a>
+          <button class="btn-ghost" data-cart-copy>
+            <svg width="15" height="15" fill="none" stroke="currentColor" aria-hidden="true"><use href="#i-copy"/></svg>
+            Skopírovať
+          </button>
+        </div>
+        <p class="cart__note" data-cart-copied hidden>Skopírované do schránky.</p>
+      </div>
+
+      <p class="disclaimer" style="margin-top:var(--up-sp-4)">
+        <svg fill="none" stroke-width="1.5"><use href="#i-warn"/></svg>
+        <span>Odoslaním potvrdzuješ, že máš <strong>18 rokov alebo viac</strong>
+        a že položky nadobúdaš <strong>výhradne na laboratórne a výskumné
+        použitie</strong>. Nie sú liekmi a nie sú určené na podávanie ľuďom
+        ani zvieratám. Podrobne vo
+        <a href="obchodne-podmienky.html">Všeobecných obchodných podmienkach</a>,
+        článok 3 a 4.</span>
+      </p>
+    </aside>
+  </div>
+</div>
+</main>
+
+<dialog class="modal" id="cennik-modal" aria-labelledby="cennik-modal-t">
+  <div class="modal__head">
+    <div>
+      <p class="eyebrow">Ceny s DPH · množstevná cena od 3 kusov</p>
+      <h2 id="cennik-modal-t">Cenník</h2>
+    </div>
+    <button class="modal__close" data-close-modal aria-label="Zavrieť cenník">
+      <svg width="17" height="17" fill="none" stroke="currentColor"><use href="#i-x"/></svg>
+    </button>
+  </div>
+  <div class="modal__body">
+{{PRICELIST}}
+  </div>
+  <p class="modal__foot">
+    Pomlčka v stĺpci „3+ ks“ znamená, že pre danú položku nie je stanovená množstevná cena.
+  </p>
+</dialog>
+
+<footer class="up-footer">
+  <div class="up-container">
+    <div class="up-footer__grid">
+      <div>
+        <a class="up-logo" href="index.html" style="margin-bottom:16px">
+          <span class="holo-logo holo-logo--mark"><img src="assets/img/logo-mark.png" alt="" width="122" height="120"></span>
+          <span class="up-logo__text">Ultra<small>peptidy</small></span>
+        </a>
+        <p style="font-size:var(--up-fs-sm);color:var(--up-text-mute);max-width:32ch;line-height:1.7">
+          Výskumné peptidy s certifikátom analýzy pre každú šaržu.
+        </p>
+      </div>
+      <div>
+        <h4>Katalóg</h4>
+        <ul>
+          <li><a href="katalog.html#na-chudnutie">Na chudnutie</a></li>
+          <li><a href="katalog.html#krasa">Krása</a></li>
+          <li><a href="katalog.html#regeneracia">Regenerácia a zdravie</a></li>
+          <li><a href="katalog.html#rastove-hormony">Rastové hormóny</a></li>
+          <li><a href="katalog.html#kognicia">Kognícia a fokus</a></li>
+          <li><a href="katalog.html#pomocne">Pomocné produkty</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informácie</h4>
+        <ul>
+{{NAV_INFO}}
+        </ul>
+      </div>
+      <div>
+        <h4>Právne</h4>
+        <ul>
+{{NAV_LEGAL}}
+        </ul>
+      </div>
+    </div>
+
+    <p class="ruo-strip">
+      <strong>FOR RESEARCH USE ONLY.</strong> Všetky produkty na tejto stránke sú určené výhradne na
+      laboratórne a výskumné použitie. Nie sú liekmi, výživovými doplnkami, kozmetikou ani
+      zdravotníckymi pomôckami a nie sú určené na diagnostiku, prevenciu, liečbu ani na podávanie
+      ľuďom či zvieratám. Neposkytujeme dávkovanie ani zdravotné odporúčania. Nákup je možný len
+      osobám nad 18 rokov.
+    </p>
+
+    <div class="up-footer__legal">
+      <span>© 2026 ULTRA PEPTIDY · IČO 00 000 000 · DIČ 0000000000</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

@@ -91,6 +91,9 @@
       if (box) {
         box.dataset.price1 = String(price);
         box.dataset.price3 = String(tier ?? price);
+        // ref a mg musia ísť s cenou, inak by sa do košíka pridala iná gramáž
+        box.dataset.ref = d.ref || box.dataset.ref;
+        box.dataset.mg = d.mg || "";
       }
       if (p1El) p1El.textContent = eur(price);
       if (p3El) {
@@ -193,6 +196,220 @@
     // klik mimo obsahu zavrie; <dialog> hlási klik na seba pri kliku do backdropu
     cennik.addEventListener('click', (e) => { if (e.target === cennik) close(); });
     cennik.addEventListener('close', () => setPressed(false));
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     KOŠÍK
+     Klientský, v localStorage. Na statickom hostingu nič iné nie je možné —
+     a je to úmyselné: objednávka sa dokončí e-mailom, kým nebude e-shop.
+     Množstevná cena sa počíta na položku, nie na celú objednávku.
+     ═══════════════════════════════════════════════════════════════════════ */
+  const CART_KEY = 'up_cart_v1';
+  const TIER_QTY = 3;
+
+  const cartRead = () => {
+    try {
+      const raw = localStorage.getItem(CART_KEY);
+      const arr = raw ? JSON.parse(raw) : [];
+      return Array.isArray(arr) ? arr.filter((i) => i && i.ref && i.qty > 0) : [];
+    } catch { return []; }
+  };
+  const cartWrite = (items) => {
+    try { localStorage.setItem(CART_KEY, JSON.stringify(items)); } catch { /* private mode */ }
+    document.dispatchEvent(new CustomEvent('up:cart'));
+  };
+
+  /** Jednotková cena položky pri danom množstve. */
+  const unitOf = (i) => (i.tier != null && i.qty >= TIER_QTY ? i.tier : i.price);
+  const cartTotals = (items) => items.reduce((t, i) => {
+    t.count += i.qty;
+    t.total += unitOf(i) * i.qty;
+    t.full  += i.price * i.qty;
+    return t;
+  }, { count: 0, total: 0, full: 0 });
+
+  /* ── odznak v hlavičke ─────────────────────────────────────────────────── */
+  const paintBadge = () => {
+    const n = cartTotals(cartRead()).count;
+    document.querySelectorAll('[data-cart-count]').forEach((el) => {
+      el.textContent = String(n);
+      el.hidden = n === 0;
+    });
+  };
+  document.addEventListener('up:cart', paintBadge);
+  paintBadge();
+
+  /* ── pridanie do košíka z produktovej stránky ──────────────────────────── */
+  document.querySelectorAll('[data-add-to-cart]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const box = document.querySelector('[data-qty]');
+      if (!box) return;
+      const qtyInput = box.querySelector('input[type="number"]');
+      const qty = Math.max(1, Math.min(99, parseInt(qtyInput?.value, 10) || 1));
+      const d = box.dataset;
+
+      const items = cartRead();
+      const found = items.find((i) => i.ref === d.ref);
+      if (found) found.qty = Math.min(99, found.qty + qty);
+      else items.push({
+        ref: d.ref,
+        slug: d.slug,
+        name: d.name,
+        mg: d.mg || '',
+        price: parseFloat(d.price1),
+        tier: d.price3 && d.price3 !== d.price1 ? parseFloat(d.price3) : null,
+        qty,
+      });
+      cartWrite(items);
+
+      // krátke potvrdenie na tlačidle namiesto vyskakovacieho okna
+      const label = btn.textContent;
+      btn.textContent = '✓ Pridané do košíka';
+      btn.disabled = true;
+      setTimeout(() => { btn.textContent = label; btn.disabled = false; }, 1400);
+    });
+  });
+
+  /* ── stránka košíka ────────────────────────────────────────────────────── */
+  const cartPage = document.querySelector('[data-cart-page]');
+  if (cartPage) {
+    const $ = (sel) => cartPage.querySelector(sel);
+    const itemsEl = $('[data-cart-items]');
+    const emptyEl = $('[data-cart-empty]');
+    const bodyEl = $('[data-cart-body]');
+    const clearBtn = $('[data-cart-clear]');
+    const ORDER_MAIL = 'objednavky@ultrapeptidy.sk';
+
+    const summaryText = (items, t) => {
+      const lines = ['OBJEDNÁVKA — ULTRA PEPTIDY', ''];
+      for (const i of items) {
+        const u = unitOf(i);
+        lines.push(
+          `${i.qty}× ${i.name}${i.mg ? ' ' + i.mg : ''}  [${i.ref}]` +
+          `\n     ${eur(u)}/ks${u !== i.price ? ' (množstevná cena)' : ''} = ${eur(u * i.qty)}`
+        );
+      }
+      lines.push('', `Položiek: ${t.count}`);
+      if (t.full > t.total) lines.push(`Množstevná zľava: −${eur(t.full - t.total)}`);
+      lines.push(`Celkom s DPH: ${eur(t.total)}`, '',
+        'Doprava sa doúčtuje podľa zvoleného spôsobu.', '',
+        'Potvrdzujem, že mám 18 rokov alebo viac a že položky',
+        'nadobúdam výhradne na laboratórne a výskumné použitie.', '',
+        'Meno a priezvisko: ',
+        'Adresa doručenia:  ',
+        'Telefón:           ',
+        'IČO / DIČ (ak fakturujete na firmu): ');
+      return lines.join('\n');
+    };
+
+    const render = () => {
+      const items = cartRead();
+      const t = cartTotals(items);
+      const has = items.length > 0;
+
+      if (emptyEl) emptyEl.hidden = has;
+      if (bodyEl) bodyEl.hidden = !has;
+      if (clearBtn) clearBtn.hidden = !has;
+      if (!has) { if (itemsEl) itemsEl.innerHTML = ''; return; }
+
+      itemsEl.innerHTML = items.map((i) => {
+        const u = unitOf(i);
+        const tierOn = u !== i.price;
+        const toTier = i.tier != null && i.qty < TIER_QTY ? TIER_QTY - i.qty : 0;
+        return `
+        <article class="cart-item" data-ref="${i.ref}">
+          <a class="cart-item__fig" href="produkt-${i.slug}.html" aria-label="${i.name}">
+            <span class="vial" style="--vial-w:52px">
+              <img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async">
+            </span>
+          </a>
+          <div class="cart-item__main">
+            <h3><a href="produkt-${i.slug}.html">${i.name}</a>${i.mg ? ` <span class="chip">${i.mg}</span>` : ''}</h3>
+            <p class="cart-item__ref">${i.ref}</p>
+            <p class="cart-item__unit${tierOn ? ' is-tier' : ''}">
+              ${eur(u)} / ks${tierOn ? ' · množstevná cena' : ''}
+            </p>
+            ${toTier > 0 ? `<p class="cart-item__hint">Pridaj ${toTier} ks a cena za kus klesne na ${eur(i.tier)}.</p>` : ''}
+          </div>
+          <div class="cart-item__qty">
+            <div class="qty-stepper">
+              <button type="button" data-cart-step="-1" aria-label="Znížiť množstvo">−</button>
+              <input type="number" value="${i.qty}" min="1" max="99" aria-label="Množstvo">
+              <button type="button" data-cart-step="1" aria-label="Zvýšiť množstvo">+</button>
+            </div>
+            <button class="cart-item__del" data-cart-remove aria-label="Odstrániť ${i.name}">
+              <svg width="16" height="16" fill="none" stroke="currentColor"><use href="#i-trash"/></svg>
+            </button>
+          </div>
+          <p class="cart-item__sum">${eur(u * i.qty)}</p>
+        </article>`;
+      }).join('');
+
+      $('[data-cart-subcount]').textContent = String(t.count);
+      $('[data-cart-subtotal]').textContent = eur(t.full);
+      $('[data-cart-total]').textContent = eur(t.total);
+      const saveRow = $('[data-cart-saverow]');
+      if (saveRow) {
+        const saved = t.full - t.total;
+        saveRow.hidden = saved <= 0;
+        if (saved > 0) $('[data-cart-saved]').textContent = '−' + eur(saved);
+      }
+
+      const text = summaryText(items, t);
+      const ta = $('[data-cart-summary]');
+      if (ta) ta.value = text;
+      const mail = $('[data-cart-mail]');
+      if (mail) {
+        mail.href = `mailto:${ORDER_MAIL}` +
+          `?subject=${encodeURIComponent('Objednávka z webu — ' + t.count + ' ks')}` +
+          `&body=${encodeURIComponent(text)}`;
+      }
+    };
+
+    itemsEl?.addEventListener('click', (e) => {
+      const row = e.target.closest('[data-ref]');
+      if (!row) return;
+      const items = cartRead();
+      const i = items.find((x) => x.ref === row.dataset.ref);
+      if (!i) return;
+
+      if (e.target.closest('[data-cart-remove]')) {
+        cartWrite(items.filter((x) => x.ref !== i.ref));
+        return;
+      }
+      const step = e.target.closest('[data-cart-step]');
+      if (step) {
+        i.qty = Math.max(1, Math.min(99, i.qty + parseInt(step.dataset.cartStep, 10)));
+        cartWrite(items);
+      }
+    });
+
+    itemsEl?.addEventListener('change', (e) => {
+      const input = e.target.closest('input[type="number"]');
+      const row = e.target.closest('[data-ref]');
+      if (!input || !row) return;
+      const items = cartRead();
+      const i = items.find((x) => x.ref === row.dataset.ref);
+      if (!i) return;
+      i.qty = Math.max(1, Math.min(99, parseInt(input.value, 10) || 1));
+      cartWrite(items);
+    });
+
+    clearBtn?.addEventListener('click', () => {
+      if (confirm('Naozaj vyprázdniť košík?')) cartWrite([]);
+    });
+
+    $('[data-cart-copy]')?.addEventListener('click', async () => {
+      const ta = $('[data-cart-summary]');
+      if (!ta) return;
+      try { await navigator.clipboard.writeText(ta.value); }
+      catch { ta.select(); document.execCommand('copy'); }
+      const msg = $('[data-cart-copied]');
+      if (msg) { msg.hidden = false; setTimeout(() => { msg.hidden = true; }, 2500); }
+    });
+
+    document.addEventListener('up:cart', render);
+    render();
   }
 
   /* ── 6) Age gate — v produkcii NAVIAC server-side cookie + audit v DB ── */

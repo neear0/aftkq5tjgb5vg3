@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BPC-157 10 mg — ULTRA PEPTIDY</title>
-<meta name="description" content="BPC-157. Referenčná látka na laboratórne a výskumné použitie. Referenčná látka na laboratórne a výskumné použitie.">
+<meta name="description" content="Pentadekapeptid odvodený od proteínu v žalúdočnej šťave. 15 aminokyselín, dodávaný ako lyofilizát. Referenčná látka na laboratórne a výskumné použitie.">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/ultrapeptidy.css">
@@ -113,9 +113,10 @@
       <button class="icon-btn" aria-label="Hľadať">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg>
       </button>
-      <button class="icon-btn" aria-label="Košík, 0 položiek">
+      <a class="icon-btn" href="kosik.html" aria-label="Košík">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4.5 8.5h15l-1.7 11H6.2z"/><path d="M8.5 8.5V8a3.5 3.5 0 017 0v.5"/></svg>
-      </button>
+        <span class="icon-btn__badge" data-cart-count hidden>0</span>
+      </a>
     </div>
   </div>
 </header>
@@ -143,7 +144,7 @@
 
     <div>
       <h1 class="pdp__title"><span class="holo-text">BPC-157</span></h1>
-      <p class="pdp__subtitle">BPC-157. Referenčná látka na laboratórne a výskumné použitie.</p>
+      <p class="pdp__subtitle">Pentadekapeptid odvodený od proteínu v žalúdočnej šťave. 15 aminokyselín, dodávaný ako lyofilizát.</p>
 
       <div class="pdp__meta">
         <span class="stock-pill" data-stock-pill>Na sklade</span>
@@ -152,7 +153,9 @@
         <span class="coa-badge"><svg fill="none" stroke-width="1.5"><use href="#i-micro"/></svg> Čistota <span data-purity>99,11 %</span> <a href="#coa">COA ↓</a></span>
       </div>
 
-      <div class="price-box glass" data-qty data-price1="35" data-price3="30" data-tier-qty="3">
+      <div class="price-box glass" data-qty data-tier-qty="3"
+           data-slug="bpc-157" data-name="BPC-157" data-ref="UP-BPC157-10" data-mg="10 mg"
+           data-price1="35" data-price3="30">
         <div class="price-tiers">
           <div class="price-row">
             <span class="price-row__label">1 ks</span>
@@ -177,7 +180,7 @@
         <p class="price-save" data-save hidden></p>
       </div>
 
-      <button class="btn-holo btn-block" data-cta-anchor style="margin-bottom:16px">◆ Pridať do košíka</button>
+      <button class="btn-holo btn-block" data-cta-anchor data-add-to-cart style="margin-bottom:16px">◆ Pridať do košíka</button>
 
       <div class="notice">
         <svg fill="none" stroke-width="1.5"><use href="#i-clock"/></svg>
@@ -207,10 +210,41 @@
   <div class="up-container">
     <div class="infoblocks">
       <div class="infoblock">
-        <div class="infoblock__head"><span class="brush-label">Popis</span></div>
-        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6">
-          Popis tejto položky pripravujeme. Analytické údaje sú v špecifikácii nižšie
-          a v certifikáte analýzy.</p>
+        <div class="infoblock__head"><span class="brush-label">Čo je BPC-157</span></div>
+        <ul>
+          <li>Syntetický peptid s 15 aminokyselinami — pentadekapeptid.</li>
+          <li>Odvodený od sekvencie proteínu BPC prítomného v ľudskej žalúdočnej šťave.</li>
+          <li>Vo výskume patrí medzi najčastejšie skúmané reparačné peptidy.</li>
+          <li>V literatúre sa označuje aj ako PL 14736 alebo Bepecin.</li>
+        </ul>
+      </div>
+
+      <div class="infoblock">
+        <div class="infoblock__head"><span class="brush-label">Dokumentovaný mechanizmus</span></div>
+        <ul>
+          <li>Publikované práce opisujú vplyv na angiogenézu v modeloch hojenia tkanív.</li>
+          <li>Skúmaný v súvislosti s expresiou rastových faktorov (VEGF) v poškodenom tkanive.</li>
+          <li>V zvieracích modeloch sledovaný vplyv na integritu sliznice tráviaceho traktu.</li>
+          <li>Opisovaná interakcia s dráhou oxidu dusnatého.</li>
+        </ul>
+      </div>
+
+      <div class="infoblock">
+        <div class="infoblock__head"><span class="brush-label">Oblasti výskumu</span></div>
+        <ul>
+          <li>Hojenie mäkkých tkanív, šliach a väzov.</li>
+          <li>Gastrointestinálna bariéra a jej integrita.</li>
+          <li>Lokálna zápalová odpoveď.</li>
+          <li>Ochranné účinky v modeloch toxického poškodenia.</li>
+        </ul>
+      </div>
+
+      <div class="infoblock">
+        <div class="infoblock__head"><span class="brush-label">Stav poznania</span></div>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">Prevažná väčšina dát pochádza zo zvieracích modelov, najmä z potkanov,</p>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">a z pracovísk jednej výskumnej školy. Kontrolované klinické štúdie u ľudí</p>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">prakticky chýbajú. Zistenia preto nie je možné prenášať na použitie u ľudí</p>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6;margin:0">a rozsiahlosť literatúry sa nesmie zamieňať za klinickú preukázanosť.</p>
       </div>
     </div>
 
@@ -343,7 +377,7 @@
     <span class="price-row__label" style="display:block" data-mcta-title="BPC-157">BPC-157 10 mg</span>
     <span class="mobile-cta__price">35,00 €</span>
   </div>
-  <button class="btn-holo">Do košíka</button>
+  <button class="btn-holo" data-add-to-cart>Do košíka</button>
 </div>
 </main>
 
@@ -474,21 +508,19 @@
         <h4>Informácie</h4>
         <ul>
           <li><a href="#" data-open-cennik>Cenník</a></li>
-          <li><a href="#">Doprava a platba</a></li>
-          <li><a href="#">Skladovanie a stabilita</a></li>
-          <li><a href="#coa">Certifikáty analýzy</a></li>
+          <li><a href="doprava-a-platba.html">Doprava a platba</a></li>
           <li><a href="index.html#faq">Časté otázky</a></li>
         </ul>
       </div>
       <div>
         <h4>Právne</h4>
         <ul>
-          <li><a href="#">Všeobecné obchodné podmienky</a></li>
-          <li><a href="#">Reklamačný poriadok</a></li>
-          <li><a href="#">Odstúpenie od zmluvy</a></li>
-          <li><a href="#">Ochrana osobných údajov</a></li>
-          <li><a href="#">Cookies</a></li>
-          <li><a href="#">Alternatívne riešenie sporov</a></li>
+          <li><a href="obchodne-podmienky.html">Všeobecné obchodné podmienky</a></li>
+          <li><a href="odstupenie-od-zmluvy.html">Odstúpenie od zmluvy</a></li>
+          <li><a href="reklamacny-poriadok.html">Reklamačný poriadok</a></li>
+          <li><a href="ochrana-osobnych-udajov.html">Ochrana osobných údajov</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+          <li><a href="riesenie-sporov.html">Riešenie sporov</a></li>
         </ul>
       </div>
     </div>
