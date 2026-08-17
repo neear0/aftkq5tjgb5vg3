@@ -1,0 +1,40 @@
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# nástroje
+node_modules/
+.vscode/
+.idea/
+
+# lokálne buildy a dočasné súbory
+*.log
+*.tmp
+/preview/
+
+# ── Nepatrí do VEREJNÉHO repozitára ────────────────────────────────────────
+# Repo musí byť public, aby fungoval GitHub Pages na free účte. Tieto súbory
+# sú interné — PLAN.md obsahuje aj právnu analýzu sortimentu.
+# Drž si ich lokálne (a zálohuj). Ak ich budeš chcieť verzovať, daj ich do
+# samostatného PRIVÁTNEHO repozitára, nie do tohto.
+PLAN.md
+coms.md
+*.jpg
+
+# Generované náhľady — vznikajú z zdrojov cez scripts/build-*.sh.
+# POZOR: theme/ ako celok tu byť NESMIE. Raz som takto stratil celý v1 dizajn,
+# pretože zdroje nikdy neskončili v gite. Ignoruj len výstup, nie zdroje.
+theme/artifact-prototyp.html
+/preview/
+
+# NIKDY necommitovať:
+# - prihlasovacie údaje k hostingu / DB
+# - app/config/parameters.php z PrestaShopu
+*.env
+.env*
+secrets.*
+parameters.php
+
+# interná pomôcka, nie súčasť projektu
+.repo-name

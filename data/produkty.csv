@@ -1,0 +1,33 @@
+reference;name;mg;category;form;price_gross_eur;price_net_eur;tier3_gross_eur;tier3_discount_gross_eur;active
+UP-RETA-10;Reta;10 mg;Na chudnutie;Lyofilizat;85.00;69.105691;80.00;5.00;1
+UP-RETA-30;Reta;30 mg;Na chudnutie;Lyofilizat;260.00;211.382114;240.00;20.00;1
+UP-RETA-40;Reta;40 mg;Na chudnutie;Lyofilizat;350.00;284.552846;340.00;10.00;1
+UP-MOUN-20;Mounjaro;20 mg;Na chudnutie;Lyofilizat;170.00;138.211382;165.00;5.00;1
+UP-MOUN-50;Mounjaro;50 mg;Na chudnutie;Lyofilizat;480.00;390.243902;460.00;20.00;1
+UP-GHKCU-100;GHK-Cu;100 mg;Krasa;Lyofilizat;43.00;34.959350;40.00;3.00;1
+UP-BPC157-10;BPC-157;10 mg;Krasa;Lyofilizat;35.00;28.455285;30.00;5.00;1
+UP-BPCTB-10;BPC-157 + TB-500;10 mg;Krasa;Lyofilizat;46.00;37.398374;44.00;2.00;1
+UP-BPCTB-20;BPC-157 + TB-500;20 mg;Krasa;Lyofilizat;84.00;68.292683;80.00;4.00;1
+UP-MT2-10;Melanotan II;10 mg;Krasa;Lyofilizat;25.00;20.325203;20.00;5.00;1
+UP-MT1-10;Melanotan I;10 mg;Krasa;Lyofilizat;25.00;20.325203;20.00;5.00;1
+UP-EPI-50;Epithalon;50 mg;Krasa;Lyofilizat;87.00;70.731707;80.00;7.00;1
+UP-NAD-1000;NAD+;1000 mg;Krasa;Lyofilizat;80.00;65.040650;74.00;6.00;1
+UP-GLUT-600;Glutathione;600 mg;Krasa;Lyofilizat;40.00;32.520325;37.00;3.00;1
+UP-GLUT-1500;Glutathione;1500 mg;Krasa;Lyofilizat;90.00;73.170732;85.00;5.00;1
+UP-LIPOC-10;Lipo-C + B12;10 mg;Krasa;Roztok;40.00;32.520325;35.00;5.00;1
+UP-KPV-10;KPV;10 mg;Regeneracia a zdravie;Lyofilizat;25.00;20.325203;;;1
+UP-KPV-30;KPV;30 mg;Regeneracia a zdravie;Lyofilizat;53.00;43.089431;;;1
+UP-MOTSC-40;MOTS-C;40 mg;Regeneracia a zdravie;Lyofilizat;75.00;60.975610;70.00;5.00;1
+UP-DSIP-10;DSIP;10 mg;Regeneracia a zdravie;Lyofilizat;27.00;21.951220;25.00;2.00;1
+UP-CJCIPA-10;CJC + Ipamorelin;10 mg;Rastove hormony a peptidy;Lyofilizat;45.00;36.585366;42.00;3.00;1
+UP-CJCIPA-20;CJC + Ipamorelin;20 mg;Rastove hormony a peptidy;Lyofilizat;85.00;69.105691;80.00;5.00;1
+UP-IPA-10;Ipamorelin;10 mg;Rastove hormony a peptidy;Lyofilizat;40.00;32.520325;37.00;3.00;1
+UP-GHRP6-5;GHRP-6;5 mg;Rastove hormony a peptidy;Lyofilizat;16.00;13.008130;;;1
+UP-TESA-5;Tesamorelin;5 mg;Rastove hormony a peptidy;Lyofilizat;40.00;32.520325;37.00;3.00;1
+UP-TESA-10;Tesamorelin;10 mg;Rastove hormony a peptidy;Lyofilizat;65.00;52.845528;63.00;2.00;1
+UP-TESA-20;Tesamorelin;20 mg;Rastove hormony a peptidy;Lyofilizat;87.00;70.731707;82.00;5.00;1
+UP-IGF1LR3-1;IGF-1 LR3;1 mg;Rastove hormony a peptidy;Lyofilizat;75.00;60.975610;70.00;5.00;1
+UP-SEMAX-10;Semax;10 mg;Kognicia a fokus;Lyofilizat;25.00;20.325203;23.00;2.00;1
+UP-AMINO1MQ;5-Amino-1MQ;;Kognicia a fokus;Lyofilizat;35.00;28.455285;30.00;5.00;1
+UP-KLOW-80;Klow;80 mg;Kognicia a fokus;Lyofilizat;90.00;73.170732;84.00;6.00;1
+UP-BACWATER-3;Bac Water;3 ml;Pomocne produkty;Roztok;3.00;2.439024;;;1

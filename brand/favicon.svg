@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Zjednodušená značka pre 16–32 px: bez uzlov a bez menisku.
+       Detaily sa v tejto veľkosti zliepajú, tak ich logo systém zahadzuje. -->
+  <rect width="32" height="32" rx="7" fill="#0A0A10"/>
+  <path d="M10 8v9a6 6 0 0 0 12 0V8"
+        fill="none" stroke="#7C5CFF" stroke-width="4"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

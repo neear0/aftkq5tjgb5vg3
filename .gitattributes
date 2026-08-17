@@ -1,0 +1,8 @@
+# V repozitári drž LF, na Windows checkoute nech si Git prekonvertuje sám.
+* text=auto eol=lf
+
+# Binárne — nikdy nediffovať ani nekonvertovať.
+*.jpg  binary
+*.png  binary
+*.pdf  binary
+*.woff2 binary

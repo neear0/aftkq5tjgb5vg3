@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stránka sa nenašla — ULTRA PEPTIDY</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0A0A">
+<!--
+  Zámerne SAMOSTATNÁ stránka — štýly inline, žiadny externý súbor.
+  GitHub servuje 404.html aj pre zanorené cesty (/a/b/c), kde by sa relatívny
+  odkaz na CSS rozbil, a absolútny by sa rozbil na project-page podceste.
+-->
+<style>
+  :root{
+    --black:#000;--ink:#0A0A0A;--ink2:#101014;--hair:#24242E;
+    --txt:#F1F3F9;--dim:#A9AFC0;--mute:#6E7488;
+    --purple:#8B5CF6;--purple-lt:#A855F7;--cyan:#22D3EE;
+    --holo:linear-gradient(100deg,#E2E8F0 0%,#A855F7 18%,#22D3EE 36%,#E879F9 54%,#8B5CF6 72%,#38BDF8 86%,#E2E8F0 100%);
+    --fd:'Space Grotesk','Segoe UI',system-ui,sans-serif;
+    --fb:'Inter','Segoe UI',system-ui,sans-serif;
+    --fm:'JetBrains Mono',ui-monospace,'Cascadia Mono',monospace;
+    color-scheme:dark;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:flex;flex-direction:column;
+    background:var(--black);color:var(--txt);
+    font:400 1rem/1.65 var(--fb);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(120% 80% at 50% 0%,rgba(139,92,246,.22) 0%,rgba(107,45,155,.08) 45%,transparent 72%),
+      radial-gradient(60% 45% at 88% 12%,rgba(56,189,248,.14),transparent 70%),
+      var(--black)}
+  a{color:inherit;text-decoration:none}
+  svg{display:block}
+  :focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+  .wrap{width:100%;max-width:1240px;margin-inline:auto;padding-inline:clamp(16px,4vw,32px)}
+  header{position:sticky;top:0;border-bottom:1px solid var(--hair);
+    background:rgba(8,8,10,.72);-webkit-backdrop-filter:blur(16px) saturate(160%);
+    backdrop-filter:blur(16px) saturate(160%)}
+  .logo{display:flex;align-items:center;gap:10px;height:64px}
+  .mark{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;
+    font:800 1.05rem/1 var(--fd);color:#0A0710;background:var(--holo);background-size:220% 100%;
+    animation:shift 7s linear infinite}
+  @keyframes shift{to{background-position:220% 0}}
+  .lg{font:700 .95rem/1 var(--fd);letter-spacing:.16em;text-transform:uppercase}
+  .lg small{display:block;font:500 .5rem/1.4 var(--fm);letter-spacing:.38em;color:var(--mute)}
+  main{flex:1;display:grid;place-items:center;text-align:center;padding-block:clamp(56px,14vh,140px)}
+  .eyebrow{font:500 .75rem/1 var(--fm);letter-spacing:.22em;text-transform:uppercase;
+    color:var(--mute);margin:0 0 20px}
+  h1{margin:0 0 20px;font:700 clamp(2.4rem,7vw,4.5rem)/.98 var(--fd);
+    letter-spacing:-.02em;text-transform:uppercase;
+    background:var(--holo);background-size:260% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    -webkit-text-fill-color:transparent;animation:shift2 9s linear infinite}
+  @keyframes shift2{to{background-position:260% 0}}
+  p.lead{max-width:52ch;margin:0 auto;color:var(--dim);line-height:1.7}
+  .act{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border:0;cursor:pointer;
+    border-radius:999px;font:700 .9375rem/1 var(--fd);letter-spacing:.06em;text-transform:uppercase;
+    color:#08060D;background:var(--holo);background-size:220% 100%;
+    box-shadow:0 6px 24px -8px rgba(139,92,246,.7);
+    transition:background-position .6s cubic-bezier(.2,.7,.2,1),transform .18s}
+  .btn:hover{background-position:100% 0;transform:translateY(-2px)}
+  .btn-g{padding:13px 26px;border:1px solid var(--hair);border-radius:999px;
+    background:transparent;color:var(--txt);font:600 .9375rem/1 var(--fb);
+    transition:border-color .25s,background .25s}
+  .btn-g:hover{border-color:var(--purple);background:rgba(139,92,246,.08)}
+  footer{border-top:1px solid var(--hair);background:linear-gradient(180deg,rgba(10,10,12,.6),#000)}
+  footer div{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;
+    padding-block:24px;font-size:.75rem;color:var(--mute)}
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.01ms !important;animation-iteration-count:1 !important;
+      transition-duration:.01ms !important}
+    h1{background-position:30% 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="ULTRA PEPTIDY — domov">
+      <span class="mark" aria-hidden="true">U</span>
+      <span class="lg">Ultra<small>peptidy</small></span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="eyebrow">Chyba 404</p>
+    <h1>Táto stránka<br>neexistuje</h1>
+    <p class="lead">
+      Adresa je pravdepodobne neplatná alebo bol produkt z katalógu vyradený.
+      Skús katalóg — sú v ňom všetky produkty rozdelené do šiestich kategórií.
+    </p>
+    <div class="act">
+      <a class="btn" href="./katalog.html">◆ Prehliadať katalóg</a>
+      <a class="btn-g" href="./">Domov</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 ULTRA PEPTIDY</span><span>Vedecky. Čisto. Účinne.</span>
+  </div>
+</footer>
+
+</body>
+</html>
