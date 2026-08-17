@@ -1,0 +1,368 @@
+/* ==========================================================================
+   ULTRA PEPTIDY — child téma Storefrontu
+   --------------------------------------------------------------------------
+   Tokeny a holografické primitívy sú prevzaté 1:1 zo statického webu
+   (site/assets/css/ultrapeptidy.css). Za nimi nasledujú prepisy Storefrontu.
+
+   POZNÁMKA K SELEKTOROM: Storefront má vlastnú tmavú/svetlú paletu z
+   Customizeru a časť farieb sadzuje inline do <head>. Preto tu miestami
+   používam !important — nie z lenivosti, ale preto, že inline štýl rodiča
+   inak vyhrá. Po nasadení na živý web to treba prejsť v inšpektore a
+   nadbytočné !important odstrániť.
+   ========================================================================== */
+
+@property --holo-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+
+:root {
+  color-scheme: dark;
+
+  --up-black: #000; --up-ink: #0A0A0A; --up-ink-2: #101014; --up-ink-3: #16161C;
+  --up-hairline: #24242E;
+  --up-purple-deep: #6B2D9B; --up-purple: #8B5CF6; --up-purple-lt: #A855F7;
+  --up-purple-glow: #C084FC;
+  --up-cyan: #22D3EE; --up-sky: #38BDF8; --up-magenta: #E879F9; --up-silver: #E2E8F0;
+  --up-text: #F1F3F9; --up-text-dim: #A9AFC0; --up-text-mute: #6E7488;
+  --up-ok: #34D399; --up-warn: #FBBF24; --up-err: #FB7185;
+  --up-price: #FFF; --up-price-tier: #22D3EE;
+
+  --up-holo: linear-gradient(100deg,
+    #E2E8F0 0%, #A855F7 18%, #22D3EE 36%, #E879F9 54%,
+    #8B5CF6 72%, #38BDF8 86%, #E2E8F0 100%);
+  --up-purple-fade: radial-gradient(120% 80% at 50% 0%,
+    rgba(139,92,246,.22) 0%, rgba(107,45,155,.08) 45%, transparent 72%);
+
+  --up-r-sm: 8px; --up-r-md: 14px; --up-r-lg: 22px; --up-r-pill: 999px;
+  --up-ease: cubic-bezier(.2,.7,.2,1);
+
+  --up-font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --up-font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --up-font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
+  --up-font-label: 'Arial Black', 'Segoe UI Black', 'Impact', 'Anton', 'Oswald', sans-serif;
+}
+
+/* ── Základ ─────────────────────────────────────────────────────────────── */
+body,
+body.woocommerce,
+body.woocommerce-page {
+  background: var(--up-black) !important;
+  color: var(--up-text) !important;
+  font-family: var(--up-font-body);
+  overflow-x: hidden;
+}
+
+/* nehybný violet wash + molekulárny dojem, bez ďalšieho requestu */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none;
+  background:
+    var(--up-purple-fade),
+    radial-gradient(60% 45% at 88% 12%, rgba(56,189,248,.14), transparent 70%),
+    radial-gradient(50% 40% at 8% 78%, rgba(168,85,247,.12), transparent 70%);
+}
+#page, .site { position: relative; z-index: 1; }
+
+a { color: var(--up-purple-lt); }
+a:hover { color: var(--up-purple-glow); }
+
+h1, h2, h3, h4, .site-title, .woocommerce-loop-product__title, .product_title {
+  font-family: var(--up-font-display) !important;
+  color: var(--up-text) !important;
+}
+
+:focus-visible { outline: 2px solid var(--up-cyan); outline-offset: 3px; }
+
+/* ── Hlavička a pätička ─────────────────────────────────────────────────── */
+.site-header,
+.storefront-primary-navigation,
+.main-navigation ul.menu ul.sub-menu {
+  background: rgba(8,8,10,.86) !important;
+  border-bottom: 1px solid var(--up-hairline);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+          backdrop-filter: blur(14px) saturate(160%);
+}
+.site-header { position: sticky; top: 0; z-index: 60; }
+/* 1px spektrálna linka pod hlavičkou — jeden z troch výskytov spektra */
+.site-header::after {
+  content: ''; display: block; height: 1px;
+  background: var(--up-holo);
+  opacity: .5;
+}
+.main-navigation ul.menu > li > a,
+.site-header a { color: var(--up-text-dim) !important; }
+.main-navigation ul.menu > li > a:hover { color: var(--up-text) !important; }
+
+.site-footer {
+  background: linear-gradient(180deg, rgba(10,10,12,.6), #000) !important;
+  border-top: 1px solid var(--up-hairline);
+  color: var(--up-text-mute) !important;
+}
+.site-footer a { color: var(--up-text-dim) !important; }
+.site-footer a:hover { color: var(--up-cyan) !important; }
+
+/* povinný RUO pás z functions.php */
+.up-ruo {
+  border-top: 1px solid var(--up-hairline);
+  background: rgba(16,16,20,.6);
+  padding: 20px 0;
+}
+.up-ruo p {
+  margin: 0;
+  font-size: .75rem; line-height: 1.75;
+  color: var(--up-text-mute);
+  max-width: 92ch;
+}
+.up-ruo strong { color: var(--up-text-dim); }
+
+/* ── Tlačidlá ───────────────────────────────────────────────────────────── */
+.button,
+button.button,
+input.button,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.woocommerce a.button.alt,
+.woocommerce button.button.alt {
+  background: var(--up-holo) !important;
+  background-size: 220% 100% !important;
+  color: #08060D !important;
+  border: 0 !important;
+  border-radius: var(--up-r-pill) !important;
+  font: 700 .9375rem/1 var(--up-font-display) !important;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 14px 28px !important;
+  box-shadow: 0 6px 24px -8px rgba(139,92,246,.7);
+  transition: background-position .6s var(--up-ease), transform .18s var(--up-ease);
+}
+.button:hover, .woocommerce a.button:hover, .woocommerce button.button:hover,
+.woocommerce button.button.alt:hover {
+  background-position: 100% 0 !important;
+  transform: translateY(-2px);
+  color: #08060D !important;
+}
+
+/* ── Produktová mriežka ─────────────────────────────────────────────────── */
+.woocommerce ul.products {
+  display: grid !important;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  margin: 0 0 32px;
+}
+.woocommerce ul.products::before,
+.woocommerce ul.products::after { content: none !important; display: none !important; }
+
+.woocommerce ul.products li.product {
+  width: auto !important;
+  margin: 0 !important;
+  float: none !important;
+  clear: none !important;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: var(--up-r-lg);
+  background:
+    linear-gradient(var(--up-ink-2), var(--up-ink-2)) padding-box,
+    conic-gradient(from var(--holo-angle),
+      #22D3EE, #8B5CF6, #E879F9, #E2E8F0, #38BDF8, #22D3EE) border-box;
+  transition: box-shadow .35s var(--up-ease), transform .35s var(--up-ease);
+}
+.woocommerce ul.products li.product:hover {
+  animation: up-holo-rotate 4s linear infinite;
+  box-shadow: 0 0 0 1px rgba(139,92,246,.35), 0 8px 32px -8px rgba(139,92,246,.45);
+  transform: translateY(-3px);
+}
+@keyframes up-holo-rotate { to { --holo-angle: 360deg; } }
+
+.woocommerce ul.products li.product a img {
+  margin: 0 !important;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  padding: 14px;
+  background:
+    radial-gradient(64% 52% at 50% 44%, rgba(56,189,248,.18), transparent 70%),
+    linear-gradient(180deg, #0E0E14, #060608);
+  border-bottom: 1px solid var(--up-hairline);
+  box-shadow: none !important;
+}
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+  padding: 10px 10px 0 !important;
+  font-size: .9375rem !important;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.woocommerce ul.products li.product .price,
+.woocommerce ul.products li.product .up-tiers__loop { padding-inline: 10px; }
+.woocommerce ul.products li.product .price {
+  color: var(--up-price) !important;
+  font: 500 1.0625rem/1.3 var(--up-font-mono) !important;
+  font-variant-numeric: tabular-nums;
+}
+.woocommerce ul.products li.product .price del { color: var(--up-text-mute) !important; }
+.woocommerce ul.products li.product .button {
+  display: block;
+  margin: 10px !important;
+  padding: 9px 14px !important;
+  font-size: .75rem !important;
+  text-align: center;
+}
+.woocommerce ul.products li.product .onsale {
+  background: var(--up-purple) !important;
+  color: #fff !important;
+  border-radius: var(--up-r-pill);
+  min-height: 0; line-height: 1; padding: 6px 12px;
+  font: 700 .6875rem/1 var(--up-font-mono);
+}
+
+/* ── Detail produktu ────────────────────────────────────────────────────── */
+.woocommerce div.product .product_title { letter-spacing: -.02em; }
+.woocommerce div.product p.price,
+.woocommerce div.product span.price {
+  color: var(--up-price) !important;
+  font: 500 1.75rem/1.2 var(--up-font-mono) !important;
+  font-variant-numeric: tabular-nums;
+}
+.woocommerce div.product .woocommerce-product-details__short-description {
+  color: var(--up-text-dim);
+  max-width: 46ch;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs {
+  border-bottom: 1px solid var(--up-hairline);
+  padding: 0; margin: 0 0 24px;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs::before { border: 0; }
+.woocommerce div.product .woocommerce-tabs ul.tabs li {
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0;
+  margin: 0 4px -1px 0;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active {
+  border-bottom-color: var(--up-purple) !important;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li a {
+  color: var(--up-text-mute) !important;
+  font: 600 .875rem/1 var(--up-font-body);
+  padding: 11px 14px;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active a { color: var(--up-text) !important; }
+.woocommerce div.product .woocommerce-tabs .panel h2 { font-size: 1.25rem; }
+.woocommerce div.product .woocommerce-tabs .panel h3 {
+  margin: 24px 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--up-hairline);
+  font: 500 .6875rem/1.4 var(--up-font-mono) !important;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--up-text-mute) !important;
+}
+.woocommerce div.product .woocommerce-tabs .panel ul { color: var(--up-text-dim); }
+.woocommerce div.product .woocommerce-tabs .panel li::marker { color: var(--up-purple-lt); }
+
+/* šarža a čistota z functions.php */
+.up-meta { list-style: none; margin: 0 0 16px; padding: 0; display: flex;
+           flex-wrap: wrap; gap: 8px; }
+.up-meta li {
+  display: inline-flex; align-items: baseline; gap: 6px;
+  padding: 4px 11px;
+  border: 1px solid var(--up-hairline); border-radius: var(--up-r-pill);
+  background: var(--up-ink-3);
+  font: 400 .75rem/1.5 var(--up-font-mono);
+}
+.up-meta span { color: var(--up-text-mute); }
+.up-meta strong { color: var(--up-text-dim); font-weight: 500; }
+
+/* ── Výber gramáže (varianty) ───────────────────────────────────────────── */
+.woocommerce div.product form.cart .variations {
+  margin-bottom: 16px;
+  border: 0;
+}
+.woocommerce div.product form.cart .variations td,
+.woocommerce div.product form.cart .variations th {
+  border: 0; padding: 0 0 8px;
+}
+.woocommerce div.product form.cart .variations label {
+  font: 500 .75rem/1 var(--up-font-mono) !important;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--up-text-mute) !important;
+}
+.woocommerce div.product form.cart .variations select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--up-hairline);
+  border-radius: var(--up-r-pill);
+  background: var(--up-ink-2);
+  color: var(--up-text);
+  font: 500 .9375rem/1 var(--up-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.woocommerce div.product form.cart .variations select:focus-visible {
+  border-color: var(--up-purple);
+}
+.woocommerce div.product .woocommerce-variation-price span.price { font-size: 1.75rem !important; }
+
+/* ── Množstvo ───────────────────────────────────────────────────────────── */
+.woocommerce .quantity .qty {
+  height: 48px; width: 66px;
+  border: 1px solid var(--up-hairline);
+  border-radius: var(--up-r-pill);
+  background: var(--up-ink-2);
+  color: var(--up-text);
+  font: 500 1rem/1 var(--up-font-mono);
+  text-align: center;
+}
+
+/* ── Formuláre, košík, checkout ─────────────────────────────────────────── */
+input[type=text], input[type=email], input[type=tel], input[type=number],
+input[type=password], input[type=search], textarea, select {
+  background: var(--up-ink-2) !important;
+  border: 1px solid var(--up-hairline) !important;
+  border-radius: var(--up-r-sm) !important;
+  color: var(--up-text) !important;
+  box-shadow: none !important;
+}
+input::placeholder, textarea::placeholder { color: var(--up-text-mute); }
+
+.woocommerce table.shop_table,
+.woocommerce table.shop_table td,
+.woocommerce table.shop_table th,
+.woocommerce-cart .cart-collaterals .cart_totals table {
+  background: var(--up-ink-2) !important;
+  border-color: var(--up-hairline) !important;
+  color: var(--up-text) !important;
+}
+.woocommerce table.shop_table th { color: var(--up-text-mute) !important; }
+.woocommerce-checkout #payment,
+.woocommerce-checkout #payment ul.payment_methods,
+.woocommerce-checkout #payment div.form-row {
+  background: var(--up-ink-2) !important;
+  border-color: var(--up-hairline) !important;
+}
+.woocommerce-info, .woocommerce-message, .woocommerce-error {
+  background: var(--up-ink-2) !important;
+  border-top-color: var(--up-purple) !important;
+  color: var(--up-text) !important;
+}
+.woocommerce-info::before, .woocommerce-message::before { color: var(--up-purple-lt) !important; }
+
+/* V checkoute nikdy nič holografické na text — musí byť maximálne čitateľné. */
+.woocommerce-checkout h1, .woocommerce-checkout h2, .woocommerce-checkout h3,
+.woocommerce-cart h1, .woocommerce-cart h2 {
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  color: var(--up-text) !important;
+}
+
+/* ── Bez bočného panela ─────────────────────────────────────────────────── */
+.up-no-sidebar #primary { width: 100% !important; float: none !important; }
+.up-no-sidebar #secondary { display: none !important; }
+
+/* ── Redukcia pohybu ────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

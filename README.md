@@ -119,6 +119,8 @@ Pre novú ikonu pridaj `<symbol>` do sprite v `templates/produkt.html`,
 | `node scripts/generate.mjs --check` | Suchý beh, nič nezapíše |
 | `node scripts/check.mjs` | Overí, že každá položka má stránku, kartu, cenník a správnu cenu |
 | `bash scripts/build-prototyp.sh` | Zlúči web do jedného HTML pre náhľad |
+| `node scripts/export-woocommerce.mjs` | CSV pre import katalógu do WooCommerce |
+| `node scripts/package.mjs` | **Zloží `dist/` — presne to, čo sa nahráva na Websupport** |
 | `cd site && python -m http.server 8080` | Lokálny server |
 
 Generátor spadne, ak sú dáta nekonzistentné — duplicitný slug, neznáma
@@ -154,6 +156,36 @@ git add site/CNAME && git commit -m "Vlastná doména" && git push
 ```
 
 Potom v **Settings → Pages** zapni **Enforce HTTPS**.
+
+---
+
+## Nasadenie na Websupport
+
+```bash
+node scripts/generate.mjs
+node scripts/export-woocommerce.mjs
+node scripts/package.mjs
+```
+
+V `dist/` vznikne presne to, čo sa nahráva, a nič viac:
+
+| Čo | Kam |
+|---|---|
+| `web-staticky/` | FTP do DocumentRootu. Vrátane `.htaccess` — bez neho nebude kompresia, cache ani bezpečnostné hlavičky. |
+| `ultrapeptidy-theme.zip` | Vzhľad → Témy → Nahrať. Najprv nainštaluj rodičovskú tému **Storefront**. |
+| `ultrapeptidy-cennik.zip` | Pluginy → Nahrať. Bez neho sa množstevné ceny nikde neprejavia. |
+| `import/` | Produkty → Import |
+| `NAHRAJ-MA.txt` | postup krok za krokom vrátane kontrolného zoznamu |
+
+Dve časti sú nezávislé. **Statický web funguje hneď**, bez PHP a databázy —
+doména môže niečo ukazovať ešte dnes. E-shop sa dá pridať kedykoľvek potom.
+
+> Statický web a e-shop si nesmú sadnúť na tú istú cestu. Buď dáš e-shop na
+> subdoménu, alebo statický web do podadresára. Rozhodni to **pred** inštaláciou.
+
+ZIP-y sa skladajú vlastným writerom (`scripts/lib/zip.mjs`), nie
+`Compress-Archive` — ten v PowerShelli 5.1 ukladá cesty so spätnými lomítkami
+a WordPress takú tému rozbalí rozsypanú.
 
 ---
 

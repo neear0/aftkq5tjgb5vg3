@@ -43,3 +43,6 @@ parameters.php
 
 # generovaný export pre PrestaShop (vzniká z data/)
 /export/
+
+# nasadzovací balík (vzniká cez scripts/package.mjs)
+/dist/

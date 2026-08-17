@@ -1,0 +1,122 @@
+# ==========================================================================
+# ULTRA PEPTIDY — statický web na Websupport hostingu
+# --------------------------------------------------------------------------
+# Nahraj obsah tohto adresára do DocumentRootu (zvyčajne web/ alebo
+# public_html/). Tento súbor musí ísť s ním — je skrytý, takže niektorí
+# FTP klienti ho nezobrazia, kým nezapneš „zobraziť skryté súbory".
+#
+# Na GitHub Pages sa ignoruje, tam ho nič nečíta.
+# ==========================================================================
+
+Options -Indexes -MultiViews
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+
+# ── HTTPS ─────────────────────────────────────────────────────────────────
+# Let's Encrypt certifikát vydá Websupport automaticky. Presmerovanie zapni
+# až KEĎ certifikát existuje, inak si zamkneš web do nefunkčného redirectu.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # www -> bez www (ak chceš naopak, prehoď podmienku)
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+  # Adresy bez .html nech fungujú tiež: /produkt-tesamorelin
+  # Je to interné prepísanie, nie presmerovanie — existujúce odkazy s .html
+  # fungujú ďalej a nič sa nemení dvakrát.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([^.]+)$ $1.html [L]
+</IfModule>
+
+# ── Kompresia ─────────────────────────────────────────────────────────────
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/plain text/xml \
+    application/javascript application/json image/svg+xml application/xml
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml \
+    application/javascript application/json image/svg+xml application/xml
+</IfModule>
+
+# ── Cache ─────────────────────────────────────────────────────────────────
+# HTML krátko, aby sa zmena ceny prejavila; assety dlho.
+# POZOR: CSS a JS nemajú v názve hash, takže po zmene dizajnu treba buď
+# pridať ?v=2 do odkazu, alebo počkať mesiac. Pri statickom weboch je to
+# rozumný kompromis; keby sa menilo často, doplň verziu do query stringu.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                          "access plus 1 week"
+  ExpiresByType text/html                 "access plus 10 minutes"
+  ExpiresByType text/css                  "access plus 1 month"
+  ExpiresByType application/javascript    "access plus 1 month"
+  ExpiresByType image/jpeg                "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/webp                "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType application/xml           "access plus 1 day"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # obrázky, fonty a maska sa nemenia — môžu byť immutable
+  <FilesMatch "\.(jpg|jpeg|png|webp|avif|svg|woff2|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=600, must-revalidate"
+  </FilesMatch>
+
+  # ── Bezpečnostné hlavičky ───────────────────────────────────────────────
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+
+  # HSTS zapni až keď HTTPS spoľahlivo funguje. Prehliadač si to zapamätá
+  # na rok a pri chybe sa na web nedostaneš.
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # Statický web nepotrebuje nič externé, takže CSP môže byť tvrdá.
+  # 'unsafe-inline' pre styly je nutné — dizajn používa inline style atribúty.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+
+  Header always unset X-Powered-By
+  Header always unset Server
+</IfModule>
+
+# ── Chybové stránky ───────────────────────────────────────────────────────
+ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
+
+# ── Zakázané cesty ────────────────────────────────────────────────────────
+# Skryté súbory, zdrojové dáta a čokoľvek, čo do webu nepatrí.
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+<FilesMatch "\.(md|csv|json|mjs|sh|yml|yaml|log|bak|sql)$">
+  Require all denied
+</FilesMatch>
+# .nojekyll a robots.txt musia zostať dostupné
+<Files ".nojekyll">
+  Require all granted
+</Files>
+
+# ── MIME typy ─────────────────────────────────────────────────────────────
+<IfModule mod_mime.c>
+  AddType image/svg+xml .svg
+  AddType image/webp    .webp
+  AddType image/avif    .avif
+  AddType font/woff2    .woff2
+  AddType application/manifest+json .webmanifest
+</IfModule>

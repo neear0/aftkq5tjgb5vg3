@@ -1,0 +1,14 @@
+/*
+Theme Name:   ULTRA PEPTIDY
+Theme URI:    https://ultrapeptide.eu
+Description:  Child téma Storefrontu pre ULTRA PEPTIDY. Tmavý holografický dizajn, produktové karty s ampulkou a množstevnými cenami. Vlastné štýly sú v assets/css/theme.css, tento súbor je len hlavička témy.
+Author:       ULTRA PEPTIDY
+Template:     storefront
+Version:      1.0.0
+Requires PHP: 8.1
+Text Domain:  ultrapeptidy
+*/
+
+/* Skutočné štýly sa načítavajú z assets/css/theme.css cez functions.php.
+   Dôvod: tento súbor by WordPress natiahol pred štýlmi Storefrontu a naše
+   prepisy by prehral rodič. Vlastné CSS musí ísť AŽ ZA rodičom. */
