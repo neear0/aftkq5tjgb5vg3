@@ -40,3 +40,6 @@ parameters.php
 
 # interná pomôcka, nie súčasť projektu
 .repo-name
+
+# generovaný export pre PrestaShop (vzniká z data/)
+/export/
