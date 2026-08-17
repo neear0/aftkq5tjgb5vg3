@@ -53,7 +53,10 @@ prep() { relink | inline_assets; }
   echo '<title>Ultra Peptidy</title>'
 
   echo '<style>'
-  sed "s|url('../img/vial-mask.png')|url('${VIAL_MASK}')|g" "$SITE/assets/css/ultrapeptidy.css"
+  sed -e "s#url('../img/vial-mask.png')#url('${VIAL_MASK}')#g" \
+      -e "s#url('../img/logo-mark.png')#url('${LOGO_MARK}')#g" \
+      -e "s#url('../img/logo.png')#url('${LOGO_PNG}')#g" \
+      "$SITE/assets/css/ultrapeptidy.css"
   cat <<'CSS'
 /* ── len pre publikovaný náhľad ─────────────────────────────────────────── */
 .pv-note{border-bottom:1px solid var(--up-hairline);background:rgba(139,92,246,.07)}

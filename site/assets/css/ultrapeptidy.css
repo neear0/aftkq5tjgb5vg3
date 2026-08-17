@@ -82,6 +82,9 @@
   --up-font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   --up-font-body:    'Inter', 'Segoe UI', system-ui, sans-serif;
   --up-font-mono:    'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
+  /* etiketa na ampulke — najbližší systémový ekvivalent maľovaného ťahu */
+  --up-font-label:   'Impact', 'Haettenschweiler', 'Anton', 'Oswald',
+                     'Franklin Gothic Medium', 'Arial Narrow', var(--up-font-display);
 }
 
 /* ==========================================================================
@@ -372,9 +375,37 @@ body::after {
   font: 700 .625rem/1 var(--up-font-mono);
 }
 
-/* ── Logo (skutočná značka z tlačených materiálov) ─────────────────────── */
-.up-logo__img { width: 34px; height: auto; flex-shrink: 0; }
-.logo-lockup { width: clamp(150px, 22vw, 230px); height: auto; margin: 0 auto; }
+/* ── Logo (skutočná značka z tlačených materiálov) ───────────────────────
+   Cez značku prechádza ten istý holografický gradient a rovnakým tempom
+   ako sa hýbe sieť na pozadí (64 s). mix-blend-mode:hue prenesie na logo
+   iba odtieň — jas a brushová textúra fotky zostanú nedotknuté.
+   isolation:isolate drží miešanie vnútri loga, nech nefarbí stránku. */
+.holo-logo {
+  position: relative; display: block;
+  isolation: isolate; flex-shrink: 0; line-height: 0;
+}
+.holo-logo > img { display: block; width: 100%; height: auto; }
+.holo-logo--mark   { width: 34px; }
+.holo-logo--lockup { width: clamp(150px, 22vw, 230px); margin: 0 auto; }
+
+@supports ((-webkit-mask-image: url("i.png")) or (mask-image: url("i.png"))) {
+  .holo-logo::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: var(--up-holo);
+    background-size: 300% 100%;
+    mix-blend-mode: hue;
+    animation: holo-logo-shift 64s linear infinite;
+  }
+  .holo-logo--mark::after {
+    -webkit-mask: url('../img/logo-mark.png') center / 100% 100% no-repeat;
+            mask: url('../img/logo-mark.png') center / 100% 100% no-repeat;
+  }
+  .holo-logo--lockup::after {
+    -webkit-mask: url('../img/logo.png') center / 100% 100% no-repeat;
+            mask: url('../img/logo.png') center / 100% 100% no-repeat;
+  }
+}
+@keyframes holo-logo-shift { to { background-position: 300% 0; } }
 
 /* ==========================================================================
    Tlačidlá
@@ -545,9 +576,9 @@ body::after {
 .prod-card:hover { transform: translateY(-3px); }
 .prod-card__media {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   background:
-    radial-gradient(70% 55% at 50% 42%, rgba(56,189,248,.18), transparent 70%),
+    radial-gradient(62% 50% at 50% 44%, rgba(56,189,248,.18), transparent 70%),
     linear-gradient(180deg, #0E0E14, #060608);
   display: grid; place-items: center;
   overflow: hidden;
@@ -621,7 +652,7 @@ body::after {
    vyrezáva siluetu. Percentá pásu sú odmerané priamo z fotky — ak sa fotka
    prekreslí, treba ich prepočítať, inak text ujde mimo etiketu. */
 .vial {
-  --vial-w: 108px;
+  --vial-w: 82px;
   position: relative;
   display: block;
   width: var(--vial-w);
@@ -639,21 +670,25 @@ body::after {
   position: absolute;
   left: 0; top: 51.83%; width: 90.85%; height: 12.99%;
   display: flex; align-items: center; justify-content: center;
-  padding-inline: 5%;
+  padding-inline: 4%;
   text-align: center;
-  font: 700 calc(var(--vial-w) * .108)/1.04 var(--up-font-display);
-  letter-spacing: .015em; text-transform: uppercase;
-  color: #F4F6FC;
-  text-shadow: 0 1px 3px rgba(0,0,0,.8);
+  /* Etiketa na fotke je maľovaná hrubým ťahom. Skutočný brush font nemáme
+     licencovaný, tak sa k nemu aspoň priblížime: ťažký kondenzovaný rez
+     a mierny sklon dopredu. Fallback je náš displayový font. */
+  font: 700 calc(var(--vial-w) * .132)/1 var(--up-font-label);
+  letter-spacing: .025em; text-transform: uppercase;
+  color: #F2F5FD;
+  text-shadow: 0 1px 3px rgba(0,0,0,.85);
+  transform: skewX(-5deg);
   overflow: hidden;
   pointer-events: none;
 }
-.vial--lg { --vial-w: clamp(120px, 22vw, 200px); }
+.vial--lg { --vial-w: clamp(96px, 17vw, 156px); }
 
-/* fľaštička sa škáluje s kartou; bez podpory container queries ostane 108px */
+/* fľaštička sa škáluje s kartou; bez podpory container queries ostane 82px */
 @supports (container-type: inline-size) {
   .prod-card__media { container-type: inline-size; }
-  .prod-card__media .vial { --vial-w: 40cqi; }
+  .prod-card__media .vial { --vial-w: 30cqi; }
 }
 
 /* ==========================================================================
