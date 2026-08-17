@@ -10,7 +10,7 @@ for f in "$@"; do
   [ -w "$f" ] || { echo "preskakujem (nedá sa zapisovať): $f"; continue; }
   awk '
     function esc(s) { gsub(/&/,"\\&amp;",s); return s }
-    function emit(   name, i, j, tmp, rep) {
+    function emit(   name, i, j, tmp, rep, cls) {
       # názov karty: buď priamo v <h3>, alebo zabalený v odkaze na detail
       name = ""
       i = index(buf, "prod-card__name\">")
@@ -22,10 +22,11 @@ for f in "$@"; do
         j = index(tmp, "<")
         if (j > 0) name = substr(tmp, 1, j - 1)
       }
+      cls = length(name) >= 12 ? " vial__name--xs" : (length(name) >= 8 ? " vial__name--sm" : "")
       rep = "<span class=\"vial\">" \
             "<img class=\"vial__photo\" src=\"assets/img/vial.jpg\" alt=\"\"" \
             " width=\"306\" height=\"812\" loading=\"lazy\" decoding=\"async\">" \
-            "<span class=\"vial__name\">" esc(name) "</span></span>"
+            "<span class=\"vial__name" cls "\">" esc(name) "</span></span>"
       sub(/<svg class="vial"><use href="#vial(-motsc)?"\/><\/svg>/, rep, buf)
       printf "%s", buf
     }

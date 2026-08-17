@@ -83,8 +83,8 @@
   --up-font-body:    'Inter', 'Segoe UI', system-ui, sans-serif;
   --up-font-mono:    'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
   /* etiketa na ampulke — najbližší systémový ekvivalent maľovaného ťahu */
-  --up-font-label:   'Impact', 'Haettenschweiler', 'Anton', 'Oswald',
-                     'Franklin Gothic Medium', 'Arial Narrow', var(--up-font-display);
+  --up-font-label:   'Arial Black', 'Segoe UI Black', 'Impact', 'Anton',
+                     'Oswald', var(--up-font-display);
 }
 
 /* ==========================================================================
@@ -141,19 +141,21 @@ button { font: inherit; }
   position: absolute; inset: 0; width: 100%; height: 100%; opacity: .5;
   transform-origin: 50% 40%;
   will-change: transform;
-  animation: mb-drift 64s ease-in-out infinite alternate;
+  animation: mb-drift 26s ease-in-out infinite alternate;
 }
-/* Jemný pohyb siete. Zámerne veľmi pomaly a len transform + opacity, aby to
-   nestálo výkon a nepôsobilo to ako animovaná tapeta.
-   prefers-reduced-motion to vypína globálne dole v súbore. */
+/* Pohyb siete. Prvá verzia mala 18 px za 64 s = 0,28 px/s, čo je pod prahom
+   postrehnuteľnosti — teraz ~3 px/s, vidno to, ale neruší.
+   Len transform + opacity, takže to nestojí výkon.
+   POZOR: prefers-reduced-motion to vypína globálne dole v súbore, takže pri
+   zapnutom obmedzení pohybu v systéme sa nehýbe nič. */
 @keyframes mb-drift {
   from { transform: translate3d(0, 0, 0) scale(1); }
-  to   { transform: translate3d(-18px, 12px, 0) scale(1.035); }
+  to   { transform: translate3d(-46px, 30px, 0) scale(1.07); }
 }
-.molecular-bg svg g { animation: mb-breathe 17s ease-in-out infinite alternate; }
-.molecular-bg svg g:nth-of-type(2) { animation-duration: 23s; animation-delay: -6s; }
-.molecular-bg svg g:nth-of-type(3) { animation-duration: 29s; animation-delay: -12s; }
-@keyframes mb-breathe { from { opacity: .5; } to { opacity: 1; } }
+.molecular-bg svg g { animation: mb-breathe 9s ease-in-out infinite alternate; }
+.molecular-bg svg g:nth-of-type(2) { animation-duration: 12s; animation-delay: -4s; }
+.molecular-bg svg g:nth-of-type(3) { animation-duration: 15s; animation-delay: -8s; }
+@keyframes mb-breathe { from { opacity: .3; } to { opacity: 1; } }
 
 /* ── Filmové zrno ──────────────────────────────────────────────────────── */
 body::after {
@@ -377,7 +379,7 @@ body::after {
 
 /* ── Logo (skutočná značka z tlačených materiálov) ───────────────────────
    Cez značku prechádza ten istý holografický gradient a rovnakým tempom
-   ako sa hýbe sieť na pozadí (64 s). mix-blend-mode:hue prenesie na logo
+   ako sa hýbe sieť na pozadí (26 s). mix-blend-mode:hue prenesie na logo
    iba odtieň — jas a brushová textúra fotky zostanú nedotknuté.
    isolation:isolate drží miešanie vnútri loga, nech nefarbí stránku. */
 .holo-logo {
@@ -394,7 +396,7 @@ body::after {
     background: var(--up-holo);
     background-size: 300% 100%;
     mix-blend-mode: hue;
-    animation: holo-logo-shift 64s linear infinite;
+    animation: holo-logo-shift 26s linear infinite;
   }
   .holo-logo--mark::after {
     -webkit-mask: url('../img/logo-mark.png') center / 100% 100% no-repeat;
@@ -530,6 +532,39 @@ body::after {
 /* ==========================================================================
    Kategórie
    ========================================================================== */
+/* Kategórie ako kompaktné čipy, nie ako veľké dlaždice. Šesť blokov s veľkou
+   prázdnou plochou robilo zo sekcie zbytočne ťažkú vec; toto sa správa skôr
+   ako filtračná lišta a nechá vyniknúť produkty pod ňou. */
+.cat-nav { display: flex; flex-wrap: wrap; gap: var(--up-sp-2); }
+.cat-chip {
+  display: inline-flex; align-items: center; gap: var(--up-sp-3);
+  padding: 9px 8px 9px 12px;
+  border: 1px solid var(--up-hairline);
+  border-radius: var(--up-r-pill);
+  background: var(--up-ink-2);
+  transition: border-color .22s var(--up-ease),
+              background .22s var(--up-ease),
+              transform .22s var(--up-ease);
+}
+.cat-chip:hover, .cat-chip:focus-visible {
+  border-color: var(--up-purple);
+  background: var(--up-ink-3);
+  transform: translateY(-2px);
+}
+.cat-chip svg { width: 17px; height: 17px; flex-shrink: 0; stroke: var(--up-purple-lt); }
+.cat-chip__name {
+  font: 600 var(--up-fs-sm)/1 var(--up-font-body);
+  white-space: nowrap;
+}
+.cat-chip__n {
+  padding: 0 8px 0 10px;
+  border-left: 1px solid var(--up-hairline);
+  font: 500 var(--up-fs-xs)/1 var(--up-font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--up-text-mute);
+}
+.cat-chip:hover .cat-chip__n { color: var(--up-text-dim); }
+
 .cat-grid {
   display: grid; gap: var(--up-sp-4);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
@@ -564,8 +599,8 @@ body::after {
    Produktová karta
    ========================================================================== */
 .prod-grid {
-  display: grid; gap: var(--up-sp-4);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  display: grid; gap: var(--up-sp-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 186px), 1fr));
 }
 .prod-card {
   display: flex; flex-direction: column;
@@ -576,21 +611,21 @@ body::after {
 .prod-card:hover { transform: translateY(-3px); }
 .prod-card__media {
   position: relative;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 5;
   background:
-    radial-gradient(62% 50% at 50% 44%, rgba(56,189,248,.18), transparent 70%),
+    radial-gradient(64% 52% at 50% 44%, rgba(56,189,248,.18), transparent 70%),
     linear-gradient(180deg, #0E0E14, #060608);
   display: grid; place-items: center;
   overflow: hidden;
 }
 .prod-card__body {
-  padding: var(--up-sp-4);
+  padding: var(--up-sp-3);
   display: flex; flex-direction: column; gap: var(--up-sp-3);
   flex: 1;
 }
 .prod-card__name {
   margin: 0;
-  font: 700 1.0625rem/1.25 var(--up-font-display);
+  font: 700 1rem/1.25 var(--up-font-display);
   letter-spacing: -.01em;
 }
 .chip {
@@ -652,7 +687,7 @@ body::after {
    vyrezáva siluetu. Percentá pásu sú odmerané priamo z fotky — ak sa fotka
    prekreslí, treba ich prepočítať, inak text ujde mimo etiketu. */
 .vial {
-  --vial-w: 82px;
+  --vial-w: 78px;
   position: relative;
   display: block;
   width: var(--vial-w);
@@ -675,20 +710,26 @@ body::after {
   /* Etiketa na fotke je maľovaná hrubým ťahom. Skutočný brush font nemáme
      licencovaný, tak sa k nemu aspoň priblížime: ťažký kondenzovaný rez
      a mierny sklon dopredu. Fallback je náš displayový font. */
-  font: 700 calc(var(--vial-w) * .132)/1 var(--up-font-label);
-  letter-spacing: .025em; text-transform: uppercase;
+  font: 900 max(9px, calc(var(--vial-w) * .155))/1.02 var(--up-font-label);
+  letter-spacing: .005em; text-transform: uppercase;
   color: #F2F5FD;
   text-shadow: 0 1px 3px rgba(0,0,0,.85);
-  transform: skewX(-5deg);
+  transform: skewX(-6deg);
   overflow: hidden;
   pointer-events: none;
 }
-.vial--lg { --vial-w: clamp(96px, 17vw, 156px); }
+/* Dlhé názvy dostanú menší stupeň, inak by sa na úzkej etikete lámali
+   uprostred slova alebo by ich orezalo. Triedu priraďuje swap-vial.sh
+   podľa počtu znakov: 8–11 -> --sm, 12+ -> --xs. */
+.vial__name--sm { font-size: max(8px, calc(var(--vial-w) * .105)); }
+.vial__name--xs { font-size: max(7px, calc(var(--vial-w) * .085)); letter-spacing: 0; }
+
+.vial--lg { --vial-w: clamp(110px, 18vw, 170px); }
 
 /* fľaštička sa škáluje s kartou; bez podpory container queries ostane 82px */
 @supports (container-type: inline-size) {
   .prod-card__media { container-type: inline-size; }
-  .prod-card__media .vial { --vial-w: 30cqi; }
+  .prod-card__media .vial { --vial-w: 44cqi; }
 }
 
 /* ==========================================================================
