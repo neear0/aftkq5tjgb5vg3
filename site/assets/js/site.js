@@ -98,7 +98,40 @@
     ).observe(anchor);
   }
 
-  /* ── 5) Age gate — v produkcii NAVIAC server-side cookie + audit v DB ── */
+  /* ── 5) Cenník v pop-upe ───────────────────────────────────────────────
+     <dialog> kvôli natívnemu focus trapu a zatváraniu Escapom. Zatvárame
+     s krátkou animáciou, preto close() až po jej skončení. */
+  const cennik = document.getElementById('cennik-modal');
+  if (cennik && typeof cennik.showModal === 'function') {
+    const gridBtns = document.querySelectorAll('[data-view-grid]');
+    const listBtns = document.querySelectorAll('[data-open-cennik]');
+    const setPressed = (open) => {
+      gridBtns.forEach((b) => b.setAttribute('aria-pressed', String(!open)));
+      listBtns.forEach((b) => { if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(open)); });
+    };
+
+    const close = () => {
+      if (!cennik.open) return;
+      cennik.classList.add('is-closing');
+      const done = () => { cennik.classList.remove('is-closing'); cennik.close(); };
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return done();
+      cennik.addEventListener('animationend', done, { once: true });
+      setTimeout(done, 260); // poistka, keby animationend neprišiel
+    };
+
+    listBtns.forEach((b) => b.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!cennik.open) { cennik.showModal(); setPressed(true); }
+    }));
+    gridBtns.forEach((b) => b.addEventListener('click', close));
+    cennik.querySelectorAll('[data-close-modal]').forEach((b) => b.addEventListener('click', close));
+
+    // klik mimo obsahu zavrie; <dialog> hlási klik na seba pri kliku do backdropu
+    cennik.addEventListener('click', (e) => { if (e.target === cennik) close(); });
+    cennik.addEventListener('close', () => setPressed(false));
+  }
+
+  /* ── 6) Age gate — v produkcii NAVIAC server-side cookie + audit v DB ── */
   const gate = document.querySelector('.agegate');
   if (gate) {
     const KEY = 'up_ruo_ack_v1';

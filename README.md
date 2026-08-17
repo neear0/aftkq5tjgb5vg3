@@ -1,79 +1,133 @@
-# ULTRA PEPTIDY — statický web
+# ULTRA PEPTIDY — web a obsahový systém
 
-Prezentácia a katalóg výskumných peptidov, nasadzovaná na GitHub Pages.
-Tmavý holografický dizajn: čierna, purpurová, iridescentné akcenty.
+Katalóg výskumných peptidov. Stránky sa **generujú z dát**, takže pridanie
+produktu alebo zmena ceny je úprava jedného riadku v CSV — nie editovanie HTML.
 
 ---
 
-## Štruktúra
+## Ako to je poskladané
 
-| Cesta | Obsah |
+```
+data/kategorie.csv          kategórie a ich poradie
+data/produkty.csv           katalóg: ceny, gramáž, sklad, čistota, šarža
+content/produkty/<slug>.md  popisný text produktu (voliteľné)
+templates/produkt.html      šablóna produktovej stránky
+        │
+        ▼  node scripts/generate.mjs
+site/                       hotový web — TOTO SA NASADZUJE
+```
+
+`site/index.html` a `site/katalog.html` sú ručne navrhnuté stránky, do ktorých
+generátor dopĺňa len bloky medzi značkami `<!-- GEN:xxx -->`. Produktové stránky
+(`site/produkt-<slug>.html`) vznikajú celé zo šablóny.
+
+> **Súbory `site/produkt-*.html` needituj.** Prepíše ich najbližší build.
+> Uprav dáta alebo `templates/produkt.html`.
+
+---
+
+## Ako pridať produkt
+
+**1. Riadok do `data/produkty.csv`**
+
+```
+reference;slug;name;mg;category;form;purity;batch;stock;featured;price_gross_eur;price_net_eur;tier3_gross_eur;tier3_discount_gross_eur;active
+UP-NOVY-10;novy-peptid-10mg;Nový peptid;10 mg;regeneracia;Lyofilizat;99.10;NP-2409;in;0;55.00;44.715447;50.00;5.00;1
+```
+
+| Stĺpec | Čo tam patrí |
 |---|---|
-| `site/` | **Zdroj GitHub Pages a jediný zdroj pravdy pre dizajn.** Toto sa nasadzuje. |
-| `site/index.html` | Homepage — hero, kategórie, najžiadanejšie, kvalita, **celý cenník**, FAQ |
-| `site/katalog.html` | Katalóg — **všetkých 32 produktov** ako karty v 6 kategóriách |
-| `site/produkt-mots-c.html` | Produktová stránka (referenčná implementácia) |
-| `site/assets/css/ultrapeptidy.css` | Celý design systém |
-| `brand/` | Logo systém (SVG) — pripravený, web ho zatiaľ nepoužíva |
-| `data/produkty.csv` | Katalóg 32 položiek: kategória, gramáž, ceny, netto pri DPH 23 % |
-| `scripts/check-cennik.sh` | **Overí, že všetko z cenníka je na webe a ceny sedia** |
-| `scripts/build-prototyp.sh` | Zlúči `site/` do jedného HTML pre náhľad |
-| `scripts/set-specific-prices.php` | Množstevné ceny 3+ ks v PrestaShope (na neskôr) |
+| `reference` | interné katalógové číslo, musí byť jedinečné |
+| `slug` | časť URL — malé písmená, bez diakritiky, s pomlčkami |
+| `name` | názov na karte a na etikete fľaštičky |
+| `mg` | gramáž vrátane jednotky (`10 mg`, `3 ml`); môže byť prázdne |
+| `category` | **slug** kategórie z `data/kategorie.csv` |
+| `form` | `Lyofilizat` alebo `Roztok` |
+| `purity` | číslo s bodkou, napr. `99.24`; prázdne = „viď certifikát" |
+| `batch` | číslo šarže |
+| `stock` | `in` (na sklade), `low` (posledné kusy), `out` (vypredané) |
+| `featured` | `1` = ukáž na homepage medzi najžiadanejšími |
+| `price_gross_eur` | cena za 1 ks **s DPH** |
+| `price_net_eur` | cena bez DPH (pri 23 %: cena s DPH ÷ 1,23) |
+| `tier3_gross_eur` | cena za kus od 3 ks; **nechaj prázdne**, ak neplatí |
+| `tier3_discount_gross_eur` | rozdiel oproti cene za 1 ks (pre neskorší e-shop) |
+| `active` | `1` = zobraziť, `0` = skryť bez mazania riadku |
 
-GitHub Pages hostuje **len statické súbory** — nie PHP, nie databázu, nie košík.
-Tento web je prezentácia a katalóg. Skutočný e-shop s platbami je samostatný projekt.
+**2. Voliteľne text: `content/produkty/novy-peptid-10mg.md`**
+
+Súbor sa musí volať presne ako `slug`. Skopíruj `content/produkty/_sablona.md`.
+Formát je jednoduchý:
+
+```md
+> Perex — jedna až dve vety pod názvom.
+
+## Čo je to?
+- odrážka
+- odrážka
+
+## Stav poznania
+Voľný odstavec.
+```
+
+Bez tohto súboru sa stránka aj tak vygeneruje — bude mať špecifikáciu,
+cenu a certifikát, len bez popisu.
+
+**3. Vygeneruj a skontroluj**
+
+```bash
+node scripts/generate.mjs
+node scripts/check.mjs
+```
+
+**4. Commitni a pushni.** GitHub Actions build zopakuje a nasadí.
+
+## Ako zmeniť cenu
+
+Uprav `price_gross_eur` (a `tier3_gross_eur`) v CSV a pushni. Cena sa sama
+prepíše na karte, v cenníku, na produktovej stránke aj v pop-upe — nikde inde
+sa ručne nemení. `scripts/check.mjs` overí, že to sedí všade.
+
+## Ako pridať kategóriu
+
+Riadok do `data/kategorie.csv`. Stĺpec `icon` je id symbolu zo SVG sprite
+(`i-syringe`, `i-face`, `i-heart`, `i-growth`, `i-brain`, `i-drop`).
+Pre novú ikonu pridaj `<symbol>` do sprite v `templates/produkt.html`,
+`site/index.html` a `site/katalog.html`.
 
 ---
 
-## Lokálny vývoj
+## Príkazy
 
-Žiadny build, žiadne závislosti.
+| Príkaz | Čo robí |
+|---|---|
+| `node scripts/generate.mjs` | Vygeneruje web z dát |
+| `node scripts/generate.mjs --check` | Suchý beh, nič nezapíše |
+| `node scripts/check.mjs` | Overí, že každá položka má stránku, kartu, cenník a správnu cenu |
+| `bash scripts/build-prototyp.sh` | Zlúči web do jedného HTML pre náhľad |
+| `cd site && python -m http.server 8080` | Lokálny server |
 
-```bash
-cd site && python -m http.server 8080
-# http://localhost:8080
-```
-
-Lokálny server je lepší než otvorenie cez `file://` — relatívne cesty
-a `<use href="#id">` sa chovajú rovnako ako v produkcii.
-
-## Kontrola úplnosti cenníka
-
-Po každej zmene cien alebo katalógu:
-
-```bash
-bash scripts/check-cennik.sh
-```
-
-Skript prejde `data/produkty.csv` a pre každú položku overí, že je
-**na oboch miestach** — ako riadok v cenníkovej tabuľke aj ako produktová
-karta — a že ceny na webe sa zhodujú s cenami v CSV. Skončí s kódom 1,
-ak niečo chýba alebo nesúhlasí, takže sa dá zapojiť do CI.
+Generátor spadne, ak sú dáta nekonzistentné — duplicitný slug, neznáma
+kategória, množstevná cena vyššia ako základná. To je zámer: lepšie zlyhať
+pri builde než nasadiť web so zlou cenou.
 
 ---
 
 ## Nasadenie
 
-Pushom do `main` sa spustí workflow `.github/workflows/pages.yml`, ktorý
-nahráva **len obsah `site/`** — `data/`, `brand/` ani `scripts/` sa na web nedostanú.
-
-Zapnutie: **Settings → Pages → Source: GitHub Actions** (nie „Deploy from a branch").
+Push do `main` spustí workflow: vygeneruje web z dát, overí úplnosť katalógu
+a nasadí `site/` na GitHub Pages. Zlyhaná kontrola nasadenie zastaví.
 
 ### Vlastná doména
 
-Poradie je dôležité: **najprv DNS, potom CNAME.** Kým `site/CNAME` existuje,
-GitHub presmeruje adresu `*.github.io` na tvoju doménu — a ak DNS ešte
-nesmeruje na GitHub, stránka je nedostupná. Preto tam ten súbor zatiaľ nie je.
-
-Najprv v DNS u registrátora:
+**Najprv DNS, potom CNAME.** Kým `site/CNAME` existuje, GitHub presmeruje
+adresu `*.github.io` na tvoju doménu — ak DNS ešte nesmeruje na GitHub,
+stránka je nedostupná. Preto tam ten súbor zatiaľ nie je.
 
 ```
-; apex
 @   A     185.199.108.153
 @   A     185.199.109.153
 @   A     185.199.110.153
 @   A     185.199.111.153
-; www
 www CNAME neear0.github.io.
 ```
 
@@ -84,41 +138,50 @@ echo <domena> > site/CNAME
 git add site/CNAME && git commit -m "Vlastná doména" && git push
 ```
 
-CNAME musí byť v `site/`, nie v koreni — workflow nasadzuje len ten adresár.
 Potom v **Settings → Pages** zapni **Enforce HTTPS**.
 
-> Doména môže smerovať naraz len na jedno miesto. Keď raz pobeží skutočný
-> e-shop na vlastnom hostingu, treba sa rozhodnúť, čo je na doméne a čo
-> na subdoméne — **pred** nastavením DNS, nie po.
+---
+
+## Kam to smeruje
+
+Toto je statický web — má katalóg, cenník a produktové stránky, ale **nemá
+košík, platby ani objednávky**. GitHub Pages nevie spustiť PHP ani databázu.
+
+Dátová vrstva je ale postavená tak, aby sa dala prevziať: `data/produkty.csv`
+má stĺpce, ktoré priamo zodpovedajú PrestaShop importu, vrátane netto cien
+a podkladov pre množstevné ceny. Keď príde na rad skutočný e-shop, katalóg sa
+neprepisuje — importuje sa.
 
 ---
 
 ## Design systém
 
-Tmavý, holografický. Kľúčové veci v `site/assets/css/ultrapeptidy.css`:
+Tmavý, holografický. Všetko v `site/assets/css/ultrapeptidy.css`:
 
-- **Holo text** — `background-clip: text` nad animovaným gradientom.
-  Len na nadpisoch ≥ 32 px a ≥ 700 weight (WCAG „large text" 3:1).
-  Nikdy na cene, popise ani v checkoute.
-- **Iridescentný okraj** — `conic-gradient` v `border-box` + `@property --holo-angle`.
-  Fallback pre prehliadače bez `@property` je v `@supports`.
-- **Foil sweep** — `mix-blend-mode: color-dodge` na diagonálnom pruhu.
-- **Sheen za kurzorom** — jediné miesto, kde JS ovplyvňuje vzhľad;
-  delegovaný listener, rAF throttle, na touch sa vôbec nenaviaže.
-- **Glass** — `backdrop-filter` je drahý na GPU. Max 3–4 prvky vo viewporte,
-  nikdy na scrollujúcom zozname kariet.
-- `prefers-reduced-motion: reduce` vypína všetky animácie.
+- **Holo text** — `background-clip: text` nad animovaným gradientom. Len na
+  nadpisoch ≥ 32 px a ≥ 700 weight (WCAG „large text" 3:1). Nikdy na cene,
+  popise ani v checkoute.
+- **Iridescentný okraj** — `conic-gradient` v `border-box` + `@property`.
+  Používa ho karta produktu aj pop-up cenníka.
+- **Foil sweep**, **sheen za kurzorom** — jediné miesto, kde JS ovplyvňuje vzhľad.
+- **Sieť na pozadí** sa pomaly posúva (26 s) a uzly pulzujú; gradient v logu
+  drží rovnaké tempo.
+- `prefers-reduced-motion: reduce` vypína všetky animácie — vrátane pohybu
+  pozadia. Ak sa nič nehýbe, skontroluj systémové nastavenie animácií.
+
+**Fľaštička** je jedna fotka (`vial.jpg`) s vyprázdneným čiernym pásom;
+názov produktu ide cezeň ako HTML text. Percentá pásu sú v CSS odmerané
+priamo z fotky — pri prekreslení fotky ich treba prepočítať.
 
 Fonty sú **systémové**. Ak sa nahradia licencovanými, self-hostuj `woff2`
-a nepoužívaj Google Fonts CDN — v EÚ je to problém s GDPR a navyše pomalšie.
+a nepoužívaj Google Fonts CDN — v EÚ je to problém s GDPR.
 
 ## Čo ešte nie je hotové
 
-- **Fotky produktov.** Fľaštičky sú SVG kresba. Celý vizuál stojí na tom
-  holografickom skle — jedna svetelná zostava a nafotiť všetkých 32 naraz.
-- **Vlastnú stránku má zatiaľ len MOTS-C.** Ostatných 31 je v katalógu ako karty.
-- **Košík a platby.** Statický web ich mať nemôže.
-- **Právne stránky** (VOP, reklamácie, odstúpenie, GDPR) — odkazy vo footri
-  vedú na `#`.
+- **Fotky ostatných produktov.** Všetky používajú tú istú fľaštičku s vymeneným
+  názvom. Jedna svetelná zostava a nafotiť celý katalóg je najväčší jednorazový
+  skok v kvalite.
+- **Popisné texty.** Hotové sú MOTS-C a BPC-157, zvyšných 30 má šablónu.
+- **Košík, platby, právne stránky.**
 - **Bariéra 18+** je zatiaľ len UI vrstva v `localStorage`. Na skutočnom
   e-shope k tomu treba server-side cookie a audit záznam, inak nemá právnu váhu.

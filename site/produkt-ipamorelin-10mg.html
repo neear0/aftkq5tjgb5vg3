@@ -1,37 +1,18 @@
 <!DOCTYPE html>
+<!-- GENEROVANÉ — needituj priamo v site/. Zdroj: templates/produkt.html + data/ + content/ -->
 <html lang="sk">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ULTRA PEPTIDY — výskumné peptidy najvyššej kvality</title>
-<meta name="description" content="Výskumné peptidy s certifikátom analýzy pre každú šaržu. 32 produktov v 6 kategóriách, diskrétne balenie. ">
+<title>Ipamorelin 10 mg — ULTRA PEPTIDY</title>
+<meta name="description" content="Ipamorelin, 10 mg. Referenčná látka na laboratórne a výskumné použitie. Referenčná látka na laboratórne a výskumné použitie.">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/ultrapeptidy.css">
 </head>
 <body>
 
-<!-- ══ SVG symbol knižnica ═════════════════════════════════════════════════ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-  <linearGradient id="holoGrad" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#E2E8F0"/><stop offset="25%" stop-color="#A855F7"/>
-    <stop offset="50%" stop-color="#22D3EE"/><stop offset="75%" stop-color="#E879F9"/>
-    <stop offset="100%" stop-color="#38BDF8"/>
-  </linearGradient>
-  <linearGradient id="vialBody" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0%" stop-color="#1B2A52"/><stop offset="18%" stop-color="#4E7FD6"/>
-    <stop offset="38%" stop-color="#A9C7FF"/><stop offset="55%" stop-color="#6E8ED4"/>
-    <stop offset="75%" stop-color="#C08A6E"/><stop offset="100%" stop-color="#2A2028"/>
-  </linearGradient>
-  <linearGradient id="vialCap" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0%" stop-color="#0B2A8A"/><stop offset="35%" stop-color="#4C7FF0"/>
-    <stop offset="60%" stop-color="#1B3FBF"/><stop offset="100%" stop-color="#081A5C"/>
-  </linearGradient>
-  <linearGradient id="chromeRing" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0%" stop-color="#4A5568"/><stop offset="30%" stop-color="#E2E8F0"/>
-    <stop offset="55%" stop-color="#94A3B8"/><stop offset="100%" stop-color="#2D3748"/>
-  </linearGradient>
-
   <symbol id="i-syringe" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
     <path d="M14 4l6 6M17 3l4 4M13 7l4 4M4.5 19.5L11 13M4.5 19.5L3 21M8 16l-2.5-.5M10 14l.5 2.5"/></symbol>
   <symbol id="i-face" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
@@ -45,7 +26,6 @@
     <path d="M12 5a3 3 0 00-3 3 2.5 2.5 0 00-1 4.8A3 3 0 009 18a2.5 2.5 0 003 1V5zM12 5a3 3 0 013 3 2.5 2.5 0 011 4.8A3 3 0 0115 18a2.5 2.5 0 01-3 1"/></symbol>
   <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
     <path d="M12 3s5.5 6.2 5.5 10a5.5 5.5 0 11-11 0C6.5 9.2 12 3 12 3z"/></symbol>
-
   <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
     <path d="M12 2l8 3v6c0 5-3.4 9-8 11-4.6-2-8-6-8-11V5l8-3z"/><path d="M8.5 12l2.5 2.5L16 9.5"/></symbol>
   <symbol id="i-micro" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
@@ -58,9 +38,6 @@
     <circle cx="12" cy="12" r="9"/><path d="M12 6.8v5.4l3.5 2.1"/></symbol>
   <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
     <rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3M12 15v2"/></symbol>
-
-  <!-- symboly používané na produktovej stránke; v tomto <defs> sú preto,
-       aby zlúčený náhľad (scripts/build-prototyp.sh) mal jeden úplný sprite -->
   <symbol id="i-molecule" viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round">
     <circle cx="6" cy="7" r="2.2"/><circle cx="18" cy="6" r="2.2"/>
     <circle cx="12" cy="14" r="2.6"/><circle cx="5" cy="18" r="1.8"/><circle cx="19" cy="17" r="1.8"/>
@@ -75,8 +52,6 @@
   <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
     <path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z"/>
     <path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
-
-
   <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round">
     <path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></symbol>
   <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round">
@@ -96,7 +71,6 @@
       <circle cx="1180" cy="40" r="3"/><circle cx="1300" cy="130" r="4"/>
       <circle cx="1240" cy="260" r="3"/><circle cx="1330" cy="410" r="4"/>
       <circle cx="1410" cy="90" r="2.5"/><circle cx="1390" cy="320" r="2.5"/>
-      <circle cx="1420" cy="340" r="3"/>
     </g>
     <g fill="#A855F7" fill-opacity=".6">
       <circle cx="60" cy="700" r="4"/><circle cx="170" cy="630" r="3"/>
@@ -106,7 +80,6 @@
   </svg>
 </div>
 
-<!-- ══ AGE GATE ════════════════════════════════════════════════════════════ -->
 <div class="agegate" role="dialog" aria-modal="true" aria-labelledby="gate-t" hidden>
   <div class="agegate__card glass holo-border">
     <span class="holo-logo holo-logo--mark" style="width:56px;margin:0 auto 18px"><img src="assets/img/logo-mark.png" alt="" width="122" height="120"></span>
@@ -124,7 +97,6 @@
   </div>
 </div>
 
-<!-- ══ HEADER ══════════════════════════════════════════════════════════════ -->
 <header class="up-header">
   <div class="up-container up-header__inner">
     <a class="up-logo" href="index.html">
@@ -134,8 +106,8 @@
     <nav class="up-nav" aria-label="Hlavná navigácia">
       <a href="katalog.html">Katalóg</a>
       <a href="#" data-open-cennik>Cenník</a>
-      <a href="#cistota">Kvalita</a>
-      <a href="#faq">FAQ</a>
+      <a href="index.html#cistota">Kvalita</a>
+      <a href="index.html#faq">FAQ</a>
     </nav>
     <div class="up-actions">
       <button class="icon-btn" aria-label="Hľadať">
@@ -149,21 +121,76 @@
 </header>
 
 <main>
+<div class="up-container">
 
-<section class="hero">
-  <div class="up-container">
-    <span class="holo-logo holo-logo--lockup"><img src="assets/img/logo.png" alt="ULTRA PEPTIDY" width="236" height="220"></span>
-    <h1 class="hero__title"><span class="holo-text">Výskumné peptidy<br>najvyššej kvality</span></h1>
-    <p class="hero__tagline"></p>
-    <div class="hero__cta">
-      <a class="btn-holo" href="katalog.html">◆ Prehliadať katalóg</a>
-      <a class="btn-ghost" href="#cistota">Laboratórne výsledky →</a>
+  <nav class="breadcrumb" aria-label="Navigácia">
+    <a href="index.html">Domov</a> ›
+    <a href="katalog.html#rastove-hormony">Rastové hormóny a peptidy</a> ›
+    <span aria-current="page">Ipamorelin 10 mg</span>
+  </nav>
+
+  <div class="pdp">
+    <div class="pdp__gallery">
+      <div class="pdp__main foil sheen">
+        <span class="vial vial--lg">
+          <img class="vial__photo" src="assets/img/vial.jpg" alt="Fľaštička Ipamorelin 10 mg"
+               width="306" height="812" fetchpriority="high" decoding="async">
+          <span class="vial__name vial__name--sm">Ipamorelin</span>
+        </span>
+      </div>
+      <p class="ruo-flag"><svg fill="none" stroke="currentColor" stroke-width="1.6" width="14" height="14"><use href="#i-warn"/></svg> For research use only</p>
     </div>
-    <p class="hero__facts">
-      <span>99,1 %+ čistota</span><span>HPLC + MS analýza</span><span>32 položiek v katalógu</span>
-    </p>
+
+    <div>
+      <h1 class="pdp__title"><span class="holo-text">Ipamorelin</span></h1>
+      <p class="pdp__subtitle">Ipamorelin, 10 mg. Referenčná látka na laboratórne a výskumné použitie.</p>
+
+      <div class="pdp__meta">
+        <span class="stock-pill">Na sklade</span>
+        <span class="chip">10 mg</span>
+        <span class="chip">Šarža IP-2407</span>
+        <span class="coa-badge"><svg fill="none" stroke-width="1.5"><use href="#i-micro"/></svg> Čistota 99,19 % <a href="#coa">COA ↓</a></span>
+      </div>
+
+      <div class="price-box glass" data-qty data-price1="40" data-price3="37" data-tier-qty="3">
+        <div class="price-tiers">
+          <div class="price-row">
+            <span class="price-row__label">1 ks</span>
+            <span class="price-row__value">40,00 €</span>
+          </div>
+          <div class="price-row price-row--tier">
+            <span class="price-row__label">3+ ks<small>za kus</small></span>
+            <span class="price-row__value">37,00 €</span>
+          </div>
+        </div>
+        <div class="qty-row" style="margin-top:20px;margin-bottom:0">
+          <div class="qty-stepper">
+            <button type="button" data-step="-1" aria-label="Znížiť množstvo">−</button>
+            <input type="number" value="1" min="1" max="99" aria-label="Množstvo">
+            <button type="button" data-step="1" aria-label="Zvýšiť množstvo">+</button>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:center;margin-left:auto;text-align:right">
+            <span class="price-row__label">Celkom</span>
+            <strong data-total style="font:500 1.375rem/1.2 var(--up-font-mono)">40,00 €</strong>
+          </div>
+        </div>
+        <p class="price-save" data-save hidden></p>
+      </div>
+
+      <button class="btn-holo btn-block" data-cta-anchor style="margin-bottom:16px">◆ Pridať do košíka</button>
+
+      <div class="notice">
+        <svg fill="none" stroke-width="1.5"><use href="#i-clock"/></svg>
+        <span><strong>Expedícia v pracovné dni.</strong> Lyofilizát je pri bežných prepravných časoch
+        teplotne odolný — skladovanie po doručení nájdeš v záložke nižšie.</span>
+      </div>
+      <div class="notice">
+        <svg fill="none" stroke-width="1.5"><use href="#i-lock"/></svg>
+        <span><strong>Diskrétne balenie.</strong> Neutrálny obal bez označenia obsahu ani odosielateľa.</span>
+      </div>
+    </div>
   </div>
-</section>
+</div>
 
 <section class="trust-bar">
   <div class="up-container">
@@ -176,157 +203,134 @@
   </div>
 </section>
 
-<!-- ══ KATEGÓRIE ═══════════════════════════════════════════════════════════ -->
-<section class="up-section" id="kategorie">
+<section class="up-section">
   <div class="up-container">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">6 kategórií · 32 produktov</p>
-        <h2 class="section-title">Kategórie</h2>
+    <div class="infoblocks">
+      <div class="infoblock">
+        <div class="infoblock__head"><span class="brush-label">Popis</span></div>
+        <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6">
+          Popis tejto položky pripravujeme. Analytické údaje sú v špecifikácii vyššie
+          a v certifikáte analýzy.</p>
       </div>
-      <a class="section-link" href="katalog.html">Celý katalóg →</a>
     </div>
-    <!-- GEN:kategorie -->
-    <div class="cat-nav">
-      <a class="cat-chip" href="katalog.html#na-chudnutie"><svg fill="none"><use href="#i-syringe"/></svg><span class="cat-chip__name">Na chudnutie</span><span class="cat-chip__n">5</span></a>
-      <a class="cat-chip" href="katalog.html#krasa"><svg fill="none"><use href="#i-face"/></svg><span class="cat-chip__name">Krása</span><span class="cat-chip__n">11</span></a>
-      <a class="cat-chip" href="katalog.html#regeneracia"><svg fill="none"><use href="#i-heart"/></svg><span class="cat-chip__name">Regenerácia a zdravie</span><span class="cat-chip__n">4</span></a>
-      <a class="cat-chip" href="katalog.html#rastove-hormony"><svg fill="none"><use href="#i-growth"/></svg><span class="cat-chip__name">Rastové hormóny a peptidy</span><span class="cat-chip__n">8</span></a>
-      <a class="cat-chip" href="katalog.html#kognicia"><svg fill="none"><use href="#i-brain"/></svg><span class="cat-chip__name">Kognícia a fokus</span><span class="cat-chip__n">3</span></a>
-      <a class="cat-chip" href="katalog.html#pomocne"><svg fill="none"><use href="#i-drop"/></svg><span class="cat-chip__name">Pomocné produkty</span><span class="cat-chip__n">1</span></a>
-    </div>
-<!-- /GEN:kategorie -->
+
+    <p class="disclaimer">
+      <svg fill="none" stroke-width="1.5"><use href="#i-warn"/></svg>
+      <span><strong>Účinnosť a bezpečnosť podávania tejto látky ľuďom nie sú dostatočne klinicky
+      potvrdené.</strong> Uvedené informácie sú výhradne súhrnom publikovaných výskumných zistení,
+      prevažne z laboratórnych a zvieracích modelov. Nejde o zdravotné tvrdenia ani o odporúčanie
+      použitia u ľudí. Produkt je určený výhradne na výskumné účely a nie je liekom.</span>
+    </p>
   </div>
 </section>
 
-<!-- ══ NAJŽIADANEJŠIE ══════════════════════════════════════════════════════ -->
+<section class="up-section" id="coa" style="padding-top:0">
+  <div class="up-container">
+    <div class="section-head"><h2 class="section-title">Manipulácia a dokumentácia</h2></div>
+    <div class="tabs" role="tablist" aria-label="Detaily produktu">
+      <button role="tab" id="t1" aria-controls="p1" aria-selected="true" tabindex="0">Špecifikácia</button>
+      <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Rekonštitúcia</button>
+      <button role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Skladovanie</button>
+      <button role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">Certifikát analýzy</button>
+    </div>
+
+    <div class="tabpanel" role="tabpanel" id="p1" aria-labelledby="t1">
+      <dl>
+        <dt>Katalógové číslo</dt><dd>UP-IPA-10</dd>
+        <dt>Množstvo</dt><dd>10 mg</dd>
+        <dt>Forma</dt><dd>Lyofilizat</dd>
+        <dt>Kategória</dt><dd>Rastové hormóny a peptidy</dd>
+        <dt>Šarža</dt><dd>IP-2407</dd>
+        <dt>Čistota</dt><dd>99,19 %</dd>
+      </dl>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+      <dl>
+        <dt>Rozpúšťadlo</dt>
+        <dd>Bakteriostatická voda (Bac Water) — dostupná ako samostatná položka v kategórii Pomocné produkty.</dd>
+        <dt>Postup</dt>
+        <dd>Rozpúšťadlo aplikuj po stene fľaštičky, nie priamo na lyofilizát. Fľaštičku netrep — jemne otáčaj do úplného rozpustenia.</dd>
+        <dt>Poznámka</dt>
+        <dd>Neposkytujeme dávkovacie protokoly ani odporúčania na použitie u ľudí. Uvedené sú výhradne laboratórne postupy manipulácie.</dd>
+      </dl>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+      <dl>
+        <dt>Lyofilizát (nerozpustený)</dt><dd>−20 °C, v tme, v originálnom obale.</dd>
+        <dt>Po rekonštitúcii</dt><dd>2–8 °C, chránené pred svetlom. Nemrznúť opakovane.</dd>
+        <dt>Preprava</dt><dd>Neutrálny obal, bez chladeného reťazca. Krátkodobé zvýšenie teploty počas prepravy nemá na lyofilizát zásadný vplyv.</dd>
+      </dl>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
+      <dl>
+        <dt>Šarža</dt><dd>IP-2407</dd>
+        <dt>Čistota</dt><dd>99,19 %</dd>
+        <dt>Identita</dt><dd>Potvrdená hmotnostnou spektrometriou</dd>
+        <dt>Dokument</dt><dd><a class="section-link" href="#">Stiahnuť COA (PDF) →</a></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
 <section class="up-section" style="padding-top:0">
   <div class="up-container">
     <div class="section-head">
-      <h2 class="section-title">Najžiadanejšie</h2>
-      <div style="display:flex;align-items:center;gap:var(--up-sp-4);flex-wrap:wrap">
-        <div class="viewswitch" role="group" aria-label="Zobrazenie katalógu">
-          <button type="button" aria-pressed="true" data-view-grid><svg fill="none" stroke-linecap="round"><use href="#i-grid"/></svg>Obrázky</button>
-          <button type="button" aria-pressed="false" data-open-cennik><svg fill="none" stroke-linecap="round"><use href="#i-list"/></svg>Cenník</button>
-        </div>
-        <a class="section-link" href="katalog.html">Všetkých 32 →</a>
-      </div>
+      <div><p class="eyebrow">Pri 3 kusoch ušetríš 9,00 €.</p>
+      <h2 class="section-title">Súvisiace položky</h2></div>
+      <a class="section-link" href="katalog.html">Celý katalóg →</a>
     </div>
-    <!-- GEN:featured -->
     <div class="prod-grid">
+
       <article class="prod-card holo-border foil sheen">
-        <a class="prod-card__media" href="produkt-reta-10mg.html" aria-label="Reta 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Reta</span></span></a>
+        <a class="prod-card__media" href="produkt-cjc-ipamorelin-10mg.html" aria-label="CJC + Ipamorelin 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">CJC + Ipamorelin</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name"><a href="produkt-reta-10mg.html">Reta</a></h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-cjc-ipamorelin-10mg.html">CJC + Ipamorelin</a></h3><span class="chip">10 mg</span>
+          <span class="stock-pill">Na sklade</span>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">45,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">42,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-cjc-ipamorelin-10mg.html">Detail</a>
+        </div>
+      </article>
+
+      <article class="prod-card holo-border foil sheen">
+        <a class="prod-card__media" href="produkt-cjc-ipamorelin-20mg.html" aria-label="CJC + Ipamorelin 20 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">CJC + Ipamorelin</span></span></a>
+        <div class="prod-card__body">
+          <h3 class="prod-card__name"><a href="produkt-cjc-ipamorelin-20mg.html">CJC + Ipamorelin</a></h3><span class="chip">20 mg</span>
           <span class="stock-pill">Na sklade</span>
           <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">85,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">80,00 €</span></div></div>
-          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-reta-10mg.html">Detail</a>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-cjc-ipamorelin-20mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <a class="prod-card__media" href="produkt-ghk-cu-100mg.html" aria-label="GHK-Cu 100 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">GHK-Cu</span></span></a>
+        <a class="prod-card__media" href="produkt-ghrp-6-5mg.html" aria-label="GHRP-6 5 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">GHRP-6</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name"><a href="produkt-ghk-cu-100mg.html">GHK-Cu</a></h3><span class="chip">100 mg</span>
-          <span class="stock-pill stock-pill--low">Posledné kusy</span>
-          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">43,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">40,00 €</span></div></div>
-          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-ghk-cu-100mg.html">Detail</a>
-        </div>
-      </article>
-
-      <article class="prod-card holo-border foil sheen">
-        <a class="prod-card__media" href="produkt-bpc-157-10mg.html" aria-label="BPC-157 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">BPC-157</span></span></a>
-        <div class="prod-card__body">
-          <h3 class="prod-card__name"><a href="produkt-bpc-157-10mg.html">BPC-157</a></h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-ghrp-6-5mg.html">GHRP-6</a></h3><span class="chip">5 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">35,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">30,00 €</span></div></div>
-          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-bpc-157-10mg.html">Detail</a>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">16,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value" style="color:var(--up-text-mute)">–</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-ghrp-6-5mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <a class="prod-card__media" href="produkt-mots-c-40mg.html" aria-label="MOTS-C 40 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">MOTS-C</span></span></a>
+        <a class="prod-card__media" href="produkt-tesamorelin-5mg.html" aria-label="Tesamorelin 5 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Tesamorelin</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name"><a href="produkt-mots-c-40mg.html">MOTS-C</a></h3><span class="chip">40 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-tesamorelin-5mg.html">Tesamorelin</a></h3><span class="chip">5 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">75,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">70,00 €</span></div></div>
-          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-mots-c-40mg.html">Detail</a>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">40,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">37,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-tesamorelin-5mg.html">Detail</a>
         </div>
       </article>
-
-      <article class="prod-card holo-border foil sheen">
-        <a class="prod-card__media" href="produkt-tesamorelin-10mg.html" aria-label="Tesamorelin 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Tesamorelin</span></span></a>
-        <div class="prod-card__body">
-          <h3 class="prod-card__name"><a href="produkt-tesamorelin-10mg.html">Tesamorelin</a></h3><span class="chip">10 mg</span>
-          <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">65,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">63,00 €</span></div></div>
-          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-tesamorelin-10mg.html">Detail</a>
-        </div>
-      </article>
-    </div>
-<!-- /GEN:featured -->
-  </div>
-</section>
-
-<!-- ══ PROCES ══════════════════════════════════════════════════════════════ -->
-<section class="up-section" id="cistota">
-  <div class="up-container">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">Od dodávateľa k tebe</p>
-        <h2 class="section-title">Ako zaručujeme čistotu</h2>
-      </div>
-    </div>
-    <div class="steps">
-      <div class="step glass"><div class="step__num">1</div><h3>Výber dodávateľa</h3><p>Auditovaní výrobcovia s dokumentovanou syntézou a stabilnou šaržovou konzistenciou.</p></div>
-      <div class="step glass"><div class="step__num">2</div><h3>HPLC + MS analýza</h3><p>Každá šarža má certifikát analýzy s uvedenou čistotou a identitou molekuly.</p></div>
-      <div class="step glass"><div class="step__num">3</div><h3>Chladený sklad</h3><p>Lyofilizované peptidy skladované pri −20 °C, manipulácia s minimálnym teplotným výkyvom.</p></div>
-      <div class="step glass"><div class="step__num">4</div><h3>Diskrétne balenie</h3><p>Neutrálny obal bez označenia obsahu aj odosielateľa. Zásielka nič neprezrádza.</p></div>
     </div>
   </div>
 </section>
 
-
-<!-- ══ FAQ ═════════════════════════════════════════════════════════════════ -->
-<section class="up-section" id="faq" style="padding-top:0">
-  <div class="up-container">
-    <div class="section-head"><h2 class="section-title">Časté otázky</h2></div>
-    <div class="faq">
-      <details open>
-        <summary>Ako prebieha odoslanie a doprava?</summary>
-        <p>Objednávky expedujeme v pracovné dni. Zásielka ide v neutrálnom
-           obale bez označenia obsahu aj odosielateľa. Lyofilizovaný peptid je pri bežných
-           prepravných časoch teplotne odolný, takže chladený reťazec počas dopravy nepotrebuje —
-           dôležité je až skladovanie po doručení.</p>
-      </details>
-      <details>
-        <summary>Čo znamená „for research only“?</summary>
-        <p>Produkty sú určené výhradne na laboratórne a výskumné použitie. Nie sú liekmi, výživovými
-           doplnkami ani kozmetikou, nemajú registráciu na podávanie ľuďom a neposkytujeme k nim
-           dávkovanie ani zdravotné odporúčania.</p>
-      </details>
-      <details>
-        <summary>Ako čítať certifikát analýzy (COA)?</summary>
-        <p>COA obsahuje číslo šarže, dátum testovania, laboratórium, metódu (typicky HPLC pre čistotu
-           a hmotnostnú spektrometriu pre identitu) a výslednú čistotu v percentách. Číslo šarže
-           na certifikáte musí byť rovnaké ako na etikete tvojej fľaštičky.</p>
-      </details>
-      <details>
-        <summary>Ako mám skladovať lyofilizovaný peptid?</summary>
-        <p>Nerozpustený lyofilizát je v chlade a v tme stabilný dlhodobo. Po rekonštitúcii sa
-           stabilita výrazne skracuje a závisí od konkrétnej molekuly — konkrétne parametre
-           pre danú šaržu nájdeš na produktovej stránke v záložke Stabilita.</p>
-      </details>
-      <details>
-        <summary>Ako funguje zľava od 3 kusov?</summary>
-        <p>Nižšia cena za kus platí od 3 kusov <strong>tej istej položky</strong> a je v cenníku
-           uvedená v stĺpci „3+ ks za kus". Pri niektorých položkách (KPV, GHRP-6, Bac Water)
-           množstevná cena stanovená nie je — v cenníku je namiesto nej pomlčka.</p>
-      </details>
-    </div>
+<div class="mobile-cta">
+  <div>
+    <span class="price-row__label" style="display:block">Ipamorelin 10 mg</span>
+    <span class="mobile-cta__price">40,00 €</span>
   </div>
-</section>
-
+  <button class="btn-holo">Do košíka</button>
+</div>
 </main>
 
 <dialog class="modal" id="cennik-modal" aria-labelledby="cennik-modal-t">
@@ -340,7 +344,6 @@
     </button>
   </div>
   <div class="modal__body">
-    <!-- GEN:cennik -->
       <div class="pricelist">
         <div class="pl-group">
           <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-syringe"/></svg><h3 class="pl-group__title">Na chudnutie</h3></div>
@@ -423,15 +426,13 @@
           </table>
         </div>
       </div>
-<!-- /GEN:cennik -->
   </div>
   <p class="modal__foot">
-    Pomlčka v stĺpci „3+ ks" znamená, že pre danú položku nie je stanovená množstevná cena.
+    Pomlčka v stĺpci „3+ ks“ znamená, že pre danú položku nie je stanovená množstevná cena.
     Ceny sú konečné vrátane DPH.
   </p>
 </dialog>
 
-<!-- ══ FOOTER ══════════════════════════════════════════════════════════════ -->
 <footer class="up-footer">
   <div class="up-container">
     <div class="up-footer__grid">
@@ -458,9 +459,11 @@
       <div>
         <h4>Informácie</h4>
         <ul>
-          <li><a href="#" data-open-cennik>Cenník</a></li><li><a href="#">Doprava a platba</a></li><li><a href="#">Skladovanie a stabilita</a></li>
-          <li><a href="#">Certifikáty analýzy</a></li><li><a href="#faq">Časté otázky</a></li>
-          <li><a href="#">Kontakt</a></li>
+          <li><a href="#" data-open-cennik>Cenník</a></li>
+          <li><a href="#">Doprava a platba</a></li>
+          <li><a href="#">Skladovanie a stabilita</a></li>
+          <li><a href="#coa">Certifikáty analýzy</a></li>
+          <li><a href="index.html#faq">Časté otázky</a></li>
         </ul>
       </div>
       <div>

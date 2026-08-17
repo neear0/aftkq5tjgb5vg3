@@ -600,7 +600,7 @@ body::after {
    ========================================================================== */
 .prod-grid {
   display: grid; gap: var(--up-sp-3);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 186px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
 }
 .prod-card {
   display: flex; flex-direction: column;
@@ -619,13 +619,13 @@ body::after {
   overflow: hidden;
 }
 .prod-card__body {
-  padding: var(--up-sp-3);
-  display: flex; flex-direction: column; gap: var(--up-sp-3);
+  padding: 10px;
+  display: flex; flex-direction: column; gap: var(--up-sp-2);
   flex: 1;
 }
 .prod-card__name {
   margin: 0;
-  font: 700 1rem/1.25 var(--up-font-display);
+  font: 700 .9375rem/1.25 var(--up-font-display);
   letter-spacing: -.01em;
 }
 .chip {
@@ -721,8 +721,8 @@ body::after {
 /* Dlhé názvy dostanú menší stupeň, inak by sa na úzkej etikete lámali
    uprostred slova alebo by ich orezalo. Triedu priraďuje swap-vial.sh
    podľa počtu znakov: 8–11 -> --sm, 12+ -> --xs. */
-.vial__name--sm { font-size: max(8px, calc(var(--vial-w) * .105)); }
-.vial__name--xs { font-size: max(7px, calc(var(--vial-w) * .085)); letter-spacing: 0; }
+.vial__name--sm { font-size: max(9px, calc(var(--vial-w) * .105)); }
+.vial__name--xs { font-size: max(8px, calc(var(--vial-w) * .085)); letter-spacing: 0; }
 
 .vial--lg { --vial-w: clamp(110px, 18vw, 170px); }
 
@@ -1058,6 +1058,110 @@ body::after {
   font-size: var(--up-fs-xs); line-height: 1.7;
   color: var(--up-text-mute);
   max-width: 90ch;
+}
+
+/* ==========================================================================
+   Prepínač zobrazenia + cenník v pop-upe
+   ========================================================================== */
+.viewswitch {
+  display: inline-flex; align-items: center; gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--up-hairline);
+  border-radius: var(--up-r-pill);
+  background: var(--up-ink-2);
+}
+.viewswitch button {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 16px; border: 0; cursor: pointer;
+  border-radius: var(--up-r-pill);
+  background: transparent;
+  color: var(--up-text-mute);
+  font: 600 var(--up-fs-xs)/1 var(--up-font-body);
+  letter-spacing: .04em;
+  transition: color .2s var(--up-ease), background .2s var(--up-ease);
+}
+.viewswitch button svg { width: 14px; height: 14px; stroke: currentColor; }
+.viewswitch button:hover { color: var(--up-text-dim); }
+.viewswitch button[aria-pressed='true'] { background: var(--up-ink-3); color: var(--up-text); }
+
+/* ── Modal ──────────────────────────────────────────────────────────────
+   <dialog> kvôli natívnemu focus trapu a zatváraniu Escapom.
+   Hrana je ten istý iridescentný conic gradient ako na kartách, len sa
+   otáča stále a pomaly — je to jediná ozdoba, ktorú si tu modal berie. */
+.modal {
+  width: min(1100px, 94vw);
+  max-height: 88vh;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--up-r-lg);
+  background:
+    linear-gradient(var(--up-ink), var(--up-ink)) padding-box,
+    conic-gradient(from var(--holo-angle),
+      #22D3EE, #8B5CF6, #E879F9, #E2E8F0, #38BDF8, #22D3EE) border-box;
+  color: var(--up-text);
+  overflow: hidden;
+  box-shadow: 0 40px 90px -30px rgba(0,0,0,.95), var(--up-glow-purple);
+  animation: modal-in .26s var(--up-ease);
+}
+.modal[open] { animation: modal-in .26s var(--up-ease), holo-rotate 12s linear infinite; }
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(14px) scale(.97); }
+  to   { opacity: 1; transform: none; }
+}
+.modal::backdrop {
+  background: rgba(4,4,6,.78);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  animation: modal-backdrop-in .26s var(--up-ease);
+}
+@keyframes modal-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+.modal.is-closing { animation: modal-out .18s var(--up-ease) forwards; }
+@keyframes modal-out {
+  to { opacity: 0; transform: translateY(8px) scale(.985); }
+}
+
+.modal__head {
+  position: sticky; top: 0; z-index: 2;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: var(--up-sp-4);
+  padding: var(--up-sp-5) var(--up-sp-5) var(--up-sp-4);
+  border-bottom: 1px solid var(--up-hairline);
+  background: linear-gradient(180deg, var(--up-ink) 72%, rgba(10,10,10,.9));
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.modal__head h2 {
+  margin: var(--up-sp-2) 0 0;
+  font: 700 var(--up-fs-h2)/1.1 var(--up-font-display);
+  font-style: italic; text-transform: uppercase; letter-spacing: .04em;
+}
+.modal__close {
+  width: 38px; height: 38px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0; cursor: pointer;
+  border: 1px solid var(--up-hairline);
+  border-radius: var(--up-r-pill);
+  background: var(--up-ink-2);
+  color: var(--up-text-dim);
+  transition: border-color .2s var(--up-ease), color .2s var(--up-ease);
+}
+.modal__close:hover { border-color: var(--up-purple); color: var(--up-text); }
+.modal__body {
+  padding: var(--up-sp-5);
+  overflow-y: auto;
+  max-height: calc(88vh - 96px);
+  overscroll-behavior: contain;
+}
+.modal__foot {
+  padding: 0 var(--up-sp-5) var(--up-sp-5);
+  font-size: var(--up-fs-xs); color: var(--up-text-mute); line-height: 1.7;
+}
+
+/* Bez JS sa dialóg neotvorí, tak ho ukáž ako bežnú sekciu. */
+@media (scripting: none) {
+  .modal { display: block; position: static; width: 100%; max-height: none;
+           animation: none; margin-block: var(--up-sp-6); }
+  .modal__body { max-height: none; }
+  .viewswitch { display: none; }
 }
 
 /* ==========================================================================

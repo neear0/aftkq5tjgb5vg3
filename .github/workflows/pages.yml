@@ -5,6 +5,10 @@ on:
     branches: [main]
     paths:
       - 'site/**'
+      - 'data/**'
+      - 'content/**'
+      - 'templates/**'
+      - 'scripts/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -13,7 +17,6 @@ permissions:
   pages: write
   id-token: write
 
-# Nechaj dobehnúť rozbehnutý deploy, ale zruš staršie čakajúce.
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -28,10 +31,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Katalóg, cenník aj produktové stránky sa vyrábajú z data/ a content/.
+      # Generuje sa TU, aby v repozitári nemohol vzniknúť rozpor medzi
+      # dátami a nasadeným HTML.
+      - name: Vygeneruj web z dát
+        run: node scripts/generate.mjs
+
+      # Spadne, ak niektorá položka z cenníka nemá stránku, kartu alebo
+      # ak sa ceny v HTML nezhodujú s CSV. Radšej zlyhať build než nasadiť
+      # web s nesprávnou cenou.
+      - name: Skontroluj úplnosť katalógu
+        run: node scripts/check.mjs
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      # Statické stránky — žiadny build. Nahráva sa len obsah site/.
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

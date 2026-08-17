@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+<!-- GENEROVANÉ — needituj priamo v site/. Zdroj: templates/produkt.html + data/ + content/ -->
 <html lang="sk">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MOTS-C 40 mg — ULTRA PEPTIDY</title>
-<meta name="description" content="MOTS-C 40 mg, lyofilizát, čistota 99,24 % (HPLC). Mitochondriálny peptid spojený s energetickým metabolizmom. Výhradne na výskumné použitie.">
+<title>{{TITLE}} — ULTRA PEPTIDY</title>
+<meta name="description" content="{{PEREX}} Referenčná látka na laboratórne a výskumné použitie.">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/ultrapeptidy.css">
@@ -12,25 +13,19 @@
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-  <linearGradient id="holoGrad" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#E2E8F0"/><stop offset="25%" stop-color="#A855F7"/>
-    <stop offset="50%" stop-color="#22D3EE"/><stop offset="75%" stop-color="#E879F9"/>
-    <stop offset="100%" stop-color="#38BDF8"/>
-  </linearGradient>
-  <linearGradient id="vialBody" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0%" stop-color="#1B2A52"/><stop offset="18%" stop-color="#4E7FD6"/>
-    <stop offset="38%" stop-color="#A9C7FF"/><stop offset="55%" stop-color="#6E8ED4"/>
-    <stop offset="75%" stop-color="#C08A6E"/><stop offset="100%" stop-color="#2A2028"/>
-  </linearGradient>
-  <linearGradient id="vialCap" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0%" stop-color="#0B2A8A"/><stop offset="35%" stop-color="#4C7FF0"/>
-    <stop offset="60%" stop-color="#1B3FBF"/><stop offset="100%" stop-color="#081A5C"/>
-  </linearGradient>
-  <linearGradient id="chromeRing" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0%" stop-color="#4A5568"/><stop offset="30%" stop-color="#E2E8F0"/>
-    <stop offset="55%" stop-color="#94A3B8"/><stop offset="100%" stop-color="#2D3748"/>
-  </linearGradient>
-
+  <symbol id="i-syringe" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+    <path d="M14 4l6 6M17 3l4 4M13 7l4 4M4.5 19.5L11 13M4.5 19.5L3 21M8 16l-2.5-.5M10 14l.5 2.5"/></symbol>
+  <symbol id="i-face" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+    <path d="M12 3a7 7 0 00-7 7v3l-1.5 2.5H5v2a2 2 0 002 2h3v2M12 3a7 7 0 017 7M9 11h.01M15 11h.01M10 15c1.2.8 2.8.8 4 0"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+    <path d="M3 12h3l2-4 2 8 2.5-6 1.5 3h5"/>
+    <path d="M20.5 8.5a4 4 0 00-6.8-2.3L12 8l-1.7-1.8A4 4 0 003.5 8.5"/></symbol>
+  <symbol id="i-growth" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+    <path d="M4 20L20 4M20 4h-6M20 4v6M4 20h4v-5M10 20h4v-9"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+    <path d="M12 5a3 3 0 00-3 3 2.5 2.5 0 00-1 4.8A3 3 0 009 18a2.5 2.5 0 003 1V5zM12 5a3 3 0 013 3 2.5 2.5 0 011 4.8A3 3 0 0115 18a2.5 2.5 0 01-3 1"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+    <path d="M12 3s5.5 6.2 5.5 10a5.5 5.5 0 11-11 0C6.5 9.2 12 3 12 3z"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
     <path d="M12 2l8 3v6c0 5-3.4 9-8 11-4.6-2-8-6-8-11V5l8-3z"/><path d="M8.5 12l2.5 2.5L16 9.5"/></symbol>
   <symbol id="i-micro" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
@@ -57,7 +52,13 @@
   <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
     <path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z"/>
     <path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
-
+  <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round">
+    <path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round">
+    <rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/>
+    <rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round">
+    <path d="M6 6l12 12M18 6L6 18"/></symbol>
 </defs></svg>
 
 <div class="molecular-bg" aria-hidden="true">
@@ -104,7 +105,7 @@
     </a>
     <nav class="up-nav" aria-label="Hlavná navigácia">
       <a href="katalog.html">Katalóg</a>
-      <a href="index.html#cennik">Cenník</a>
+      <a href="#" data-open-cennik>Cenník</a>
       <a href="index.html#cistota">Kvalita</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
@@ -124,51 +125,42 @@
 
   <nav class="breadcrumb" aria-label="Navigácia">
     <a href="index.html">Domov</a> ›
-    <a href="katalog.html#regeneracia">Regenerácia a zdravie</a> ›
-    <span aria-current="page">MOTS-C 40 mg</span>
+    <a href="katalog.html#{{CAT_SLUG}}">{{CAT_NAME}}</a> ›
+    <span aria-current="page">{{TITLE}}</span>
   </nav>
 
   <div class="pdp">
     <div class="pdp__gallery">
       <div class="pdp__main foil sheen">
         <span class="vial vial--lg">
-          <img class="vial__photo" src="assets/img/vial.jpg" alt="Fľaštička MOTS-C 40 mg"
+          <img class="vial__photo" src="assets/img/vial.jpg" alt="Fľaštička {{TITLE}}"
                width="306" height="812" fetchpriority="high" decoding="async">
-          <span class="vial__name">MOTS-C</span>
+          <span class="vial__name{{VIAL_NAME_CLASS}}">{{NAME}}</span>
         </span>
-      </div>
-      <div class="pdp__thumbs" role="tablist" aria-label="Galéria">
-        <div class="pdp__thumb" aria-selected="true"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"></span></div>
-        <div class="pdp__thumb"><svg fill="none" stroke="#94A3B8" stroke-width="1.4"><use href="#i-molecule"/></svg></div>
-        <div class="pdp__thumb"><svg fill="none" stroke="#94A3B8" stroke-width="1.4"><use href="#i-doc"/></svg></div>
-        <div class="pdp__thumb"><svg fill="none" stroke="#94A3B8" stroke-width="1.4"><use href="#i-snow"/></svg></div>
       </div>
       <p class="ruo-flag"><svg fill="none" stroke="currentColor" stroke-width="1.6" width="14" height="14"><use href="#i-warn"/></svg> For research use only</p>
     </div>
 
     <div>
-      <h1 class="pdp__title"><span class="holo-text">MOTS-C</span></h1>
-      <p class="pdp__subtitle">Mitochondriálny peptid spojený s energetickým metabolizmom. 16 aminokyselín, lyofilizovaný.</p>
+      <h1 class="pdp__title"><span class="holo-text">{{NAME}}</span></h1>
+      <p class="pdp__subtitle">{{PEREX}}</p>
 
       <div class="pdp__meta">
-        <span class="stock-pill">Na sklade</span>
-        <span class="chip">40 mg</span>
-        <span class="chip">Šarža MC-2408</span>
-        <span class="coa-badge">
-          <svg fill="none" stroke-width="1.5"><use href="#i-micro"/></svg>
-          Čistota 99,24 % <a href="#coa">COA ↓</a>
-        </span>
+        <span class="stock-pill{{STOCK_CLS}}">{{STOCK_LABEL}}</span>
+        {{MG_CHIP}}
+        <span class="chip">Šarža {{BATCH}}</span>
+        {{PURITY_ROW}}
       </div>
 
-      <div class="price-box glass" data-qty data-price1="75" data-price3="70" data-tier-qty="3">
+      <div class="price-box glass" data-qty data-price1="{{PRICE1_NUM}}" data-price3="{{PRICE3_NUM}}" data-tier-qty="3">
         <div class="price-tiers">
           <div class="price-row">
             <span class="price-row__label">1 ks</span>
-            <span class="price-row__value">75,00 €</span>
+            <span class="price-row__value">{{PRICE1}}</span>
           </div>
           <div class="price-row price-row--tier">
             <span class="price-row__label">3+ ks<small>za kus</small></span>
-            <span class="price-row__value">70,00 €</span>
+            <span class="price-row__value"{{PRICE3_STYLE}}>{{PRICE3}}</span>
           </div>
         </div>
         <div class="qty-row" style="margin-top:20px;margin-bottom:0">
@@ -179,7 +171,7 @@
           </div>
           <div style="display:flex;flex-direction:column;justify-content:center;margin-left:auto;text-align:right">
             <span class="price-row__label">Celkom</span>
-            <strong data-total style="font:500 1.375rem/1.2 var(--up-font-mono)">75,00 €</strong>
+            <strong data-total style="font:500 1.375rem/1.2 var(--up-font-mono)">{{PRICE1}}</strong>
           </div>
         </div>
         <p class="price-save" data-save hidden></p>
@@ -187,10 +179,10 @@
 
       <button class="btn-holo btn-block" data-cta-anchor style="margin-bottom:16px">◆ Pridať do košíka</button>
 
-      <div class="notice notice--cold">
+      <div class="notice">
         <svg fill="none" stroke-width="1.5"><use href="#i-clock"/></svg>
-        <span><strong>Expedícia v pracovné dni.</strong> Lyofilizát je pri bežných prepravných časoch teplotne odolný —
-        skladovanie po doručení nájdeš v záložke nižšie.</span>
+        <span><strong>Expedícia v pracovné dni.</strong> Lyofilizát je pri bežných prepravných časoch
+        teplotne odolný — skladovanie po doručení nájdeš v záložke nižšie.</span>
       </div>
       <div class="notice">
         <svg fill="none" stroke-width="1.5"><use href="#i-lock"/></svg>
@@ -211,80 +203,15 @@
   </div>
 </section>
 
-<!-- ══ INFOBLOKY ═══════════════════════════════════════════════════════════ -->
 <section class="up-section">
   <div class="up-container">
     <div class="infoblocks">
-
-      <div class="infoblock">
-        <div class="infoblock__head"><span class="brush-label">Čo je MOTS-C?</span></div>
-        <ul>
-          <li>MOTS-c je 16-aminokyselinový mitochondriálny peptid.</li>
-          <li>Je kódovaný v géne pre mitochondriálnu 12S rRNA.</li>
-          <li>Patrí medzi mitochondriálne odvodené peptidy (MDPs).</li>
-          <li>Podieľa sa na komunikácii medzi mitochondriou a jadrom.</li>
-        </ul>
-      </div>
-
-      <div class="infoblocks__center" aria-hidden="true">
-        <svg fill="none" stroke="url(#holoGrad)" stroke-width="1.2"><use href="#i-molecule"/></svg>
-        <svg fill="none" stroke="url(#holoGrad)" stroke-width="1.2" style="width:min(100%,120px)"><use href="#i-dna"/></svg>
-        <svg fill="none" stroke="url(#holoGrad)" stroke-width="1.2" style="width:min(100%,110px)"><use href="#i-flask"/></svg>
-      </div>
-
-      <div class="infoblock">
-        <div class="infoblock__head"><span class="brush-label">Synergia</span></div>
-        <ul>
-          <li>MOTS-c synergicky pôsobí s cvičením a aktiváciou AMPK.</li>
-          <li>Kombinácia s látkami podporujúcimi mitochondrie (napr. NR, resveratrol) môže zosilniť účinok.</li>
-          <li>Podporuje účinok zmien životného štýlu.</li>
-        </ul>
-      </div>
-
-      <div class="infoblock">
-        <div class="infoblock__head"><span class="brush-label">Účinky</span></div>
-        <ul>
-          <li>Zlepšuje glukózovú toleranciu a inzulínovú citlivosť.</li>
-          <li>Aktivuje dráhu folát → AICAR → AMPK, kľúčovú pre energetický metabolizmus.</li>
-          <li>Podporuje využitie energie a metabolickú flexibilitu.</li>
-          <li>V modeloch zlepšuje výkonnosť pri behu a adaptáciu na záťaž.</li>
-          <li>Môže chrániť pred metabolickým stresom a oxidačným poškodením.</li>
-        </ul>
-      </div>
-
-      <div class="infoblock">
-        <div class="infoblock__head"><span class="brush-label">Pre koho je to?</span></div>
-        <ul>
-          <li>Pre výskum zameraný na metabolické zdravie.</li>
-          <li>Pre štúdie fyzickej aktivity a adaptácie na záťaž.</li>
-          <li>Pre modely so zníženou energetickou dostupnosťou alebo inzulínovou rezistenciou.</li>
-        </ul>
-      </div>
-
-      <div class="infoblock">
-        <div class="infoblock__head"><span class="brush-label">Súvis s cvičením</span></div>
-        <ul>
-          <li>Fyzická záťaž môže ovplyvňovať hladiny MOTS-c.</li>
-          <li>MOTS-c je jedným z mitochondriálnych signálov spojených s adaptáciou na cvičenie.</li>
-          <li>V experimentálnych modeloch zvyšoval výkonnosť pri behu a podporoval vytrvalostné schopnosti.</li>
-        </ul>
-      </div>
-
-      <div class="infoblock">
-        <div class="infoblock__head"><span class="brush-label">Základné info</span></div>
-        <ul>
-          <li>16 aminokyselín.</li>
-          <li>Mitochondriálny pôvod.</li>
-          <li>Výskumný peptid.</li>
-          <li>Skúma sa metabolizmus, AMPK, inzulínová citlivosť, cvičenie a starnutie.</li>
-        </ul>
-      </div>
-
+{{BLOCKS}}
     </div>
 
     <p class="disclaimer">
       <svg fill="none" stroke-width="1.5"><use href="#i-warn"/></svg>
-      <span><strong>Účinnosť a bezpečnosť podávania MOTS-c ľuďom nie sú dostatočne klinicky
+      <span><strong>Účinnosť a bezpečnosť podávania tejto látky ľuďom nie sú dostatočne klinicky
       potvrdené.</strong> Uvedené informácie sú výhradne súhrnom publikovaných výskumných zistení,
       prevažne z laboratórnych a zvieracích modelov. Nejde o zdravotné tvrdenia ani o odporúčanie
       použitia u ľudí. Produkt je určený výhradne na výskumné účely a nie je liekom.</span>
@@ -292,43 +219,47 @@
   </div>
 </section>
 
-<!-- ══ TABS ════════════════════════════════════════════════════════════════ -->
 <section class="up-section" id="coa" style="padding-top:0">
   <div class="up-container">
     <div class="section-head"><h2 class="section-title">Manipulácia a dokumentácia</h2></div>
     <div class="tabs" role="tablist" aria-label="Detaily produktu">
-      <button role="tab" id="t1" aria-controls="p1" aria-selected="true" tabindex="0">Rekonštitúcia</button>
-      <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Skladovanie</button>
-      <button role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Stabilita</button>
+      <button role="tab" id="t1" aria-controls="p1" aria-selected="true" tabindex="0">Špecifikácia</button>
+      <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Rekonštitúcia</button>
+      <button role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Skladovanie</button>
       <button role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">Certifikát analýzy</button>
     </div>
 
     <div class="tabpanel" role="tabpanel" id="p1" aria-labelledby="t1">
       <dl>
+        <dt>Katalógové číslo</dt><dd>{{REFERENCE}}</dd>
+        <dt>Množstvo</dt><dd>{{MG}}</dd>
+        <dt>Forma</dt><dd>{{FORM}}</dd>
+        <dt>Kategória</dt><dd>{{CAT_NAME}}</dd>
+        <dt>Šarža</dt><dd>{{BATCH}}</dd>
+        <dt>Čistota</dt><dd>{{PURITY}}</dd>
+      </dl>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+      <dl>
         <dt>Rozpúšťadlo</dt>
-        <dd>Bakteriostatická voda (Bac Water) — dostupná ako samostatný produkt v kategórii Pomocné produkty.</dd>
+        <dd>Bakteriostatická voda (Bac Water) — dostupná ako samostatná položka v kategórii Pomocné produkty.</dd>
         <dt>Postup</dt>
         <dd>Rozpúšťadlo aplikuj po stene fľaštičky, nie priamo na lyofilizát. Fľaštičku netrep — jemne otáčaj do úplného rozpustenia.</dd>
         <dt>Poznámka</dt>
         <dd>Neposkytujeme dávkovacie protokoly ani odporúčania na použitie u ľudí. Uvedené sú výhradne laboratórne postupy manipulácie.</dd>
       </dl>
     </div>
-    <div class="tabpanel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+    <div class="tabpanel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
       <dl>
         <dt>Lyofilizát (nerozpustený)</dt><dd>−20 °C, v tme, v originálnom obale.</dd>
         <dt>Po rekonštitúcii</dt><dd>2–8 °C, chránené pred svetlom. Nemrznúť opakovane.</dd>
-        <dt>Preprava</dt><dd>Neutrálny obal, bez chladeného reťazca. Krátkodobé zvýšenie teploty počas prepravy nemá na lyofilizát zásadný vplyv — po doručení ho ulož podľa hodnôt vyššie.</dd>
+        <dt>Preprava</dt><dd>Neutrálny obal, bez chladeného reťazca. Krátkodobé zvýšenie teploty počas prepravy nemá na lyofilizát zásadný vplyv.</dd>
       </dl>
-    </div>
-    <div class="tabpanel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
-      <p>Stabilita po rekonštitúcii je špecifická pre každú molekulu a šaržu. Konkrétne hodnoty
-         pre šaržu MC-2408 sú uvedené v certifikáte analýzy.</p>
     </div>
     <div class="tabpanel" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
       <dl>
-        <dt>Šarža</dt><dd>MC-2408</dd>
-        <dt>Dátum analýzy</dt><dd>14. 6. 2026</dd>
-        <dt>Čistota (HPLC)</dt><dd>99,24 %</dd>
+        <dt>Šarža</dt><dd>{{BATCH}}</dd>
+        <dt>Čistota</dt><dd>{{PURITY}}</dd>
         <dt>Identita</dt><dd>Potvrdená hmotnostnou spektrometriou</dd>
         <dt>Dokument</dt><dd><a class="section-link" href="#">Stiahnuť COA (PDF) →</a></dd>
       </dl>
@@ -336,70 +267,46 @@
   </div>
 </section>
 
-<!-- ══ ČASTO KUPUJÚ SPOLU ══════════════════════════════════════════════════ -->
 <section class="up-section" style="padding-top:0">
   <div class="up-container">
     <div class="section-head">
-      <div><p class="eyebrow">Mapuje blok „Synergia“ na súvisiace produkty</p>
-      <h2 class="section-title">Často kupujú spolu</h2></div>
+      <div><p class="eyebrow">{{SAVING_NOTE}}</p>
+      <h2 class="section-title">Súvisiace položky</h2></div>
       <a class="section-link" href="katalog.html">Celý katalóg →</a>
     </div>
     <div class="prod-grid">
-      <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Bac Water</span></span></div>
-        <div class="prod-card__body">
-          <h3 class="prod-card__name">Bac Water</h3><span class="chip">3 ml</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">3,00 €</span></div>
-          </div>
-          <a class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem" href="katalog.html#pomocne">Do košíka</a>
-        </div>
-      </article>
-      <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">NAD+</span></span></div>
-        <div class="prod-card__body">
-          <h3 class="prod-card__name">NAD+</h3><span class="chip">1000 mg</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">80,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">74,00 €</span></div>
-          </div>
-          <a class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem" href="katalog.html#krasa">Do košíka</a>
-        </div>
-      </article>
-      <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">DSIP</span></span></div>
-        <div class="prod-card__body">
-          <h3 class="prod-card__name">DSIP</h3><span class="chip">10 mg</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">27,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">25,00 €</span></div>
-          </div>
-          <a class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem" href="katalog.html#regeneracia">Do košíka</a>
-        </div>
-      </article>
-      <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Epithalon</span></span></div>
-        <div class="prod-card__body">
-          <h3 class="prod-card__name">Epithalon</h3><span class="chip">50 mg</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">87,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">80,00 €</span></div>
-          </div>
-          <a class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem" href="katalog.html#krasa">Do košíka</a>
-        </div>
-      </article>
+{{RELATED}}
     </div>
   </div>
 </section>
 
 <div class="mobile-cta">
   <div>
-    <span class="price-row__label" style="display:block">MOTS-C 40 mg</span>
-    <span class="mobile-cta__price">75,00 €</span>
+    <span class="price-row__label" style="display:block">{{TITLE}}</span>
+    <span class="mobile-cta__price">{{PRICE1}}</span>
   </div>
   <button class="btn-holo">Do košíka</button>
 </div>
 </main>
+
+<dialog class="modal" id="cennik-modal" aria-labelledby="cennik-modal-t">
+  <div class="modal__head">
+    <div>
+      <p class="eyebrow">Ceny s DPH · množstevná cena od 3 kusov</p>
+      <h2 id="cennik-modal-t">Cenník</h2>
+    </div>
+    <button class="modal__close" data-close-modal aria-label="Zavrieť cenník">
+      <svg width="17" height="17" fill="none" stroke="currentColor"><use href="#i-x"/></svg>
+    </button>
+  </div>
+  <div class="modal__body">
+{{PRICELIST}}
+  </div>
+  <p class="modal__foot">
+    Pomlčka v stĺpci „3+ ks“ znamená, že pre danú položku nie je stanovená množstevná cena.
+    Ceny sú konečné vrátane DPH.
+  </p>
+</dialog>
 
 <footer class="up-footer">
   <div class="up-container">
@@ -427,9 +334,11 @@
       <div>
         <h4>Informácie</h4>
         <ul>
-          <li><a href="#">Doprava a platba</a></li><li><a href="#">Skladovanie a stabilita</a></li>
-          <li><a href="#coa">Certifikáty analýzy</a></li><li><a href="index.html#faq">Časté otázky</a></li>
-          <li><a href="#">Kontakt</a></li>
+          <li><a href="#" data-open-cennik>Cenník</a></li>
+          <li><a href="#">Doprava a platba</a></li>
+          <li><a href="#">Skladovanie a stabilita</a></li>
+          <li><a href="#coa">Certifikáty analýzy</a></li>
+          <li><a href="index.html#faq">Časté otázky</a></li>
         </ul>
       </div>
       <div>

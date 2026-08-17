@@ -57,6 +57,13 @@
   <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
     <rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3M12 15v2"/></symbol>
 
+  <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round">
+    <path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round">
+    <rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/>
+    <rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round">
+    <path d="M6 6l12 12M18 6L6 18"/></symbol>
 </defs></svg>
 
 <div class="molecular-bg" aria-hidden="true">
@@ -103,7 +110,7 @@
     </a>
     <nav class="up-nav" aria-label="Hlavná navigácia">
       <a href="katalog.html">Katalóg</a>
-      <a href="index.html#cennik">Cenník</a>
+      <a href="#" data-open-cennik>Cenník</a>
       <a href="index.html#cistota">Kvalita</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
@@ -129,7 +136,10 @@
       <p class="eyebrow">32 produktov · 6 kategórií · ceny s DPH</p>
       <h1 class="section-title" style="font-size:var(--up-fs-h1)">Katalóg</h1>
     </div>
-    <a class="section-link" href="index.html#cennik">Cenník v tabuľke →</a>
+    <div class="viewswitch" role="group" aria-label="Zobrazenie katalógu">
+      <button type="button" aria-pressed="true" data-view-grid><svg fill="none" stroke-linecap="round"><use href="#i-grid"/></svg>Obrázky</button>
+      <button type="button" aria-pressed="false" data-open-cennik><svg fill="none" stroke-linecap="round"><use href="#i-list"/></svg>Cenník</button>
+    </div>
   </div>
 
   <div class="notice" style="max-width:78ch;margin-bottom:var(--up-sp-6)">
@@ -140,8 +150,9 @@
   </div>
 </div>
 
-<!-- ══ NA CHUDNUTIE ════════════════════════════════════════════════════════ -->
-<section class="up-section" id="na-chudnutie" style="padding-top:var(--up-sp-4)">
+<!-- GEN:katalog -->
+
+<section class="up-section" id="na-chudnutie" style="padding-top:0">
   <div class="up-container">
     <div class="section-head">
       <div style="display:flex;align-items:center;gap:var(--up-sp-3)">
@@ -150,77 +161,59 @@
       </div>
     </div>
     <div class="prod-grid">
-
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Reta</span></span></div>
+        <a class="prod-card__media" href="produkt-reta-10mg.html" aria-label="Reta 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Reta</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Reta</h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-reta-10mg.html">Reta</a></h3><span class="chip">10 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">85,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">80,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">85,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">80,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-reta-10mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Reta</span></span></div>
+        <a class="prod-card__media" href="produkt-reta-30mg.html" aria-label="Reta 30 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Reta</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Reta</h3><span class="chip">30 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-reta-30mg.html">Reta</a></h3><span class="chip">30 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">260,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">240,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">260,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">240,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-reta-30mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Reta</span></span></div>
+        <a class="prod-card__media" href="produkt-reta-40mg.html" aria-label="Reta 40 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Reta</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Reta</h3><span class="chip">40 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-reta-40mg.html">Reta</a></h3><span class="chip">40 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">350,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">340,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">350,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">340,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-reta-40mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Mounjaro</span></span></div>
+        <a class="prod-card__media" href="produkt-mounjaro-20mg.html" aria-label="Mounjaro 20 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Mounjaro</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Mounjaro</h3><span class="chip">20 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-mounjaro-20mg.html">Mounjaro</a></h3><span class="chip">20 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">170,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">165,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">170,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">165,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-mounjaro-20mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Mounjaro</span></span></div>
+        <a class="prod-card__media" href="produkt-mounjaro-50mg.html" aria-label="Mounjaro 50 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Mounjaro</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Mounjaro</h3><span class="chip">50 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-mounjaro-50mg.html">Mounjaro</a></h3><span class="chip">50 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">480,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">460,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">480,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">460,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-mounjaro-50mg.html">Detail</a>
         </div>
       </article>
-
     </div>
   </div>
 </section>
 
-<!-- ══ KRÁSA ═══════════════════════════════════════════════════════════════ -->
 <section class="up-section" id="krasa" style="padding-top:0">
   <div class="up-container">
     <div class="section-head">
@@ -230,155 +223,119 @@
       </div>
     </div>
     <div class="prod-grid">
-
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">GHK-Cu</span></span></div>
+        <a class="prod-card__media" href="produkt-ghk-cu-100mg.html" aria-label="GHK-Cu 100 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">GHK-Cu</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">GHK-Cu</h3><span class="chip">100 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-ghk-cu-100mg.html">GHK-Cu</a></h3><span class="chip">100 mg</span>
           <span class="stock-pill stock-pill--low">Posledné kusy</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">43,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">40,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">43,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">40,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-ghk-cu-100mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">BPC-157</span></span></div>
+        <a class="prod-card__media" href="produkt-bpc-157-10mg.html" aria-label="BPC-157 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">BPC-157</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">BPC-157</h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-bpc-157-10mg.html">BPC-157</a></h3><span class="chip">10 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">35,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">30,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">35,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">30,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-bpc-157-10mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">BPC-157 + TB-500</span></span></div>
+        <a class="prod-card__media" href="produkt-bpc-tb500-10mg.html" aria-label="BPC-157 + TB-500 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">BPC-157 + TB-500</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">BPC-157 + TB-500</h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-bpc-tb500-10mg.html">BPC-157 + TB-500</a></h3><span class="chip">10 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">46,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">44,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">46,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">44,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-bpc-tb500-10mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">BPC-157 + TB-500</span></span></div>
+        <a class="prod-card__media" href="produkt-bpc-tb500-20mg.html" aria-label="BPC-157 + TB-500 20 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">BPC-157 + TB-500</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">BPC-157 + TB-500</h3><span class="chip">20 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-bpc-tb500-20mg.html">BPC-157 + TB-500</a></h3><span class="chip">20 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">84,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">80,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">84,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">80,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-bpc-tb500-20mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">Melanotan II</span></span></div>
+        <a class="prod-card__media" href="produkt-melanotan-2-10mg.html" aria-label="Melanotan II 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">Melanotan II</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Melanotan II</h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-melanotan-2-10mg.html">Melanotan II</a></h3><span class="chip">10 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">25,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">20,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">25,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">20,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-melanotan-2-10mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Melanotan I</span></span></div>
+        <a class="prod-card__media" href="produkt-melanotan-1-10mg.html" aria-label="Melanotan I 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Melanotan I</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Melanotan I</h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-melanotan-1-10mg.html">Melanotan I</a></h3><span class="chip">10 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">25,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">20,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">25,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">20,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-melanotan-1-10mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Epithalon</span></span></div>
+        <a class="prod-card__media" href="produkt-epithalon-50mg.html" aria-label="Epithalon 50 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Epithalon</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Epithalon</h3><span class="chip">50 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-epithalon-50mg.html">Epithalon</a></h3><span class="chip">50 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">87,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">80,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">87,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">80,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-epithalon-50mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">NAD+</span></span></div>
+        <a class="prod-card__media" href="produkt-nad-1000mg.html" aria-label="NAD+ 1000 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">NAD+</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">NAD+</h3><span class="chip">1000 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-nad-1000mg.html">NAD+</a></h3><span class="chip">1000 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">80,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">74,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">80,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">74,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-nad-1000mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Glutathione</span></span></div>
+        <a class="prod-card__media" href="produkt-glutathione-600mg.html" aria-label="Glutathione 600 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Glutathione</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Glutathione</h3><span class="chip">600 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-glutathione-600mg.html">Glutathione</a></h3><span class="chip">600 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">40,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">37,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">40,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">37,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-glutathione-600mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Glutathione</span></span></div>
+        <a class="prod-card__media" href="produkt-glutathione-1500mg.html" aria-label="Glutathione 1500 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Glutathione</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Glutathione</h3><span class="chip">1500 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-glutathione-1500mg.html">Glutathione</a></h3><span class="chip">1500 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">90,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">85,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">90,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">85,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-glutathione-1500mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">Lipo-C + B12</span></span></div>
+        <a class="prod-card__media" href="produkt-lipo-c-b12-10mg.html" aria-label="Lipo-C + B12 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">Lipo-C + B12</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Lipo-C + B12</h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-lipo-c-b12-10mg.html">Lipo-C + B12</a></h3><span class="chip">10 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">40,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">35,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">40,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">35,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-lipo-c-b12-10mg.html">Detail</a>
         </div>
       </article>
-
     </div>
   </div>
 </section>
 
-<!-- ══ REGENERÁCIA A ZDRAVIE ═══════════════════════════════════════════════ -->
 <section class="up-section" id="regeneracia" style="padding-top:0">
   <div class="up-container">
     <div class="section-head">
@@ -388,64 +345,49 @@
       </div>
     </div>
     <div class="prod-grid">
-
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">KPV</span></span></div>
+        <a class="prod-card__media" href="produkt-kpv-10mg.html" aria-label="KPV 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">KPV</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">KPV</h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-kpv-10mg.html">KPV</a></h3><span class="chip">10 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">25,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value" style="color:var(--up-text-mute)">–</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">25,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value" style="color:var(--up-text-mute)">–</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-kpv-10mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">KPV</span></span></div>
+        <a class="prod-card__media" href="produkt-kpv-30mg.html" aria-label="KPV 30 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">KPV</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">KPV</h3><span class="chip">30 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-kpv-30mg.html">KPV</a></h3><span class="chip">30 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">53,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value" style="color:var(--up-text-mute)">–</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">53,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value" style="color:var(--up-text-mute)">–</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-kpv-30mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <a class="prod-card__media" href="produkt-mots-c.html" aria-label="MOTS-C 40 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">MOTS-C</span></span></a>
+        <a class="prod-card__media" href="produkt-mots-c-40mg.html" aria-label="MOTS-C 40 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">MOTS-C</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name"><a href="produkt-mots-c.html">MOTS-C</a></h3><span class="chip">40 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-mots-c-40mg.html">MOTS-C</a></h3><span class="chip">40 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">75,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">70,00 €</span></div>
-          </div>
-          <a class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem" href="produkt-mots-c.html">Detail produktu</a>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">75,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">70,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-mots-c-40mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">DSIP</span></span></div>
+        <a class="prod-card__media" href="produkt-dsip-10mg.html" aria-label="DSIP 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">DSIP</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">DSIP</h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-dsip-10mg.html">DSIP</a></h3><span class="chip">10 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">27,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">25,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">27,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">25,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-dsip-10mg.html">Detail</a>
         </div>
       </article>
-
     </div>
   </div>
 </section>
 
-<!-- ══ RASTOVÉ HORMÓNY A PEPTIDY ═══════════════════════════════════════════ -->
 <section class="up-section" id="rastove-hormony" style="padding-top:0">
   <div class="up-container">
     <div class="section-head">
@@ -455,116 +397,89 @@
       </div>
     </div>
     <div class="prod-grid">
-
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">CJC + Ipamorelin</span></span></div>
+        <a class="prod-card__media" href="produkt-cjc-ipamorelin-10mg.html" aria-label="CJC + Ipamorelin 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">CJC + Ipamorelin</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">CJC + Ipamorelin</h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-cjc-ipamorelin-10mg.html">CJC + Ipamorelin</a></h3><span class="chip">10 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">45,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">42,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">45,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">42,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-cjc-ipamorelin-10mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">CJC + Ipamorelin</span></span></div>
+        <a class="prod-card__media" href="produkt-cjc-ipamorelin-20mg.html" aria-label="CJC + Ipamorelin 20 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">CJC + Ipamorelin</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">CJC + Ipamorelin</h3><span class="chip">20 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-cjc-ipamorelin-20mg.html">CJC + Ipamorelin</a></h3><span class="chip">20 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">85,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">80,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">85,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">80,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-cjc-ipamorelin-20mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Ipamorelin</span></span></div>
+        <a class="prod-card__media" href="produkt-ipamorelin-10mg.html" aria-label="Ipamorelin 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Ipamorelin</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Ipamorelin</h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-ipamorelin-10mg.html">Ipamorelin</a></h3><span class="chip">10 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">40,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">37,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">40,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">37,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-ipamorelin-10mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">GHRP-6</span></span></div>
+        <a class="prod-card__media" href="produkt-ghrp-6-5mg.html" aria-label="GHRP-6 5 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">GHRP-6</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">GHRP-6</h3><span class="chip">5 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-ghrp-6-5mg.html">GHRP-6</a></h3><span class="chip">5 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">16,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value" style="color:var(--up-text-mute)">–</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">16,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value" style="color:var(--up-text-mute)">–</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-ghrp-6-5mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Tesamorelin</span></span></div>
+        <a class="prod-card__media" href="produkt-tesamorelin-5mg.html" aria-label="Tesamorelin 5 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Tesamorelin</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Tesamorelin</h3><span class="chip">5 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-tesamorelin-5mg.html">Tesamorelin</a></h3><span class="chip">5 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">40,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">37,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">40,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">37,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-tesamorelin-5mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Tesamorelin</span></span></div>
+        <a class="prod-card__media" href="produkt-tesamorelin-10mg.html" aria-label="Tesamorelin 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Tesamorelin</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Tesamorelin</h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-tesamorelin-10mg.html">Tesamorelin</a></h3><span class="chip">10 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">65,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">63,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">65,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">63,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-tesamorelin-10mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Tesamorelin</span></span></div>
+        <a class="prod-card__media" href="produkt-tesamorelin-20mg.html" aria-label="Tesamorelin 20 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Tesamorelin</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Tesamorelin</h3><span class="chip">20 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-tesamorelin-20mg.html">Tesamorelin</a></h3><span class="chip">20 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">87,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">82,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">87,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">82,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-tesamorelin-20mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">IGF-1 LR3</span></span></div>
+        <a class="prod-card__media" href="produkt-igf-1-lr3-1mg.html" aria-label="IGF-1 LR3 1 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">IGF-1 LR3</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">IGF-1 LR3</h3><span class="chip">1 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-igf-1-lr3-1mg.html">IGF-1 LR3</a></h3><span class="chip">1 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">75,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">70,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">75,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">70,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-igf-1-lr3-1mg.html">Detail</a>
         </div>
       </article>
-
     </div>
   </div>
 </section>
 
-<!-- ══ KOGNÍCIA A FOKUS ════════════════════════════════════════════════════ -->
 <section class="up-section" id="kognicia" style="padding-top:0">
   <div class="up-container">
     <div class="section-head">
@@ -574,51 +489,39 @@
       </div>
     </div>
     <div class="prod-grid">
-
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Semax</span></span></div>
+        <a class="prod-card__media" href="produkt-semax-10mg.html" aria-label="Semax 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Semax</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Semax</h3><span class="chip">10 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-semax-10mg.html">Semax</a></h3><span class="chip">10 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">25,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">23,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">25,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">23,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-semax-10mg.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">5-Amino-1MQ</span></span></div>
+        <a class="prod-card__media" href="produkt-5-amino-1mq.html" aria-label="5-Amino-1MQ"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">5-Amino-1MQ</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">5-Amino-1MQ</h3>
+          <h3 class="prod-card__name"><a href="produkt-5-amino-1mq.html">5-Amino-1MQ</a></h3>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">35,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">30,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">35,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">30,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-5-amino-1mq.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Klow</span></span></div>
+        <a class="prod-card__media" href="produkt-klow-80mg.html" aria-label="Klow 80 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Klow</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Klow</h3><span class="chip">80 mg</span>
+          <h3 class="prod-card__name"><a href="produkt-klow-80mg.html">Klow</a></h3><span class="chip">80 mg</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">90,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">84,00 €</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">90,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">84,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-klow-80mg.html">Detail</a>
         </div>
       </article>
-
     </div>
   </div>
 </section>
 
-<!-- ══ POMOCNÉ PRODUKTY ════════════════════════════════════════════════════ -->
 <section class="up-section" id="pomocne" style="padding-top:0">
   <div class="up-container">
     <div class="section-head">
@@ -628,25 +531,123 @@
       </div>
     </div>
     <div class="prod-grid">
-
       <article class="prod-card holo-border foil sheen">
-        <div class="prod-card__media"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Bac Water</span></span></div>
+        <a class="prod-card__media" href="produkt-bac-water-3ml.html" aria-label="Bac Water 3 ml"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Bac Water</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name">Bac Water</h3><span class="chip">3 ml</span>
+          <h3 class="prod-card__name"><a href="produkt-bac-water-3ml.html">Bac Water</a></h3><span class="chip">3 ml</span>
           <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers">
-            <div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">3,00 €</span></div>
-            <div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value" style="color:var(--up-text-mute)">–</span></div>
-          </div>
-          <button class="btn-holo btn-block" style="padding:11px 18px;font-size:.8125rem">Do košíka</button>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">3,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value" style="color:var(--up-text-mute)">–</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-bac-water-3ml.html">Detail</a>
         </div>
       </article>
-
     </div>
   </div>
 </section>
+<!-- /GEN:katalog -->
 
 </main>
+
+<dialog class="modal" id="cennik-modal" aria-labelledby="cennik-modal-t">
+  <div class="modal__head">
+    <div>
+      <p class="eyebrow">Ceny s DPH · množstevná cena od 3 kusov</p>
+      <h2 id="cennik-modal-t">Cenník</h2>
+    </div>
+    <button class="modal__close" data-close-modal aria-label="Zavrieť cenník">
+      <svg width="17" height="17" fill="none" stroke="currentColor"><use href="#i-x"/></svg>
+    </button>
+  </div>
+  <div class="modal__body">
+    <!-- GEN:cennik -->
+      <div class="pricelist">
+        <div class="pl-group">
+          <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-syringe"/></svg><h3 class="pl-group__title">Na chudnutie</h3></div>
+          <table class="pl-table">
+            <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
+            <tbody>
+              <tr><td>Reta 10 mg</td><td class="pl-1ks">85 €</td><td class="pl-3ks">80 €</td></tr>
+              <tr><td>Reta 30 mg</td><td class="pl-1ks">260 €</td><td class="pl-3ks">240 €</td></tr>
+              <tr><td>Reta 40 mg</td><td class="pl-1ks">350 €</td><td class="pl-3ks">340 €</td></tr>
+              <tr><td>Mounjaro 20 mg</td><td class="pl-1ks">170 €</td><td class="pl-3ks">165 €</td></tr>
+              <tr><td>Mounjaro 50 mg</td><td class="pl-1ks">480 €</td><td class="pl-3ks">460 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pl-group">
+          <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-face"/></svg><h3 class="pl-group__title">Krása</h3></div>
+          <table class="pl-table">
+            <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
+            <tbody>
+              <tr><td>GHK-Cu 100 mg</td><td class="pl-1ks">43 €</td><td class="pl-3ks">40 €</td></tr>
+              <tr><td>BPC-157 10 mg</td><td class="pl-1ks">35 €</td><td class="pl-3ks">30 €</td></tr>
+              <tr><td>BPC-157 + TB-500 10 mg</td><td class="pl-1ks">46 €</td><td class="pl-3ks">44 €</td></tr>
+              <tr><td>BPC-157 + TB-500 20 mg</td><td class="pl-1ks">84 €</td><td class="pl-3ks">80 €</td></tr>
+              <tr><td>Melanotan II 10 mg</td><td class="pl-1ks">25 €</td><td class="pl-3ks">20 €</td></tr>
+              <tr><td>Melanotan I 10 mg</td><td class="pl-1ks">25 €</td><td class="pl-3ks">20 €</td></tr>
+              <tr><td>Epithalon 50 mg</td><td class="pl-1ks">87 €</td><td class="pl-3ks">80 €</td></tr>
+              <tr><td>NAD+ 1000 mg</td><td class="pl-1ks">80 €</td><td class="pl-3ks">74 €</td></tr>
+              <tr><td>Glutathione 600 mg</td><td class="pl-1ks">40 €</td><td class="pl-3ks">37 €</td></tr>
+              <tr><td>Glutathione 1500 mg</td><td class="pl-1ks">90 €</td><td class="pl-3ks">85 €</td></tr>
+              <tr><td>Lipo-C + B12 10 mg</td><td class="pl-1ks">40 €</td><td class="pl-3ks">35 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pl-group">
+          <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-heart"/></svg><h3 class="pl-group__title">Regenerácia a zdravie</h3></div>
+          <table class="pl-table">
+            <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
+            <tbody>
+              <tr><td>KPV 10 mg</td><td class="pl-1ks">25 €</td><td class="pl-none">–</td></tr>
+              <tr><td>KPV 30 mg</td><td class="pl-1ks">53 €</td><td class="pl-none">–</td></tr>
+              <tr><td>MOTS-C 40 mg</td><td class="pl-1ks">75 €</td><td class="pl-3ks">70 €</td></tr>
+              <tr><td>DSIP 10 mg</td><td class="pl-1ks">27 €</td><td class="pl-3ks">25 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pl-group">
+          <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-growth"/></svg><h3 class="pl-group__title">Rastové hormóny a peptidy</h3></div>
+          <table class="pl-table">
+            <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
+            <tbody>
+              <tr><td>CJC + Ipamorelin 10 mg</td><td class="pl-1ks">45 €</td><td class="pl-3ks">42 €</td></tr>
+              <tr><td>CJC + Ipamorelin 20 mg</td><td class="pl-1ks">85 €</td><td class="pl-3ks">80 €</td></tr>
+              <tr><td>Ipamorelin 10 mg</td><td class="pl-1ks">40 €</td><td class="pl-3ks">37 €</td></tr>
+              <tr><td>GHRP-6 5 mg</td><td class="pl-1ks">16 €</td><td class="pl-none">–</td></tr>
+              <tr><td>Tesamorelin 5 mg</td><td class="pl-1ks">40 €</td><td class="pl-3ks">37 €</td></tr>
+              <tr><td>Tesamorelin 10 mg</td><td class="pl-1ks">65 €</td><td class="pl-3ks">63 €</td></tr>
+              <tr><td>Tesamorelin 20 mg</td><td class="pl-1ks">87 €</td><td class="pl-3ks">82 €</td></tr>
+              <tr><td>IGF-1 LR3 1 mg</td><td class="pl-1ks">75 €</td><td class="pl-3ks">70 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pl-group">
+          <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-brain"/></svg><h3 class="pl-group__title">Kognícia a fokus</h3></div>
+          <table class="pl-table">
+            <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
+            <tbody>
+              <tr><td>Semax 10 mg</td><td class="pl-1ks">25 €</td><td class="pl-3ks">23 €</td></tr>
+              <tr><td>5-Amino-1MQ</td><td class="pl-1ks">35 €</td><td class="pl-3ks">30 €</td></tr>
+              <tr><td>Klow 80 mg</td><td class="pl-1ks">90 €</td><td class="pl-3ks">84 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pl-group">
+          <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-drop"/></svg><h3 class="pl-group__title">Pomocné produkty</h3></div>
+          <table class="pl-table">
+            <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
+            <tbody>
+              <tr><td>Bac Water 3 ml</td><td class="pl-1ks">3 €</td><td class="pl-none">–</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+<!-- /GEN:cennik -->
+  </div>
+  <p class="modal__foot">
+    Pomlčka v stĺpci „3+ ks" znamená, že pre danú položku nie je stanovená množstevná cena.
+    Ceny sú konečné vrátane DPH.
+  </p>
+</dialog>
 
 <footer class="up-footer">
   <div class="up-container">
