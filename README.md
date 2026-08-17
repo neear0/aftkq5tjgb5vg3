@@ -147,10 +147,21 @@ Potom v **Settings → Pages** zapni **Enforce HTTPS**.
 Toto je statický web — má katalóg, cenník a produktové stránky, ale **nemá
 košík, platby ani objednávky**. GitHub Pages nevie spustiť PHP ani databázu.
 
-Dátová vrstva je ale postavená tak, aby sa dala prevziať: `data/produkty.csv`
-má stĺpce, ktoré priamo zodpovedajú PrestaShop importu, vrátane netto cien
-a podkladov pre množstevné ceny. Keď príde na rad skutočný e-shop, katalóg sa
-neprepisuje — importuje sa.
+Skutočný e-shop pobeží na **Websupporte, na WordPresse s WooCommerce**.
+Admin panel bude WooCommerce — pridávanie produktov, popisy, ceny, sklad,
+objednávky, faktúry. Podrobne v `PLAN.md`.
+
+Dátová vrstva je pripravená na prevzatie:
+
+| Príkaz | Čo vyrobí |
+|---|---|
+| `node scripts/export-woocommerce.mjs` | `export/woocommerce-produkty.csv` — celý katalóg **aj s množstevnými cenami**, jeden import |
+| `node scripts/export-prestashop.mjs` | to isté pre PrestaShop, keby sa rozhodnutie prehodnotilo |
+
+WooCommerce nevie množstevné ceny (3+ ks) natívne. Rieši to vlastný plugin
+`wp-plugin/ultrapeptidy-cennik/` — pole v administrácii, aplikovanie ceny
+v košíku a shortcode `[up_cennik]` na cenníkovú tabuľku. Bez pluginu sa
+importované ceny nikde neprejavia; postup je v `export/WOOCOMMERCE.txt`.
 
 ---
 
