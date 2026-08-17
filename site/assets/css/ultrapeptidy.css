@@ -134,7 +134,23 @@ button { font: inherit; }
     radial-gradient(50% 40% at 8% 78%,  rgba(168,85,247,.12), transparent 70%),
     var(--up-black);
 }
-.molecular-bg svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .5; }
+.molecular-bg svg {
+  position: absolute; inset: 0; width: 100%; height: 100%; opacity: .5;
+  transform-origin: 50% 40%;
+  will-change: transform;
+  animation: mb-drift 64s ease-in-out infinite alternate;
+}
+/* Jemný pohyb siete. Zámerne veľmi pomaly a len transform + opacity, aby to
+   nestálo výkon a nepôsobilo to ako animovaná tapeta.
+   prefers-reduced-motion to vypína globálne dole v súbore. */
+@keyframes mb-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(-18px, 12px, 0) scale(1.035); }
+}
+.molecular-bg svg g { animation: mb-breathe 17s ease-in-out infinite alternate; }
+.molecular-bg svg g:nth-of-type(2) { animation-duration: 23s; animation-delay: -6s; }
+.molecular-bg svg g:nth-of-type(3) { animation-duration: 29s; animation-delay: -12s; }
+@keyframes mb-breathe { from { opacity: .5; } to { opacity: 1; } }
 
 /* ── Filmové zrno ──────────────────────────────────────────────────────── */
 body::after {
@@ -328,17 +344,26 @@ body::after {
 
 .up-actions { display: flex; align-items: center; gap: var(--up-sp-3); }
 .icon-btn {
+  /* position + padding:0 sú tu nutné:
+     - bez position:relative sa odznak počítal voči <header> a odletel preč
+     - bez padding:0 tlačidlo dedí predvolený padding prehliadača a ikona sa
+       posunie mimo optického stredu */
+  position: relative;
   width: 38px; height: 38px;
-  display: grid; place-items: center;
+  padding: 0; margin: 0;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 0;
   border: 1px solid var(--up-hairline);
   border-radius: var(--up-r-pill);
   background: var(--up-ink-2);
   color: var(--up-text-dim); cursor: pointer;
+  flex-shrink: 0;
   transition: border-color .25s var(--up-ease), color .25s var(--up-ease);
 }
+.icon-btn > svg { display: block; }
 .icon-btn:hover { border-color: var(--up-purple); color: var(--up-text); }
 .icon-btn__badge {
-  position: absolute; transform: translate(14px, -13px);
+  position: absolute; top: -5px; right: -5px;
   min-width: 17px; height: 17px; padding: 0 4px;
   display: grid; place-items: center;
   border-radius: var(--up-r-pill);
@@ -346,6 +371,10 @@ body::after {
   color: #fff;
   font: 700 .625rem/1 var(--up-font-mono);
 }
+
+/* ── Logo (skutočná značka z tlačených materiálov) ─────────────────────── */
+.up-logo__img { width: 34px; height: auto; flex-shrink: 0; }
+.logo-lockup { width: clamp(150px, 22vw, 230px); height: auto; margin: 0 auto; }
 
 /* ==========================================================================
    Tlačidlá
@@ -587,9 +616,45 @@ body::after {
 .stock-pill--low::before  { background: var(--up-warn); box-shadow: 0 0 8px var(--up-warn); }
 .stock-pill--out::before  { background: var(--up-err);  box-shadow: none; }
 
-/* ── Fľaštička (CSS mock — v produkcii nahradiť fotkou) ────────────────── */
-.vial { width: 40%; max-width: 108px; filter: drop-shadow(0 18px 26px rgba(0,0,0,.75)); }
-.vial--lg { width: 46%; max-width: 210px; }
+/* ── Fľaštička: skutočná fotka, mení sa len názov na etikete ────────────
+   vial.jpg je fotka s vyprázdneným čiernym pásom, vial-mask.png z nej
+   vyrezáva siluetu. Percentá pásu sú odmerané priamo z fotky — ak sa fotka
+   prekreslí, treba ich prepočítať, inak text ujde mimo etiketu. */
+.vial {
+  --vial-w: 108px;
+  position: relative;
+  display: block;
+  width: var(--vial-w);
+  margin-inline: auto;
+  filter: drop-shadow(0 20px 28px rgba(0,0,0,.8));
+}
+.vial__photo {
+  display: block; width: 100%; height: auto;
+  -webkit-mask-image: url('../img/vial-mask.png');
+          mask-image: url('../img/vial-mask.png');
+  -webkit-mask-size: 100% 100%;   mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.vial__name {
+  position: absolute;
+  left: 0; top: 51.83%; width: 90.85%; height: 12.99%;
+  display: flex; align-items: center; justify-content: center;
+  padding-inline: 5%;
+  text-align: center;
+  font: 700 calc(var(--vial-w) * .108)/1.04 var(--up-font-display);
+  letter-spacing: .015em; text-transform: uppercase;
+  color: #F4F6FC;
+  text-shadow: 0 1px 3px rgba(0,0,0,.8);
+  overflow: hidden;
+  pointer-events: none;
+}
+.vial--lg { --vial-w: clamp(120px, 22vw, 200px); }
+
+/* fľaštička sa škáluje s kartou; bez podpory container queries ostane 108px */
+@supports (container-type: inline-size) {
+  .prod-card__media { container-type: inline-size; }
+  .prod-card__media .vial { --vial-w: 40cqi; }
+}
 
 /* ==========================================================================
    Cenník — kompletná tabuľka
@@ -681,6 +746,7 @@ body::after {
 }
 .pdp__thumb[aria-selected='true'] { border-color: var(--up-purple); }
 .pdp__thumb svg { width: 34%; opacity: .7; }
+.pdp__thumb .vial { --vial-w: 26px; filter: none; }
 
 .ruo-flag {
   display: inline-flex; align-items: center; gap: 8px;
