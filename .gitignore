@@ -21,6 +21,8 @@ node_modules/
 PLAN.md
 coms.md
 *.jpg
+# ...ale produktové fotky do webu patria (inak sa nasadí stránka bez ampulky)
+!site/assets/img/*.jpg
 
 # Generované náhľady — vznikajú z zdrojov cez scripts/build-*.sh.
 # POZOR: theme/ ako celok tu byť NESMIE. Raz som takto stratil celý v1 dizajn,
