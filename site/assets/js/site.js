@@ -25,41 +25,105 @@
     }, { passive: true });
   }
 
-  /* ── 2) Množstevný stepper so živým prepočtom 3+ KS ──────────────────── */
-  document.querySelectorAll('[data-qty]').forEach((box) => {
-    const input = box.querySelector('input');
+  const eur = (n) => n.toFixed(2).replace('.', ',') + ' €';
+
+  /* ── 2) Množstevný stepper so živým prepočtom 3+ KS ────────────────────
+     Ceny sa čítajú z datasetu pri KAŽDOM prekreslení, nie raz pri inicializácii —
+     prepínač gramáže ich mení za behu. */
+  const boxes = [...document.querySelectorAll('[data-qty]')];
+  const renderBox = (box) => {
+    const input = box.querySelector('input[type="number"]');
+    if (!input) return;
     const unit1 = parseFloat(box.dataset.price1);
     const unit3 = parseFloat(box.dataset.price3 || box.dataset.price1);
-    const minQ  = parseInt(box.dataset.tierQty || '3', 10);
-    const outs  = document.querySelectorAll('[data-total]');
-    const saves = document.querySelectorAll('[data-save]');
+    const minQ = parseInt(box.dataset.tierQty || '3', 10);
 
-    const render = () => {
-      const q = Math.max(1, Math.min(99, parseInt(input.value, 10) || 1));
-      input.value = q;
-      const unit  = q >= minQ ? unit3 : unit1;
-      const total = unit * q;
-      const saved = (unit1 - unit) * q;
-      const eur = (n) => n.toFixed(2).replace('.', ',') + ' €';
-      outs.forEach((o) => { o.textContent = eur(total); });
-      saves.forEach((s) => {
-        s.hidden = saved <= 0;
-        s.textContent = saved > 0 ? `Ušetríš ${eur(saved)} pri ${q} ks` : '';
-      });
-      box.querySelectorAll('.price-row').forEach((row) => {
-        row.classList.toggle('is-active', row.classList.contains('price-row--tier') === (q >= minQ));
-      });
-    };
+    const q = Math.max(1, Math.min(99, parseInt(input.value, 10) || 1));
+    if (String(q) !== input.value) input.value = q;
 
+    const unit = q >= minQ ? unit3 : unit1;
+    const saved = (unit1 - unit) * q;
+
+    document.querySelectorAll('[data-total]').forEach((o) => { o.textContent = eur(unit * q); });
+    document.querySelectorAll('[data-save]').forEach((s) => {
+      s.hidden = saved <= 0;
+      s.textContent = saved > 0 ? `Ušetríš ${eur(saved)} pri ${q} ks` : '';
+    });
+    box.querySelectorAll('.price-row').forEach((row) => {
+      row.classList.toggle('is-active', row.classList.contains('price-row--tier') === (q >= minQ));
+    });
+  };
+
+  boxes.forEach((box) => {
+    const input = box.querySelector('input[type="number"]');
+    if (!input) return;
     box.addEventListener('click', (e) => {
       const step = e.target.closest('[data-step]');
       if (!step) return;
       input.value = (parseInt(input.value, 10) || 1) + parseInt(step.dataset.step, 10);
-      render();
+      renderBox(box);
     });
-    input.addEventListener('input', render);
-    render();
+    input.addEventListener('input', () => renderBox(box));
+    renderBox(box);
   });
+
+  /* ── 2b) Prepínač gramáže aktívnej látky ───────────────────────────────
+     Tá istá látka v inej sile je iná skladová jednotka, nie iný produkt.
+     Voľba prepíše cenu, šaržu, čistotu, sklad aj katalógové číslo — všetky
+     hodnoty nesie samotný <input> v data atribútoch, nič sa nedopytuje. */
+  const strengths = document.querySelector('[data-strengths]');
+  if (strengths) {
+    const box = document.querySelector('[data-qty]');
+    const p1El = document.querySelector('[data-price-1]');
+    const p3El = document.querySelector('[data-price-3]');
+    const mgEl = document.querySelector('[data-chip-mg]');
+    const batchEl = document.querySelector('[data-batch]');
+    const purityEl = document.querySelector('[data-purity]');
+    const stockEl = document.querySelector('[data-stock-pill]');
+    const mctaEl = document.querySelector('.mobile-cta__price');
+    const titleEls = document.querySelectorAll('[data-mcta-title]');
+
+    const apply = (input) => {
+      const d = input.dataset;
+      const price = parseFloat(d.price);
+      const tier = d.tier ? parseFloat(d.tier) : null;
+
+      if (box) {
+        box.dataset.price1 = String(price);
+        box.dataset.price3 = String(tier ?? price);
+      }
+      if (p1El) p1El.textContent = eur(price);
+      if (p3El) {
+        p3El.textContent = tier !== null ? eur(tier) : '–';
+        p3El.style.color = tier !== null ? '' : 'var(--up-text-mute)';
+      }
+      if (mgEl) mgEl.textContent = d.mg || '';
+      if (batchEl) batchEl.textContent = d.batch || '—';
+      if (purityEl) purityEl.textContent = d.purity || '';
+      if (stockEl) {
+        stockEl.className = 'stock-pill' + (d.stockCls ? ' ' + d.stockCls : '');
+        stockEl.setAttribute('data-stock-pill', '');
+        stockEl.textContent = d.stockLabel || '';
+      }
+      if (mctaEl) mctaEl.textContent = eur(price);
+      titleEls.forEach((t) => { t.textContent = d.mg ? `${t.dataset.mctaTitle} ${d.mg}` : t.dataset.mctaTitle; });
+
+      // zvýrazni riadok vybranej gramáže v prehľade skladových jednotiek
+      document.querySelectorAll('[data-spec-ref]').forEach((tr) => {
+        tr.classList.toggle('is-active', tr.getAttribute('data-spec-ref') === d.ref);
+      });
+
+      if (box) renderBox(box);
+    };
+
+    strengths.addEventListener('change', (e) => {
+      const input = e.target.closest('input[type="radio"]');
+      if (input && input.checked) apply(input);
+    });
+
+    const checked = strengths.querySelector('input:checked');
+    if (checked) apply(checked);
+  }
 
   /* ── 3) Taby (ARIA korektné, klávesnica funguje) ─────────────────────── */
   document.querySelectorAll('[role="tablist"]').forEach((list) => {

@@ -83,6 +83,47 @@ add_action('woocommerce_process_product_meta', static function (int $post_id): v
     $product->save();
 }, 10, 1);
 
+/**
+ * To isté pole pre varianty. Bez tohto by 7 produktov s výberom gramáže
+ * nemalo v administrácii kde množstevnú cenu zadať — pole
+ * `woocommerce_product_options_pricing` sa pri variantoch nezobrazuje.
+ */
+add_action('woocommerce_variation_options_pricing', static function (int $loop, array $data, WP_Post $variation): void {
+    woocommerce_wp_text_input([
+        'id'            => UP_TIER_META . '_' . $loop,
+        'name'          => UP_TIER_META . '[' . $loop . ']',
+        'value'         => get_post_meta($variation->ID, UP_TIER_META, true),
+        'label'         => __('Cena za kus od 3 ks', 'up-cennik') . ' (' . get_woocommerce_currency_symbol() . ')',
+        'desc_tip'      => true,
+        'description'   => __('Platí pri 3 a viac kusoch tejto gramáže. Nechaj prázdne, ak neplatí.', 'up-cennik'),
+        'data_type'     => 'price',
+        'wrapper_class' => 'form-row form-row-full',
+    ]);
+}, 10, 3);
+
+add_action('woocommerce_save_product_variation', static function (int $variation_id, int $loop): void {
+    $raw = isset($_POST[UP_TIER_META][$loop])
+        ? wc_clean(wp_unslash($_POST[UP_TIER_META][$loop]))
+        : '';
+
+    if ($raw === '') {
+        delete_post_meta($variation_id, UP_TIER_META);
+        return;
+    }
+
+    $tier    = (float) wc_format_decimal($raw);
+    $variant = wc_get_product($variation_id);
+    $regular = $variant ? (float) $variant->get_regular_price() : 0.0;
+
+    if ($regular > 0 && $tier >= $regular) {
+        delete_post_meta($variation_id, UP_TIER_META);
+        set_transient('up_tier_error_' . $variation_id, 1, 60);
+        return;
+    }
+
+    update_post_meta($variation_id, UP_TIER_META, wc_format_decimal($tier));
+}, 10, 2);
+
 add_action('admin_notices', static function (): void {
     $screen = get_current_screen();
     if (!$screen || $screen->id !== 'product') {

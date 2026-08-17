@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Semax 10 mg — ULTRA PEPTIDY</title>
-<meta name="description" content="Semax, 10 mg. Referenčná látka na laboratórne a výskumné použitie. Referenčná látka na laboratórne a výskumné použitie.">
+<title>Reta — ULTRA PEPTIDY</title>
+<meta name="description" content="Reta. Referenčná látka na laboratórne a výskumné použitie. Referenčná látka na laboratórne a výskumné použitie.">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/ultrapeptidy.css">
@@ -125,42 +125,74 @@
 
   <nav class="breadcrumb" aria-label="Navigácia">
     <a href="index.html">Domov</a> ›
-    <a href="katalog.html#kognicia">Kognícia a fokus</a> ›
-    <span aria-current="page">Semax 10 mg</span>
+    <a href="katalog.html#na-chudnutie">Na chudnutie</a> ›
+    <span aria-current="page">Reta</span>
   </nav>
 
   <div class="pdp">
     <div class="pdp__gallery">
       <div class="pdp__main foil sheen">
         <span class="vial vial--lg">
-          <img class="vial__photo" src="assets/img/vial.jpg" alt="Fľaštička Semax 10 mg"
+          <img class="vial__photo" src="assets/img/vial.jpg" alt="Fľaštička Reta"
                width="306" height="812" fetchpriority="high" decoding="async">
-          <span class="vial__name">Semax</span>
+          <span class="vial__name">Reta</span>
         </span>
       </div>
       <p class="ruo-flag"><svg fill="none" stroke="currentColor" stroke-width="1.6" width="14" height="14"><use href="#i-warn"/></svg> For research use only</p>
     </div>
 
     <div>
-      <h1 class="pdp__title"><span class="holo-text">Semax</span></h1>
-      <p class="pdp__subtitle">Semax, 10 mg. Referenčná látka na laboratórne a výskumné použitie.</p>
+      <h1 class="pdp__title"><span class="holo-text">Reta</span></h1>
+      <p class="pdp__subtitle">Reta. Referenčná látka na laboratórne a výskumné použitie.</p>
 
       <div class="pdp__meta">
-        <span class="stock-pill">Na sklade</span>
-        <span class="chip">10 mg</span>
-        <span class="chip">Šarža SX-2408</span>
-        <span class="coa-badge"><svg fill="none" stroke-width="1.5"><use href="#i-micro"/></svg> Čistota 99,31 % <a href="#coa">COA ↓</a></span>
+        <span class="stock-pill" data-stock-pill>Na sklade</span>
+        <span class="chip" data-chip-mg>10 mg</span>
+        <span class="chip">Šarža <span data-batch>RT-2408</span></span>
+        <span class="coa-badge"><svg fill="none" stroke-width="1.5"><use href="#i-micro"/></svg> Čistota <span data-purity>99,18 %</span> <a href="#coa">COA ↓</a></span>
       </div>
 
-      <div class="price-box glass" data-qty data-price1="25" data-price3="23" data-tier-qty="3">
+      <div class="strengths" role="radiogroup" aria-label="Gramáž aktívnej látky" data-strengths>
+        <p class="strengths__label">Gramáž aktívnej látky</p>
+        <div class="strengths__opts">
+          <label class="strength">
+            <input type="radio" name="up-strength" value="UP-RETA-10" checked
+                   data-mg="10 mg"
+                   data-price="85" data-tier="80"
+                   data-batch="RT-2408" data-purity="99,18 %"
+                   data-stock-cls="" data-stock-label="Na sklade"
+                   data-ref="UP-RETA-10">
+            <span>10 mg</span>
+          </label>
+          <label class="strength">
+            <input type="radio" name="up-strength" value="UP-RETA-30"
+                   data-mg="30 mg"
+                   data-price="260" data-tier="240"
+                   data-batch="RT-2408" data-purity="99,18 %"
+                   data-stock-cls="" data-stock-label="Na sklade"
+                   data-ref="UP-RETA-30">
+            <span>30 mg</span>
+          </label>
+          <label class="strength">
+            <input type="radio" name="up-strength" value="UP-RETA-40"
+                   data-mg="40 mg"
+                   data-price="350" data-tier="340"
+                   data-batch="RT-2408" data-purity="99,18 %"
+                   data-stock-cls="" data-stock-label="Na sklade"
+                   data-ref="UP-RETA-40">
+            <span>40 mg</span>
+          </label>
+        </div>
+      </div>
+      <div class="price-box glass" data-qty data-price1="85" data-price3="80" data-tier-qty="3">
         <div class="price-tiers">
           <div class="price-row">
             <span class="price-row__label">1 ks</span>
-            <span class="price-row__value">25,00 €</span>
+            <span class="price-row__value" data-price-1>85,00 €</span>
           </div>
           <div class="price-row price-row--tier">
             <span class="price-row__label">3+ ks<small>za kus</small></span>
-            <span class="price-row__value">23,00 €</span>
+            <span class="price-row__value" data-price-3>80,00 €</span>
           </div>
         </div>
         <div class="qty-row" style="margin-top:20px;margin-bottom:0">
@@ -171,7 +203,7 @@
           </div>
           <div style="display:flex;flex-direction:column;justify-content:center;margin-left:auto;text-align:right">
             <span class="price-row__label">Celkom</span>
-            <strong data-total style="font:500 1.375rem/1.2 var(--up-font-mono)">25,00 €</strong>
+            <strong data-total style="font:500 1.375rem/1.2 var(--up-font-mono)">85,00 €</strong>
           </div>
         </div>
         <p class="price-save" data-save hidden></p>
@@ -209,7 +241,7 @@
       <div class="infoblock">
         <div class="infoblock__head"><span class="brush-label">Popis</span></div>
         <p style="font-size:var(--up-fs-body);color:var(--up-text-dim);line-height:1.6">
-          Popis tejto položky pripravujeme. Analytické údaje sú v špecifikácii vyššie
+          Popis tejto položky pripravujeme. Analytické údaje sú v špecifikácii nižšie
           a v certifikáte analýzy.</p>
       </div>
     </div>
@@ -236,13 +268,43 @@
 
     <div class="tabpanel" role="tabpanel" id="p1" aria-labelledby="t1">
       <dl>
-        <dt>Katalógové číslo</dt><dd>UP-SEMAX-10</dd>
-        <dt>Množstvo</dt><dd>10 mg</dd>
+        <dt>Názov</dt><dd>Reta</dd>
         <dt>Forma</dt><dd>Lyofilizat</dd>
-        <dt>Kategória</dt><dd>Kognícia a fokus</dd>
-        <dt>Šarža</dt><dd>SX-2408</dd>
-        <dt>Čistota</dt><dd>99,31 %</dd>
+        <dt>Kategória</dt><dd>Na chudnutie</dd>
       </dl>
+      <table class="spec-variants">
+        <caption>Dostupné gramáže (3)</caption>
+        <thead><tr>
+          <th>Gramáž</th><th>Kat. číslo</th><th>Šarža</th><th>Čistota</th>
+          <th class="num">1 ks</th><th class="num">3+ ks</th>
+        </tr></thead>
+        <tbody>
+        <tr data-spec-ref="UP-RETA-10" class="is-active">
+          <th scope="row">10 mg</th>
+          <td>UP-RETA-10</td>
+          <td>šarža RT-2408</td>
+          <td>99,18 %</td>
+          <td class="num">85 €</td>
+          <td class="num tier">80 €</td>
+        </tr>
+        <tr data-spec-ref="UP-RETA-30">
+          <th scope="row">30 mg</th>
+          <td>UP-RETA-30</td>
+          <td>šarža RT-2408</td>
+          <td>99,18 %</td>
+          <td class="num">260 €</td>
+          <td class="num tier">240 €</td>
+        </tr>
+        <tr data-spec-ref="UP-RETA-40">
+          <th scope="row">40 mg</th>
+          <td>UP-RETA-40</td>
+          <td>šarža RT-2408</td>
+          <td>99,18 %</td>
+          <td class="num">350 €</td>
+          <td class="num tier">340 €</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
     <div class="tabpanel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
       <dl>
@@ -263,8 +325,8 @@
     </div>
     <div class="tabpanel" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
       <dl>
-        <dt>Šarža</dt><dd>SX-2408</dd>
-        <dt>Čistota</dt><dd>99,31 %</dd>
+        <dt>Šarža</dt><dd>RT-2408</dd>
+        <dt>Čistota</dt><dd>99,18 %</dd>
         <dt>Identita</dt><dd>Potvrdená hmotnostnou spektrometriou</dd>
         <dt>Dokument</dt><dd><a class="section-link" href="#">Stiahnuť COA (PDF) →</a></dd>
       </dl>
@@ -275,49 +337,49 @@
 <section class="up-section" style="padding-top:0">
   <div class="up-container">
     <div class="section-head">
-      <div><p class="eyebrow">Pri 3 kusoch ušetríš 6,00 €.</p>
+      <div><p class="eyebrow">Pri 3 kusoch ušetríš 15,00 €.</p>
       <h2 class="section-title">Súvisiace položky</h2></div>
       <a class="section-link" href="katalog.html">Celý katalóg →</a>
     </div>
     <div class="prod-grid">
 
       <article class="prod-card holo-border foil sheen">
-        <a class="prod-card__media" href="produkt-5-amino-1mq.html" aria-label="5-Amino-1MQ"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">5-Amino-1MQ</span></span></a>
+        <a class="prod-card__media" href="produkt-mounjaro.html" aria-label="Mounjaro"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--sm">Mounjaro</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name"><a href="produkt-5-amino-1mq.html">5-Amino-1MQ</a></h3>
+          <h3 class="prod-card__name"><a href="produkt-mounjaro.html">Mounjaro</a></h3><span class="chip chip--multi">20 · 50 mg</span>
+          <span class="stock-pill">Na sklade</span><span class="prod-card__note">2 gramáže na výber</span>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value"><span class="price-row__from">od</span> 170,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value"><span class="price-row__from">od</span> 165,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-mounjaro.html">Detail</a>
+        </div>
+      </article>
+
+      <article class="prod-card holo-border foil sheen">
+        <a class="prod-card__media" href="produkt-ghk-cu.html" aria-label="GHK-Cu"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">GHK-Cu</span></span></a>
+        <div class="prod-card__body">
+          <h3 class="prod-card__name"><a href="produkt-ghk-cu.html">GHK-Cu</a></h3><span class="chip">100 mg</span>
+          <span class="stock-pill stock-pill--low">Posledné kusy</span>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">43,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">40,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-ghk-cu.html">Detail</a>
+        </div>
+      </article>
+
+      <article class="prod-card holo-border foil sheen">
+        <a class="prod-card__media" href="produkt-bpc-157.html" aria-label="BPC-157"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">BPC-157</span></span></a>
+        <div class="prod-card__body">
+          <h3 class="prod-card__name"><a href="produkt-bpc-157.html">BPC-157</a></h3><span class="chip">10 mg</span>
           <span class="stock-pill">Na sklade</span>
           <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">35,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">30,00 €</span></div></div>
-          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-5-amino-1mq.html">Detail</a>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-bpc-157.html">Detail</a>
         </div>
       </article>
 
       <article class="prod-card holo-border foil sheen">
-        <a class="prod-card__media" href="produkt-klow-80mg.html" aria-label="Klow 80 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Klow</span></span></a>
+        <a class="prod-card__media" href="produkt-bpc-tb500.html" aria-label="BPC-157 + TB-500"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name vial__name--xs">BPC-157 + TB-500</span></span></a>
         <div class="prod-card__body">
-          <h3 class="prod-card__name"><a href="produkt-klow-80mg.html">Klow</a></h3><span class="chip">80 mg</span>
-          <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">90,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">84,00 €</span></div></div>
-          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-klow-80mg.html">Detail</a>
-        </div>
-      </article>
-
-      <article class="prod-card holo-border foil sheen">
-        <a class="prod-card__media" href="produkt-reta-10mg.html" aria-label="Reta 10 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Reta</span></span></a>
-        <div class="prod-card__body">
-          <h3 class="prod-card__name"><a href="produkt-reta-10mg.html">Reta</a></h3><span class="chip">10 mg</span>
-          <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">85,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">80,00 €</span></div></div>
-          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-reta-10mg.html">Detail</a>
-        </div>
-      </article>
-
-      <article class="prod-card holo-border foil sheen">
-        <a class="prod-card__media" href="produkt-reta-30mg.html" aria-label="Reta 30 mg"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Reta</span></span></a>
-        <div class="prod-card__body">
-          <h3 class="prod-card__name"><a href="produkt-reta-30mg.html">Reta</a></h3><span class="chip">30 mg</span>
-          <span class="stock-pill">Na sklade</span>
-          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value">260,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value">240,00 €</span></div></div>
-          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-reta-30mg.html">Detail</a>
+          <h3 class="prod-card__name"><a href="produkt-bpc-tb500.html">BPC-157 + TB-500</a></h3><span class="chip chip--multi">10 · 20 mg</span>
+          <span class="stock-pill">Na sklade</span><span class="prod-card__note">2 gramáže na výber</span>
+          <div class="prod-card__prices price-tiers"><div class="price-row"><span class="price-row__label">1 ks</span><span class="price-row__value"><span class="price-row__from">od</span> 46,00 €</span></div><div class="price-row price-row--tier"><span class="price-row__label">3+ ks<small>za kus</small></span><span class="price-row__value"><span class="price-row__from">od</span> 44,00 €</span></div></div>
+          <a class="btn-holo btn-block" style="padding:9px 14px;font-size:.75rem" href="produkt-bpc-tb500.html">Detail</a>
         </div>
       </article>
     </div>
@@ -326,8 +388,8 @@
 
 <div class="mobile-cta">
   <div>
-    <span class="price-row__label" style="display:block">Semax 10 mg</span>
-    <span class="mobile-cta__price">25,00 €</span>
+    <span class="price-row__label" style="display:block" data-mcta-title="Reta">Reta</span>
+    <span class="mobile-cta__price">85,00 €</span>
   </div>
   <button class="btn-holo">Do košíka</button>
 </div>
@@ -350,11 +412,11 @@
           <table class="pl-table">
             <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
             <tbody>
-              <tr><td>Reta 10 mg</td><td class="pl-1ks">85 €</td><td class="pl-3ks">80 €</td></tr>
-              <tr><td>Reta 30 mg</td><td class="pl-1ks">260 €</td><td class="pl-3ks">240 €</td></tr>
-              <tr><td>Reta 40 mg</td><td class="pl-1ks">350 €</td><td class="pl-3ks">340 €</td></tr>
-              <tr><td>Mounjaro 20 mg</td><td class="pl-1ks">170 €</td><td class="pl-3ks">165 €</td></tr>
-              <tr><td>Mounjaro 50 mg</td><td class="pl-1ks">480 €</td><td class="pl-3ks">460 €</td></tr>
+              <tr><td><a href="produkt-reta.html">Reta 10 mg</a></td><td class="pl-1ks">85 €</td><td class="pl-3ks">80 €</td></tr>
+              <tr><td><a href="produkt-reta.html">Reta 30 mg</a></td><td class="pl-1ks">260 €</td><td class="pl-3ks">240 €</td></tr>
+              <tr><td><a href="produkt-reta.html">Reta 40 mg</a></td><td class="pl-1ks">350 €</td><td class="pl-3ks">340 €</td></tr>
+              <tr><td><a href="produkt-mounjaro.html">Mounjaro 20 mg</a></td><td class="pl-1ks">170 €</td><td class="pl-3ks">165 €</td></tr>
+              <tr><td><a href="produkt-mounjaro.html">Mounjaro 50 mg</a></td><td class="pl-1ks">480 €</td><td class="pl-3ks">460 €</td></tr>
             </tbody>
           </table>
         </div>
@@ -363,17 +425,17 @@
           <table class="pl-table">
             <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
             <tbody>
-              <tr><td>GHK-Cu 100 mg</td><td class="pl-1ks">43 €</td><td class="pl-3ks">40 €</td></tr>
-              <tr><td>BPC-157 10 mg</td><td class="pl-1ks">35 €</td><td class="pl-3ks">30 €</td></tr>
-              <tr><td>BPC-157 + TB-500 10 mg</td><td class="pl-1ks">46 €</td><td class="pl-3ks">44 €</td></tr>
-              <tr><td>BPC-157 + TB-500 20 mg</td><td class="pl-1ks">84 €</td><td class="pl-3ks">80 €</td></tr>
-              <tr><td>Melanotan II 10 mg</td><td class="pl-1ks">25 €</td><td class="pl-3ks">20 €</td></tr>
-              <tr><td>Melanotan I 10 mg</td><td class="pl-1ks">25 €</td><td class="pl-3ks">20 €</td></tr>
-              <tr><td>Epithalon 50 mg</td><td class="pl-1ks">87 €</td><td class="pl-3ks">80 €</td></tr>
-              <tr><td>NAD+ 1000 mg</td><td class="pl-1ks">80 €</td><td class="pl-3ks">74 €</td></tr>
-              <tr><td>Glutathione 600 mg</td><td class="pl-1ks">40 €</td><td class="pl-3ks">37 €</td></tr>
-              <tr><td>Glutathione 1500 mg</td><td class="pl-1ks">90 €</td><td class="pl-3ks">85 €</td></tr>
-              <tr><td>Lipo-C + B12 10 mg</td><td class="pl-1ks">40 €</td><td class="pl-3ks">35 €</td></tr>
+              <tr><td><a href="produkt-ghk-cu.html">GHK-Cu 100 mg</a></td><td class="pl-1ks">43 €</td><td class="pl-3ks">40 €</td></tr>
+              <tr><td><a href="produkt-bpc-157.html">BPC-157 10 mg</a></td><td class="pl-1ks">35 €</td><td class="pl-3ks">30 €</td></tr>
+              <tr><td><a href="produkt-bpc-tb500.html">BPC-157 + TB-500 10 mg</a></td><td class="pl-1ks">46 €</td><td class="pl-3ks">44 €</td></tr>
+              <tr><td><a href="produkt-bpc-tb500.html">BPC-157 + TB-500 20 mg</a></td><td class="pl-1ks">84 €</td><td class="pl-3ks">80 €</td></tr>
+              <tr><td><a href="produkt-melanotan-2.html">Melanotan II 10 mg</a></td><td class="pl-1ks">25 €</td><td class="pl-3ks">20 €</td></tr>
+              <tr><td><a href="produkt-melanotan-1.html">Melanotan I 10 mg</a></td><td class="pl-1ks">25 €</td><td class="pl-3ks">20 €</td></tr>
+              <tr><td><a href="produkt-epithalon.html">Epithalon 50 mg</a></td><td class="pl-1ks">87 €</td><td class="pl-3ks">80 €</td></tr>
+              <tr><td><a href="produkt-nad.html">NAD+ 1000 mg</a></td><td class="pl-1ks">80 €</td><td class="pl-3ks">74 €</td></tr>
+              <tr><td><a href="produkt-glutathione.html">Glutathione 600 mg</a></td><td class="pl-1ks">40 €</td><td class="pl-3ks">37 €</td></tr>
+              <tr><td><a href="produkt-glutathione.html">Glutathione 1500 mg</a></td><td class="pl-1ks">90 €</td><td class="pl-3ks">85 €</td></tr>
+              <tr><td><a href="produkt-lipo-c-b12.html">Lipo-C + B12 10 mg</a></td><td class="pl-1ks">40 €</td><td class="pl-3ks">35 €</td></tr>
             </tbody>
           </table>
         </div>
@@ -382,10 +444,10 @@
           <table class="pl-table">
             <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
             <tbody>
-              <tr><td>KPV 10 mg</td><td class="pl-1ks">25 €</td><td class="pl-none">–</td></tr>
-              <tr><td>KPV 30 mg</td><td class="pl-1ks">53 €</td><td class="pl-none">–</td></tr>
-              <tr><td>MOTS-C 40 mg</td><td class="pl-1ks">75 €</td><td class="pl-3ks">70 €</td></tr>
-              <tr><td>DSIP 10 mg</td><td class="pl-1ks">27 €</td><td class="pl-3ks">25 €</td></tr>
+              <tr><td><a href="produkt-kpv.html">KPV 10 mg</a></td><td class="pl-1ks">25 €</td><td class="pl-none">–</td></tr>
+              <tr><td><a href="produkt-kpv.html">KPV 30 mg</a></td><td class="pl-1ks">53 €</td><td class="pl-none">–</td></tr>
+              <tr><td><a href="produkt-mots-c.html">MOTS-C 40 mg</a></td><td class="pl-1ks">75 €</td><td class="pl-3ks">70 €</td></tr>
+              <tr><td><a href="produkt-dsip.html">DSIP 10 mg</a></td><td class="pl-1ks">27 €</td><td class="pl-3ks">25 €</td></tr>
             </tbody>
           </table>
         </div>
@@ -394,14 +456,14 @@
           <table class="pl-table">
             <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
             <tbody>
-              <tr><td>CJC + Ipamorelin 10 mg</td><td class="pl-1ks">45 €</td><td class="pl-3ks">42 €</td></tr>
-              <tr><td>CJC + Ipamorelin 20 mg</td><td class="pl-1ks">85 €</td><td class="pl-3ks">80 €</td></tr>
-              <tr><td>Ipamorelin 10 mg</td><td class="pl-1ks">40 €</td><td class="pl-3ks">37 €</td></tr>
-              <tr><td>GHRP-6 5 mg</td><td class="pl-1ks">16 €</td><td class="pl-none">–</td></tr>
-              <tr><td>Tesamorelin 5 mg</td><td class="pl-1ks">40 €</td><td class="pl-3ks">37 €</td></tr>
-              <tr><td>Tesamorelin 10 mg</td><td class="pl-1ks">65 €</td><td class="pl-3ks">63 €</td></tr>
-              <tr><td>Tesamorelin 20 mg</td><td class="pl-1ks">87 €</td><td class="pl-3ks">82 €</td></tr>
-              <tr><td>IGF-1 LR3 1 mg</td><td class="pl-1ks">75 €</td><td class="pl-3ks">70 €</td></tr>
+              <tr><td><a href="produkt-cjc-ipamorelin.html">CJC + Ipamorelin 10 mg</a></td><td class="pl-1ks">45 €</td><td class="pl-3ks">42 €</td></tr>
+              <tr><td><a href="produkt-cjc-ipamorelin.html">CJC + Ipamorelin 20 mg</a></td><td class="pl-1ks">85 €</td><td class="pl-3ks">80 €</td></tr>
+              <tr><td><a href="produkt-ipamorelin.html">Ipamorelin 10 mg</a></td><td class="pl-1ks">40 €</td><td class="pl-3ks">37 €</td></tr>
+              <tr><td><a href="produkt-ghrp-6.html">GHRP-6 5 mg</a></td><td class="pl-1ks">16 €</td><td class="pl-none">–</td></tr>
+              <tr><td><a href="produkt-tesamorelin.html">Tesamorelin 5 mg</a></td><td class="pl-1ks">40 €</td><td class="pl-3ks">37 €</td></tr>
+              <tr><td><a href="produkt-tesamorelin.html">Tesamorelin 10 mg</a></td><td class="pl-1ks">65 €</td><td class="pl-3ks">63 €</td></tr>
+              <tr><td><a href="produkt-tesamorelin.html">Tesamorelin 20 mg</a></td><td class="pl-1ks">87 €</td><td class="pl-3ks">82 €</td></tr>
+              <tr><td><a href="produkt-igf-1-lr3.html">IGF-1 LR3 1 mg</a></td><td class="pl-1ks">75 €</td><td class="pl-3ks">70 €</td></tr>
             </tbody>
           </table>
         </div>
@@ -410,9 +472,9 @@
           <table class="pl-table">
             <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
             <tbody>
-              <tr><td>Semax 10 mg</td><td class="pl-1ks">25 €</td><td class="pl-3ks">23 €</td></tr>
-              <tr><td>5-Amino-1MQ</td><td class="pl-1ks">35 €</td><td class="pl-3ks">30 €</td></tr>
-              <tr><td>Klow 80 mg</td><td class="pl-1ks">90 €</td><td class="pl-3ks">84 €</td></tr>
+              <tr><td><a href="produkt-semax.html">Semax 10 mg</a></td><td class="pl-1ks">25 €</td><td class="pl-3ks">23 €</td></tr>
+              <tr><td><a href="produkt-5-amino-1mq.html">5-Amino-1MQ</a></td><td class="pl-1ks">35 €</td><td class="pl-3ks">30 €</td></tr>
+              <tr><td><a href="produkt-klow.html">Klow 80 mg</a></td><td class="pl-1ks">90 €</td><td class="pl-3ks">84 €</td></tr>
             </tbody>
           </table>
         </div>
@@ -421,7 +483,7 @@
           <table class="pl-table">
             <thead><tr><th>Produkt</th><th>1 ks</th><th>3+ ks<small>za kus</small></th></tr></thead>
             <tbody>
-              <tr><td>Bac Water 3 ml</td><td class="pl-1ks">3 €</td><td class="pl-none">–</td></tr>
+              <tr><td><a href="produkt-bac-water.html">Bac Water 3 ml</a></td><td class="pl-1ks">3 €</td><td class="pl-none">–</td></tr>
             </tbody>
           </table>
         </div>

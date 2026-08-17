@@ -146,21 +146,21 @@
       <p class="pdp__subtitle">{{PEREX}}</p>
 
       <div class="pdp__meta">
-        <span class="stock-pill{{STOCK_CLS}}">{{STOCK_LABEL}}</span>
+        <span class="stock-pill{{STOCK_CLS}}" data-stock-pill>{{STOCK_LABEL}}</span>
         {{MG_CHIP}}
-        <span class="chip">Šarža {{BATCH}}</span>
+        <span class="chip">Šarža <span data-batch>{{BATCH}}</span></span>
         {{PURITY_ROW}}
       </div>
-
+{{STRENGTHS}}
       <div class="price-box glass" data-qty data-price1="{{PRICE1_NUM}}" data-price3="{{PRICE3_NUM}}" data-tier-qty="3">
         <div class="price-tiers">
           <div class="price-row">
             <span class="price-row__label">1 ks</span>
-            <span class="price-row__value">{{PRICE1}}</span>
+            <span class="price-row__value" data-price-1>{{PRICE1}}</span>
           </div>
           <div class="price-row price-row--tier">
             <span class="price-row__label">3+ ks<small>za kus</small></span>
-            <span class="price-row__value"{{PRICE3_STYLE}}>{{PRICE3}}</span>
+            <span class="price-row__value" data-price-3{{PRICE3_STYLE}}>{{PRICE3}}</span>
           </div>
         </div>
         <div class="qty-row" style="margin-top:20px;margin-bottom:0">
@@ -231,13 +231,20 @@
 
     <div class="tabpanel" role="tabpanel" id="p1" aria-labelledby="t1">
       <dl>
-        <dt>Katalógové číslo</dt><dd>{{REFERENCE}}</dd>
-        <dt>Množstvo</dt><dd>{{MG}}</dd>
+        <dt>Názov</dt><dd>{{NAME}}</dd>
         <dt>Forma</dt><dd>{{FORM}}</dd>
         <dt>Kategória</dt><dd>{{CAT_NAME}}</dd>
-        <dt>Šarža</dt><dd>{{BATCH}}</dd>
-        <dt>Čistota</dt><dd>{{PURITY}}</dd>
       </dl>
+      <table class="spec-variants">
+        <caption>{{SPEC_CAPTION}}</caption>
+        <thead><tr>
+          <th>Gramáž</th><th>Kat. číslo</th><th>Šarža</th><th>Čistota</th>
+          <th class="num">1 ks</th><th class="num">3+ ks</th>
+        </tr></thead>
+        <tbody>
+{{SPEC_ROWS}}
+        </tbody>
+      </table>
     </div>
     <div class="tabpanel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
       <dl>
@@ -282,7 +289,7 @@
 
 <div class="mobile-cta">
   <div>
-    <span class="price-row__label" style="display:block">{{TITLE}}</span>
+    <span class="price-row__label" style="display:block" data-mcta-title="{{NAME}}">{{TITLE}}</span>
     <span class="mobile-cta__price">{{PRICE1}}</span>
   </div>
   <button class="btn-holo">Do košíka</button>

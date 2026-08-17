@@ -38,15 +38,15 @@ UP-NOVY-10;novy-peptid-10mg;Nový peptid;10 mg;regeneracia;Lyofilizat;99.10;NP-2
 | Stĺpec | Čo tam patrí |
 |---|---|
 | `reference` | interné katalógové číslo, musí byť jedinečné |
-| `slug` | časť URL — malé písmená, bez diakritiky, s pomlčkami |
+| `slug` | časť URL. **Riadky s rovnakým slugom sú tá istá látka v rôznych silách** a v katalógu z nich vznikne jeden produkt s prepínačom gramáže. |
 | `name` | názov na karte a na etikete fľaštičky |
-| `mg` | gramáž vrátane jednotky (`10 mg`, `3 ml`); môže byť prázdne |
+| `mg` | gramáž aktívnej látky vrátane jednotky (`10 mg`, `3 ml`). V skupine s viacerými silami je povinná a musí byť jedinečná. |
 | `category` | **slug** kategórie z `data/kategorie.csv` |
 | `form` | `Lyofilizat` alebo `Roztok` |
 | `purity` | číslo s bodkou, napr. `99.24`; prázdne = „viď certifikát" |
 | `batch` | číslo šarže |
 | `stock` | `in` (na sklade), `low` (posledné kusy), `out` (vypredané) |
-| `featured` | `1` = ukáž na homepage medzi najžiadanejšími |
+| `featured` | `1` = ukáž na homepage. Stačí na jednom riadku skupiny. |
 | `price_gross_eur` | cena za 1 ks **s DPH** |
 | `price_net_eur` | cena bez DPH (pri 23 %: cena s DPH ÷ 1,23) |
 | `tier3_gross_eur` | cena za kus od 3 ks; **nechaj prázdne**, ak neplatí |
@@ -80,6 +80,21 @@ node scripts/check.mjs
 ```
 
 **4. Commitni a pushni.** GitHub Actions build zopakuje a nasadí.
+
+## Ako pridať ďalšiu gramáž existujúceho produktu
+
+Pridaj riadok s **rovnakým `slug`**, iným `reference` a inou `mg`.
+Nič viac. Z dvoch riadkov sa stane jeden produkt s prepínačom gramáže,
+karta ukáže „od" najnižšej ceny a cenník zostane po gramážach.
+
+```
+UP-TESA-5;tesamorelin;Tesamorelin;5 mg;rastove-hormony;...;40.00;...
+UP-TESA-10;tesamorelin;Tesamorelin;10 mg;rastove-hormony;...;65.00;...
+UP-TESA-20;tesamorelin;Tesamorelin;20 mg;rastove-hormony;...;87.00;...
+```
+
+V rámci skupiny musí `name`, `category` a `form` sedieť na všetkých
+riadkoch — generátor to kontroluje a pri nezhode spadne.
 
 ## Ako zmeniť cenu
 

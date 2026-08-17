@@ -862,6 +862,100 @@ body::after {
 .coa-badge svg { width: 15px; height: 15px; stroke: currentColor; }
 .coa-badge a { border-bottom: 1px solid rgba(34,211,238,.35); padding-bottom: 2px; }
 
+/* ── Prepínač gramáže aktívnej látky ────────────────────────────────────
+   Tá istá látka v inej sile nie je iný produkt, tak nie je ani iná karta.
+   Zobrazuje sa len tam, kde má produkt viac než jednu gramáž. */
+.strengths { margin-bottom: var(--up-sp-4); }
+.strengths__label {
+  margin: 0 0 var(--up-sp-3);
+  font: 500 var(--up-fs-xs)/1 var(--up-font-mono);
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--up-text-mute);
+}
+.strengths__opts { display: flex; flex-wrap: wrap; gap: var(--up-sp-2); }
+.strength { position: relative; cursor: pointer; }
+.strength input {
+  position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer;
+}
+.strength span {
+  display: block;
+  padding: 10px 18px;
+  border: 1px solid var(--up-hairline);
+  border-radius: var(--up-r-pill);
+  background: var(--up-ink-2);
+  font: 500 var(--up-fs-sm)/1 var(--up-font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--up-text-dim);
+  transition: border-color .18s var(--up-ease), background .18s var(--up-ease),
+              color .18s var(--up-ease);
+}
+.strength:hover span { border-color: var(--up-purple); color: var(--up-text); }
+.strength input:checked + span {
+  border-color: transparent;
+  color: #08060D;
+  background: var(--up-holo);
+  background-size: 220% 100%;
+  font-weight: 700;
+}
+/* focus musí byť vidieť aj keď je input priehľadný */
+.strength input:focus-visible + span {
+  outline: 2px solid var(--up-cyan); outline-offset: 2px;
+}
+.strength.is-out span {
+  color: var(--up-text-mute);
+  text-decoration: line-through;
+  cursor: not-allowed;
+  opacity: .55;
+}
+.strength.is-out:hover span { border-color: var(--up-hairline); }
+
+/* prehľad všetkých gramáží v záložke Špecifikácia */
+.spec-variants {
+  width: 100%; border-collapse: collapse;
+  margin-top: var(--up-sp-4);
+  font-variant-numeric: tabular-nums;
+}
+.spec-variants caption {
+  text-align: left; padding-bottom: var(--up-sp-3);
+  font: 500 var(--up-fs-xs)/1 var(--up-font-mono);
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--up-text-mute);
+}
+.spec-variants th, .spec-variants td {
+  padding: 9px 12px 9px 0;
+  text-align: left;
+  border-bottom: 1px solid rgba(36,36,46,.7);
+  font: 400 var(--up-fs-sm)/1.4 var(--up-font-mono);
+  color: var(--up-text-dim);
+  white-space: nowrap;
+}
+.spec-variants thead th {
+  font-size: var(--up-fs-xs); letter-spacing: .1em;
+  text-transform: uppercase; color: var(--up-text-mute);
+}
+.spec-variants .num { text-align: right; padding-right: 0; }
+.spec-variants td.tier { color: var(--up-price-tier); }
+.spec-variants tbody th { color: var(--up-text); font-weight: 500; }
+.spec-variants tr.is-active th,
+.spec-variants tr.is-active td { background: rgba(139,92,246,.08); color: var(--up-text); }
+.spec-variants tr.is-active td.tier { color: var(--up-price-tier); }
+@media (max-width: 620px) {
+  .spec-variants { display: block; overflow-x: auto; }
+}
+
+/* „od" pred cenou na karte, keď má produkt viac gramáží */
+.price-row__from {
+  font: 500 var(--up-fs-xs)/1 var(--up-font-mono);
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--up-text-mute);
+}
+.chip--multi { font-variant-numeric: tabular-nums; }
+.prod-card__note {
+  font: 500 var(--up-fs-xs)/1.4 var(--up-font-mono);
+  letter-spacing: .04em;
+  color: var(--up-purple-glow);
+}
+
 .price-box { padding: var(--up-sp-5); margin-bottom: var(--up-sp-4); }
 .price-box .price-row__value { font-size: 1.75rem; }
 .price-save {

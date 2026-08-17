@@ -87,7 +87,7 @@ HTML
 
   echo '<main data-view="home">';           main_of "$SITE/index.html"          | prep; echo '</main>'
   echo '<main data-view="katalog" hidden>'; main_of "$SITE/katalog.html"        | prep; echo '</main>'
-  echo '<main data-view="produkt" hidden>'; main_of "$SITE/produkt-mots-c-40mg.html" | prep; echo '</main>'
+  echo '<main data-view="produkt" hidden>'; main_of "$SITE/produkt-tesamorelin.html" | prep; echo '</main>'
 
   foot_of "$SITE/index.html" | prep
 

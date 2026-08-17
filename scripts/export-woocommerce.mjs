@@ -78,16 +78,25 @@ function contentHtml(slug) {
   return { short: esc(perex.join(' ')), long: long + disclaimer };
 }
 
+/* ── zoskupenie na produkty (rovnaký slug = tá istá látka v iných silách) ── */
+const bySlug = new Map();
+for (const s of products) {
+  if (!bySlug.has(s.slug)) bySlug.set(s.slug, []);
+  bySlug.get(s.slug).push(s);
+}
+const grouped = [...bySlug.entries()].map(([slug, variants]) => ({
+  slug, variants, first: variants[0], multi: variants.length > 1,
+}));
+
 /* ── produkty ────────────────────────────────────────────────────────────── */
 const head = [
   'Type', 'SKU', 'Name', 'Published', 'Is featured?', 'Visibility in catalogue',
   'Short description', 'Description',
   'Tax status', 'Tax class',
   'In stock?', 'Stock', 'Backorders allowed?', 'Sold individually?',
-  'Regular price', 'Categories',
+  'Regular price', 'Categories', 'Parent', 'Position',
   'Attribute 1 name', 'Attribute 1 value(s)', 'Attribute 1 visible', 'Attribute 1 global',
   'Attribute 2 name', 'Attribute 2 value(s)', 'Attribute 2 visible', 'Attribute 2 global',
-  'Attribute 3 name', 'Attribute 3 value(s)', 'Attribute 3 visible', 'Attribute 3 global',
   'Meta: _up_tier3_price',
   'Meta: _up_batch',
   'Meta: _up_purity',
@@ -95,43 +104,62 @@ const head = [
 ];
 
 const STOCK_QTY = { in: 25, low: 3, out: 0 };
+const forma = (p) => (p.form === 'Roztok' ? 'Roztok' : 'Lyofilizát');
 
-const rows = products.map((p) => {
-  const { short, long } = contentHtml(p.slug);
-  const label = p.name + (p.mg ? ' ' + p.mg : '');
-  const forma = p.form === 'Roztok' ? 'Roztok' : 'Lyofilizát';
+const rows = [];
+for (const g of grouped) {
+  const p = g.first;
+  const { short, long } = contentHtml(g.slug);
+  const mgs = g.variants.map((v) => v.mg).filter(Boolean);
 
-  return row([
-    'simple',
-    p.reference,
-    label,
-    1,
-    p.featured === '1' ? 1 : 0,
-    'visible',
-    short,
-    long,
-    'taxable',
-    '',                                   // predvolená daňová trieda
-    (STOCK_QTY[p.stock] ?? 0) > 0 ? 1 : 0,
-    STOCK_QTY[p.stock] ?? 0,
-    0,                                    // bez backorderov — šaržový tovar
-    0,
-    p.price_gross_eur,                    // cena S DPH, viď nastavenie nižšie
-    catName(p.category),
-    'Forma', forma, 1, 1,
-    'Gramáž', p.mg || '', p.mg ? 1 : 0, 1,
-    'Čistota', p.purity ? String(p.purity).replace('.', ',') + ' %' : '', p.purity ? 1 : 0, 1,
-    p.tier3_gross_eur || '',
-    p.batch || '',
-    p.purity || '',
-    '',                                   // fotky doplniť, keď bude nafotený katalóg
-  ]);
-});
+  if (!g.multi) {
+    // jedna sila → jednoduchý produkt
+    rows.push(row([
+      'simple', p.reference, p.name + (p.mg ? ' ' + p.mg : ''),
+      1, p.featured === '1' ? 1 : 0, 'visible',
+      short, long, 'taxable', '',
+      (STOCK_QTY[p.stock] ?? 0) > 0 ? 1 : 0, STOCK_QTY[p.stock] ?? 0, 0, 0,
+      p.price_gross_eur, catName(p.category), '', 0,
+      'Forma', forma(p), 1, 1,
+      'Gramáž', p.mg || '', p.mg ? 1 : 0, 1,
+      p.tier3_gross_eur || '', p.batch || '', p.purity || '', '',
+    ]));
+    continue;
+  }
+
+  // viac síl → variabilný produkt: rodič bez ceny + variant pre každú gramáž
+  const parentSku = `${p.reference.split('-').slice(0, 2).join('-')}-VAR`;
+  rows.push(row([
+    'variable', parentSku, p.name,
+    1, g.variants.some((v) => v.featured === '1') ? 1 : 0, 'visible',
+    short, long, 'taxable', '',
+    1, '', 0, 0,
+    '',                                  // cena je na variantoch
+    catName(p.category), '', 0,
+    'Forma', forma(p), 1, 1,
+    'Gramáž', mgs.join(', '), 1, 1,      // hodnoty pre výber na produkte
+    '', '', '', '',
+  ]));
+
+  g.variants.forEach((v, i) => {
+    rows.push(row([
+      'variation', v.reference, `${p.name} – ${v.mg}`,
+      1, 0, 'visible',
+      '', '', 'taxable', '',
+      (STOCK_QTY[v.stock] ?? 0) > 0 ? 1 : 0, STOCK_QTY[v.stock] ?? 0, 0, 0,
+      v.price_gross_eur, '', parentSku, i,
+      'Forma', forma(v), 1, 1,
+      'Gramáž', v.mg, 1, 1,              // konkrétna sila tohto variantu
+      v.tier3_gross_eur || '', v.batch || '', v.purity || '', '',
+    ]));
+  });
+}
 
 writeFileSync(join(OUT, 'woocommerce-produkty.csv'), [head.join(','), ...rows].join('\n') + '\n', 'utf8');
 
 /* ── návod ───────────────────────────────────────────────────────────────── */
 const tiers = products.filter((p) => p.tier3_gross_eur).length;
+const multiN = grouped.filter((g) => g.multi).length;
 writeFileSync(join(OUT, 'WOOCOMMERCE.txt'),
 `IMPORT KATALÓGU DO WOOCOMMERCE
 ==============================
@@ -170,12 +198,25 @@ Produkty -> Všetky produkty -> Import -> vyber woocommerce-produkty.csv
 PO IMPORTE SKONTROLUJ
 ---------------------
 * Položiek s množstevnou cenou: ${tiers} z ${products.length}
+* Variabilných produktov (výber gramáže): ${multiN}
+  Otvor napr. Tesamorelin a over, že sa dá prepnúť 5 / 10 / 20 mg
+  a že každá sila má vlastnú cenu.
   Otvor ktorýkoľvek produkt a pozri pole "Cena za kus od 3 ks".
 * Daj do košíka 3 kusy a over, že sa cena prepla.
 * Vlož na stránku cenníka shortcode:  [up_cennik]
 * Skladové množstvá sú odvodené od stavu v CSV (in=25, low=3, out=0),
   nie sú to reálne počty — nastav si ich.
 * Fotky sa neimportujú, stĺpec Images je prázdny.
+
+VARIABILNÉ PRODUKTY (VÝBER GRAMÁŽE)
+-----------------------------------
+Tá istá látka v inej sile nie je iný produkt. Preto sú v exporte:
+  Type=variable    rodič bez ceny, v atribúte Gramáž má všetky sily
+  Type=variation   jeden riadok na silu, s vlastnou cenou, SKU a šaržou
+Importér ich spojí cez stĺpec Parent (SKU rodiča).
+
+Ak sa varianty naimportujú bez ceny, skontroluj v mapovaní stĺpec
+"Regular price" a "Parent" — Woo ich pri variantoch občas nenapáruje sám.
 
 ATRIBÚTY
 --------
