@@ -152,10 +152,53 @@ button { font: inherit; }
   from { transform: translate3d(0, 0, 0) scale(1); }
   to   { transform: translate3d(-46px, 30px, 0) scale(1.07); }
 }
-.molecular-bg svg g { animation: mb-breathe 9s ease-in-out infinite alternate; }
-.molecular-bg svg g:nth-of-type(2) { animation-duration: 12s; animation-delay: -4s; }
-.molecular-bg svg g:nth-of-type(3) { animation-duration: 15s; animation-delay: -8s; }
-@keyframes mb-breathe { from { opacity: .3; } to { opacity: 1; } }
+/* Sieť aj uzly berú farbu z `color`. Vďaka tomu ju animácia mení jedinou
+   deklaráciou namiesto zvlášť `stroke` a zvlášť `fill`. */
+.mb-net   { fill: none; stroke: currentColor; stroke-width: 1; stroke-opacity: .38; }
+.mb-nodes { stroke: none; fill: currentColor; fill-opacity: .62; }
+
+/* Zhluk zhasne, POD RÚŠKOM NEVIDITEĽNOSTI prehodí farbu a vráti sa inak
+   sfarbený. Celý farebný prechod leží v okne s opacity 0 (24→26 %, 49→51 %,
+   74→76 %, 99→100 %), takže preblikávanie farby nie je nikdy vidieť.
+   Štyri farby na cyklus; každý zhluk má iné poradie aj inú dĺžku, aby
+   zhluky nezhasínali naraz. */
+.mb-cluster {
+  color: var(--mb-c1);
+  animation: mb-cycle var(--mb-dur) ease-in-out var(--mb-delay) infinite;
+}
+@keyframes mb-cycle {
+  0%, 100% { opacity: 0; color: var(--mb-c1); }
+  6%,  19% { opacity: 1; color: var(--mb-c1); }
+  24%      { opacity: 0; color: var(--mb-c1); }
+  26%      { opacity: 0; color: var(--mb-c2); }
+  31%, 44% { opacity: 1; color: var(--mb-c2); }
+  49%      { opacity: 0; color: var(--mb-c2); }
+  51%      { opacity: 0; color: var(--mb-c3); }
+  56%, 69% { opacity: 1; color: var(--mb-c3); }
+  74%      { opacity: 0; color: var(--mb-c3); }
+  76%      { opacity: 0; color: var(--mb-c4); }
+  81%, 94% { opacity: 1; color: var(--mb-c4); }
+  99%      { opacity: 0; color: var(--mb-c4); }
+}
+
+.mb-1 { --mb-dur: 38s; --mb-delay:   0s;
+        --mb-c1: var(--up-sky);        --mb-c2: var(--up-purple-lt);
+        --mb-c3: var(--up-cyan);       --mb-c4: var(--up-magenta); }
+.mb-2 { --mb-dur: 46s; --mb-delay: -13s;
+        --mb-c1: var(--up-purple-lt);  --mb-c2: var(--up-magenta);
+        --mb-c3: var(--up-sky);        --mb-c4: var(--up-cyan); }
+.mb-3 { --mb-dur: 52s; --mb-delay: -27s;
+        --mb-c1: var(--up-cyan);       --mb-c2: var(--up-sky);
+        --mb-c3: var(--up-purple-glow);--mb-c4: var(--up-purple-lt); }
+.mb-4 { --mb-dur: 43s; --mb-delay:  -7s;
+        --mb-c1: var(--up-magenta);    --mb-c2: var(--up-cyan);
+        --mb-c3: var(--up-purple-lt);  --mb-c4: var(--up-sky); }
+.mb-5 { --mb-dur: 57s; --mb-delay: -34s;
+        --mb-c1: var(--up-purple-glow);--mb-c2: var(--up-cyan);
+        --mb-c3: var(--up-pink);       --mb-c4: var(--up-sky); }
+.mb-6 { --mb-dur: 49s; --mb-delay: -19s;
+        --mb-c1: var(--up-pink);       --mb-c2: var(--up-purple-lt);
+        --mb-c3: var(--up-sky);        --mb-c4: var(--up-cyan); }
 
 /* ── Filmové zrno ──────────────────────────────────────────────────────── */
 body::after {
@@ -1522,6 +1565,9 @@ body::after {
   }
   .holo-text { animation: none; background-position: 30% 0; }
   .holo-border:hover { animation: none; }
+  /* Zhluky pozadia zostanú stáť v prvej farbe. Bez tohto by ich globálne
+     skrátenie animácie posunulo na posledný snímok, kde majú opacity 0. */
+  .mb-cluster { animation: none; opacity: .85; }
 }
 
 /* ── Tlač: cenník musí byť vytlačiteľný ──────────────────────────────── */
