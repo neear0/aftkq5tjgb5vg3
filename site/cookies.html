@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- GENEROVANÉ — needituj v site/. Zdroj: templates/stranka.html + content/stranky/ -->
-<html lang="sk">
+<html lang="sk" data-assets="assets/" data-product-prefix="produkt-" data-cart-url="kosik.html" data-locale="sk">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -104,6 +104,7 @@
       <a href="index.html#faq">FAQ</a>
     </nav>
     <div class="up-actions">
+      <div class="lang-switch" role="group" aria-label="Jazyk"><span class="lang-switch__cur" aria-current="true">SK</span><a class="lang-switch__opt" href="en/cookies.html" hreflang="en" lang="en">EN</a></div>
       <a class="icon-btn" href="kosik.html" aria-label="Košík" data-cart-link>
         <svg width="16" height="16" fill="none" stroke="currentColor"><use href="#i-cart"/></svg>
         <span class="icon-btn__badge" data-cart-count hidden>0</span>
@@ -131,7 +132,7 @@
     <div class="legal__tablewrap"><table class="legal__table">
       <thead><tr><th>Kľúč</th><th>Na čo</th><th>Trvanie</th></tr></thead>
       <tbody>
-        <tr><td><code>up_ruo_ack_v2</code></td><td>zapamätá si, že si potvrdil vek 18+ a určenie produktov</td><td>do vymazania údajov prehliadača</td></tr>
+        <tr><td><code>up_ruo_ack_v1</code></td><td>zapamätá si, že si potvrdil vek 18+ a určenie produktov</td><td>do vymazania údajov prehliadača</td></tr>
         <tr><td><code>up_cart_v1</code></td><td>obsah košíka, aby sa nestratil pri prechode medzi stránkami</td><td>do vymazania údajov prehliadača</td></tr>
       </tbody>
     </table></div>
@@ -186,7 +187,7 @@
           <li><a href="katalog.html#na-chudnutie">Na chudnutie</a></li>
           <li><a href="katalog.html#krasa">Krása</a></li>
           <li><a href="katalog.html#regeneracia">Regenerácia a zdravie</a></li>
-          <li><a href="katalog.html#rastove-hormony">Rastové hormóny</a></li>
+          <li><a href="katalog.html#rastove-hormony">Rastové hormóny a peptidy</a></li>
           <li><a href="katalog.html#kognicia">Kognícia a fokus</a></li>
           <li><a href="katalog.html#pomocne">Pomocné produkty</a></li>
         </ul>
@@ -194,7 +195,7 @@
       <div>
         <h4>Informácie</h4>
         <ul>
-          <li><a href="#" data-open-cennik>Cenník</a></li>
+          <li><a href="katalog.html#cennik" data-open-cennik>Cenník</a></li>
           <li><a href="doprava-a-platba.html">Doprava a platba</a></li>
           <li><a href="index.html#faq">Časté otázky</a></li>
         </ul>
@@ -213,11 +214,7 @@
     </div>
 
     <p class="ruo-strip">
-      <strong>FOR RESEARCH USE ONLY.</strong> Všetky produkty na tejto stránke sú určené výhradne na
-      laboratórne a výskumné použitie. Nie sú liekmi, výživovými doplnkami, kozmetikou ani
-      zdravotníckymi pomôckami a nie sú určené na diagnostiku, prevenciu, liečbu ani na podávanie
-      ľuďom či zvieratám. Neposkytujeme dávkovanie ani zdravotné odporúčania. Nákup je možný len
-      osobám nad 18 rokov.
+      <strong>FOR RESEARCH USE ONLY.</strong> Všetky produkty na tejto stránke sú určené výhradne na laboratórne a výskumné použitie. Nie sú liekmi, výživovými doplnkami, kozmetikou ani zdravotníckymi pomôckami a nie sú určené na diagnostiku, prevenciu, liečbu ani na podávanie ľuďom či zvieratám. Neposkytujeme dávkovanie ani zdravotné odporúčania. Nákup je možný len osobám nad 18 rokov.
     </p>
 
     <div class="up-footer__legal">

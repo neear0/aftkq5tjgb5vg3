@@ -2,6 +2,7 @@
 :: eyebrow: Právne dokumenty
 :: nav: legal
 :: order: 2
+:: alt: withdrawal
 :: perex: Spotrebiteľ má právo odstúpiť od zmluvy do 14 dní bez uvedenia dôvodu. Pri našom sortimente však platia dôležité výnimky — čítaj článok 3.
 :: updated: 17. 8. 2026
 

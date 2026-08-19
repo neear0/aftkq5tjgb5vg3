@@ -2,6 +2,7 @@
 :: eyebrow: Právne dokumenty
 :: nav: legal
 :: order: 3
+:: alt: complaints
 :: perex: Ako postupovať, ak produkt nezodpovedá tomu, čo sme deklarovali. Lehota na vybavenie je 30 dní.
 :: updated: 17. 8. 2026
 

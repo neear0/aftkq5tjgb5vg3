@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="sk" data-assets="assets/" data-product-prefix="produkt-" data-cart-url="kosik.html" data-locale="sk">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Katalóg — ULTRA PEPTIDY</title>
-<meta name="description" content="Kompletný katalóg 32 výskumných peptidov v 6 kategóriách. Ceny s DPH, množstevná zľava od 3 kusov, certifikát analýzy ku každej šarži.">
+<meta name="description" content="Celý katalóg výskumných peptidov: 32 gramáží v 6 kategóriách, ceny s DPH a množstevné ceny od 3 kusov.">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/ultrapeptidy.css">
@@ -133,9 +133,7 @@
     <span class="holo-logo holo-logo--mark" style="width:56px;margin:0 auto 18px"><img src="assets/img/logo-mark.png" alt="" width="122" height="120"></span>
     <h2 id="gate-t">Potvrdenie vstupu</h2>
     <p>
-      Produkty na tejto stránke sú určené <strong>výhradne na výskumné a laboratórne účely</strong>
-      (<em>for research use only</em>). Nie sú liekmi, výživovými doplnkami ani kozmetikou a nie sú
-      určené na diagnostiku, liečbu ani podávanie ľuďom či zvieratám.
+      Produkty na tejto stránke sú určené <strong>výhradne na výskumné a laboratórne účely</strong> (<em>for research use only</em>). Nie sú liekmi, výživovými doplnkami ani kozmetikou a nie sú určené na diagnostiku, liečbu ani podávanie ľuďom či zvieratám.
     </p>
     <p>Vstupom potvrdzujete, že máte <strong>18 rokov alebo viac</strong> a rozumiete tomuto určeniu.</p>
     <div class="agegate__actions">
@@ -153,7 +151,7 @@
     </a>
     <nav class="up-nav" aria-label="Hlavná navigácia">
       <a href="katalog.html">Katalóg</a>
-      <a href="#" data-open-cennik>Cenník</a>
+      <a href="katalog.html#cennik" data-open-cennik>Cenník</a>
       <a href="index.html#cistota">Kvalita</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
@@ -161,6 +159,7 @@
       <button class="icon-btn" aria-label="Hľadať">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg>
       </button>
+      <div class="lang-switch" role="group" aria-label="Jazyk"><span class="lang-switch__cur" aria-current="true">SK</span><a class="lang-switch__opt" href="en/catalog.html" hreflang="en" lang="en">EN</a></div>
       <a class="icon-btn" href="kosik.html" aria-label="Košík">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4.5 8.5h15l-1.7 11H6.2z"/><path d="M8.5 8.5V8a3.5 3.5 0 017 0v.5"/></svg>
         <span class="icon-btn__badge" data-cart-count hidden>0</span>
@@ -177,7 +176,7 @@
 
   <div class="section-head" style="margin-top:var(--up-sp-4)">
     <div>
-      <p class="eyebrow">32 produktov · 6 kategórií · ceny s DPH</p>
+      <p class="eyebrow">32 produktov · 6 kategórie · ceny s DPH</p>
       <h1 class="section-title" style="font-size:var(--up-fs-h1)">Katalóg</h1>
     </div>
     <div class="viewswitch" role="group" aria-label="Zobrazenie katalógu">
@@ -188,13 +187,10 @@
 
   <div class="notice" style="max-width:78ch;margin-bottom:var(--up-sp-6)">
     <svg fill="none" stroke-width="1.5"><use href="#i-micro"/></svg>
-    <span><strong>Ku každej šarži je certifikát analýzy.</strong> Uvedená čistota je typická
-    hodnota; presné číslo pre konkrétnu šaržu je na certifikáte. Množstevná cena platí od
-    3 kusov tej istej položky.</span>
+    <span><strong>Ku každej šarži je certifikát analýzy.</strong> Uvedená čistota je typická hodnota; presné číslo pre konkrétnu šaržu je na certifikáte. Množstevná cena platí od 3 kusov tej istej položky.</span>
   </div>
 </div>
 
-<!-- GEN:katalog -->
 
 <section class="up-section" id="na-chudnutie" style="padding-top:0">
   <div class="up-container">
@@ -497,7 +493,6 @@
     </div>
   </div>
 </section>
-<!-- /GEN:katalog -->
 
 </main>
 
@@ -512,7 +507,6 @@
     </button>
   </div>
   <div class="modal__body">
-    <!-- GEN:cennik -->
       <div class="pricelist">
         <div class="pl-group">
           <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-syringe"/></svg><h3 class="pl-group__title">Na chudnutie</h3></div>
@@ -595,11 +589,9 @@
           </table>
         </div>
       </div>
-<!-- /GEN:cennik -->
   </div>
   <p class="modal__foot">
-    Pomlčka v stĺpci „3+ ks" znamená, že pre danú položku nie je stanovená množstevná cena.
-    Ceny sú konečné vrátane DPH.
+    Pomlčka v stĺpci „3+ ks“ znamená, že pre danú položku nie je stanovená množstevná cena. Ceny sú konečné vrátane DPH.
   </p>
 </dialog>
 
@@ -618,45 +610,37 @@
       <div>
         <h4>Katalóg</h4>
         <ul>
-          <li><a href="#na-chudnutie">Na chudnutie</a></li>
-          <li><a href="#krasa">Krása</a></li>
-          <li><a href="#regeneracia">Regenerácia a zdravie</a></li>
-          <li><a href="#rastove-hormony">Rastové hormóny</a></li>
-          <li><a href="#kognicia">Kognícia a fokus</a></li>
-          <li><a href="#pomocne">Pomocné produkty</a></li>
+          <li><a href="katalog.html#na-chudnutie">Na chudnutie</a></li>
+          <li><a href="katalog.html#krasa">Krása</a></li>
+          <li><a href="katalog.html#regeneracia">Regenerácia a zdravie</a></li>
+          <li><a href="katalog.html#rastove-hormony">Rastové hormóny a peptidy</a></li>
+          <li><a href="katalog.html#kognicia">Kognícia a fokus</a></li>
+          <li><a href="katalog.html#pomocne">Pomocné produkty</a></li>
         </ul>
       </div>
       <div>
         <h4>Informácie</h4>
         <ul>
-<!-- GEN:navinfo -->
-          <li><a href="#" data-open-cennik>Cenník</a></li>
+          <li><a href="katalog.html#cennik" data-open-cennik>Cenník</a></li>
           <li><a href="doprava-a-platba.html">Doprava a platba</a></li>
           <li><a href="index.html#faq">Časté otázky</a></li>
-<!-- /GEN:navinfo -->
         </ul>
       </div>
       <div>
         <h4>Právne</h4>
         <ul>
-<!-- GEN:navlegal -->
           <li><a href="obchodne-podmienky.html">Všeobecné obchodné podmienky</a></li>
           <li><a href="odstupenie-od-zmluvy.html">Odstúpenie od zmluvy</a></li>
           <li><a href="reklamacny-poriadok.html">Reklamačný poriadok</a></li>
           <li><a href="ochrana-osobnych-udajov.html">Ochrana osobných údajov</a></li>
           <li><a href="cookies.html">Cookies</a></li>
           <li><a href="riesenie-sporov.html">Riešenie sporov</a></li>
-<!-- /GEN:navlegal -->
         </ul>
       </div>
     </div>
 
     <p class="ruo-strip">
-      <strong>FOR RESEARCH USE ONLY.</strong> Všetky produkty na tejto stránke sú určené výhradne na
-      laboratórne a výskumné použitie. Nie sú liekmi, výživovými doplnkami, kozmetikou ani
-      zdravotníckymi pomôckami a nie sú určené na diagnostiku, prevenciu, liečbu ani na podávanie
-      ľuďom či zvieratám. Neposkytujeme dávkovanie ani zdravotné odporúčania. Nákup je možný len
-      osobám nad 18 rokov.
+      <strong>FOR RESEARCH USE ONLY.</strong> Všetky produkty na tejto stránke sú určené výhradne na laboratórne a výskumné použitie. Nie sú liekmi, výživovými doplnkami, kozmetikou ani zdravotníckymi pomôckami a nie sú určené na diagnostiku, prevenciu, liečbu ani na podávanie ľuďom či zvieratám. Neposkytujeme dávkovanie ani zdravotné odporúčania. Nákup je možný len osobám nad 18 rokov.
     </p>
 
     <div class="up-footer__legal">

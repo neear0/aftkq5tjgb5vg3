@@ -25,7 +25,73 @@
     }, { passive: true });
   }
 
-  const eur = (n) => n.toFixed(2).replace('.', ',') + ' €';
+  /* ── Jazyk a cesty ─────────────────────────────────────────────────────
+     Skript je pre obe mutácie ten istý súbor; čo sa líši, nesie <html>
+     v data atribútoch, ktoré tam vypísal generátor. Vďaka tomu nevzniká
+     druhá kópia skriptu, ktorá by sa časom rozišla s prvou. */
+  const CFG      = document.documentElement.dataset;
+  const LANG     = CFG.locale === 'en' ? 'en' : 'sk';
+  const ASSETS   = CFG.assets || 'assets/';
+  const PRODUCT  = CFG.productPrefix || 'produkt-';
+  const DEC      = LANG === 'en' ? '.' : ',';
+
+  const eur = (n) => n.toFixed(2).replace('.', DEC) + ' €';
+
+  const DICT = {
+    sk: {
+      save:      (amount, q) => `Ušetríš ${amount} pri ${q} ks`,
+      added:     '✓ Pridané do košíka',
+      each:      'ks',
+      tierPrice: 'množstevná cena',
+      toTier:    (n, price) => `Pridaj ${n} ks a cena za kus klesne na ${price}.`,
+      qtyDown:   'Znížiť množstvo',
+      qtyUp:     'Zvýšiť množstvo',
+      qty:       'Množstvo',
+      remove:    (name) => `Odstrániť ${name}`,
+      confirm:   'Naozaj vyprázdniť košík?',
+      mailSubject: (n) => `Objednávka z webu — ${n} ks`,
+      order: {
+        head:     'OBJEDNÁVKA — ULTRA PEPTIDY',
+        perUnit:  '/ks',
+        tierNote: '(množstevná cena)',
+        items:    'Položiek',
+        discount: 'Množstevná zľava',
+        total:    'Celkom s DPH',
+        shipping: 'Doprava sa doúčtuje podľa zvoleného spôsobu.',
+        ack:      ['Potvrdzujem, že mám 18 rokov alebo viac a že položky',
+                   'nadobúdam výhradne na laboratórne a výskumné použitie.'],
+        fields:   ['Meno a priezvisko: ', 'Adresa doručenia:  ', 'Telefón:           ',
+                   'IČO / DIČ (ak fakturujete na firmu): '],
+      },
+    },
+    en: {
+      save:      (amount, q) => `You save ${amount} on ${q} units`,
+      added:     '✓ Added to cart',
+      each:      'unit',
+      tierPrice: 'volume price',
+      toTier:    (n, price) => `Add ${n} more and the unit price drops to ${price}.`,
+      qtyDown:   'Decrease quantity',
+      qtyUp:     'Increase quantity',
+      qty:       'Quantity',
+      remove:    (name) => `Remove ${name}`,
+      confirm:   'Really empty the cart?',
+      mailSubject: (n) => `Order from the website — ${n} units`,
+      order: {
+        head:     'ORDER — ULTRA PEPTIDY',
+        perUnit:  '/unit',
+        tierNote: '(volume price)',
+        items:    'Items',
+        discount: 'Volume discount',
+        total:    'Total incl. VAT',
+        shipping: 'Shipping is charged separately according to the method chosen.',
+        ack:      ['I confirm that I am 18 years of age or older and that I am acquiring',
+                   'the items strictly for laboratory and research use.'],
+        fields:   ['Full name:        ', 'Delivery address: ', 'Phone:            ',
+                   'Company ID / VAT ID (if invoicing a company): '],
+      },
+    },
+  };
+  const S = DICT[LANG];
 
   /* ── 2) Množstevný stepper so živým prepočtom 3+ KS ────────────────────
      Ceny sa čítajú z datasetu pri KAŽDOM prekreslení, nie raz pri inicializácii —
@@ -47,7 +113,7 @@
     document.querySelectorAll('[data-total]').forEach((o) => { o.textContent = eur(unit * q); });
     document.querySelectorAll('[data-save]').forEach((s) => {
       s.hidden = saved <= 0;
-      s.textContent = saved > 0 ? `Ušetríš ${eur(saved)} pri ${q} ks` : '';
+      s.textContent = saved > 0 ? S.save(eur(saved), q) : '';
     });
     box.querySelectorAll('.price-row').forEach((row) => {
       row.classList.toggle('is-active', row.classList.contains('price-row--tier') === (q >= minQ));
@@ -196,6 +262,9 @@
     // klik mimo obsahu zavrie; <dialog> hlási klik na seba pri kliku do backdropu
     cennik.addEventListener('click', (e) => { if (e.target === cennik) close(); });
     cennik.addEventListener('close', () => setPressed(false));
+
+    // odkaz 'katalog.html#cennik' zo stranok bez modalu otvori cennik po prichode
+    if (location.hash === '#cennik') { cennik.showModal(); setPressed(true); }
   }
 
   /* ═══════════════════════════════════════════════════════════════════════
@@ -264,7 +333,7 @@
 
       // krátke potvrdenie na tlačidle namiesto vyskakovacieho okna
       const label = btn.textContent;
-      btn.textContent = '✓ Pridané do košíka';
+      btn.textContent = S.added;
       btn.disabled = true;
       setTimeout(() => { btn.textContent = label; btn.disabled = false; }, 1400);
     });
@@ -281,24 +350,18 @@
     const ORDER_MAIL = 'objednavky@ultrapeptidy.sk';
 
     const summaryText = (items, t) => {
-      const lines = ['OBJEDNÁVKA — ULTRA PEPTIDY', ''];
+      const o = S.order;
+      const lines = [o.head, ''];
       for (const i of items) {
         const u = unitOf(i);
         lines.push(
           `${i.qty}× ${i.name}${i.mg ? ' ' + i.mg : ''}  [${i.ref}]` +
-          `\n     ${eur(u)}/ks${u !== i.price ? ' (množstevná cena)' : ''} = ${eur(u * i.qty)}`
+          `\n     ${eur(u)}${o.perUnit}${u !== i.price ? ' ' + o.tierNote : ''} = ${eur(u * i.qty)}`
         );
       }
-      lines.push('', `Položiek: ${t.count}`);
-      if (t.full > t.total) lines.push(`Množstevná zľava: −${eur(t.full - t.total)}`);
-      lines.push(`Celkom s DPH: ${eur(t.total)}`, '',
-        'Doprava sa doúčtuje podľa zvoleného spôsobu.', '',
-        'Potvrdzujem, že mám 18 rokov alebo viac a že položky',
-        'nadobúdam výhradne na laboratórne a výskumné použitie.', '',
-        'Meno a priezvisko: ',
-        'Adresa doručenia:  ',
-        'Telefón:           ',
-        'IČO / DIČ (ak fakturujete na firmu): ');
+      lines.push('', `${o.items}: ${t.count}`);
+      if (t.full > t.total) lines.push(`${o.discount}: −${eur(t.full - t.total)}`);
+      lines.push(`${o.total}: ${eur(t.total)}`, '', o.shipping, '', ...o.ack, '', ...o.fields);
       return lines.join('\n');
     };
 
@@ -318,26 +381,26 @@
         const toTier = i.tier != null && i.qty < TIER_QTY ? TIER_QTY - i.qty : 0;
         return `
         <article class="cart-item" data-ref="${i.ref}">
-          <a class="cart-item__fig" href="produkt-${i.slug}.html" aria-label="${i.name}">
+          <a class="cart-item__fig" href="${PRODUCT}${i.slug}.html" aria-label="${i.name}">
             <span class="vial" style="--vial-w:52px">
-              <img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async">
+              <img class="vial__photo" src="${ASSETS}img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async">
             </span>
           </a>
           <div class="cart-item__main">
-            <h3><a href="produkt-${i.slug}.html">${i.name}</a>${i.mg ? ` <span class="chip">${i.mg}</span>` : ''}</h3>
+            <h3><a href="${PRODUCT}${i.slug}.html">${i.name}</a>${i.mg ? ` <span class="chip">${i.mg}</span>` : ''}</h3>
             <p class="cart-item__ref">${i.ref}</p>
             <p class="cart-item__unit${tierOn ? ' is-tier' : ''}">
-              ${eur(u)} / ks${tierOn ? ' · množstevná cena' : ''}
+              ${eur(u)} / ${S.each}${tierOn ? ' · ' + S.tierPrice : ''}
             </p>
-            ${toTier > 0 ? `<p class="cart-item__hint">Pridaj ${toTier} ks a cena za kus klesne na ${eur(i.tier)}.</p>` : ''}
+            ${toTier > 0 ? `<p class="cart-item__hint">${S.toTier(toTier, eur(i.tier))}</p>` : ''}
           </div>
           <div class="cart-item__qty">
             <div class="qty-stepper">
-              <button type="button" data-cart-step="-1" aria-label="Znížiť množstvo">−</button>
-              <input type="number" value="${i.qty}" min="1" max="99" aria-label="Množstvo">
-              <button type="button" data-cart-step="1" aria-label="Zvýšiť množstvo">+</button>
+              <button type="button" data-cart-step="-1" aria-label="${S.qtyDown}">−</button>
+              <input type="number" value="${i.qty}" min="1" max="99" aria-label="${S.qty}">
+              <button type="button" data-cart-step="1" aria-label="${S.qtyUp}">+</button>
             </div>
-            <button class="cart-item__del" data-cart-remove aria-label="Odstrániť ${i.name}">
+            <button class="cart-item__del" data-cart-remove aria-label="${S.remove(i.name)}">
               <svg width="16" height="16" fill="none" stroke="currentColor"><use href="#i-trash"/></svg>
             </button>
           </div>
@@ -361,7 +424,7 @@
       const mail = $('[data-cart-mail]');
       if (mail) {
         mail.href = `mailto:${ORDER_MAIL}` +
-          `?subject=${encodeURIComponent('Objednávka z webu — ' + t.count + ' ks')}` +
+          `?subject=${encodeURIComponent(S.mailSubject(t.count))}` +
           `&body=${encodeURIComponent(text)}`;
       }
     };
@@ -396,7 +459,7 @@
     });
 
     clearBtn?.addEventListener('click', () => {
-      if (confirm('Naozaj vyprázdniť košík?')) cartWrite([]);
+      if (confirm(S.confirm)) cartWrite([]);
     });
 
     $('[data-cart-copy]')?.addEventListener('click', async () => {

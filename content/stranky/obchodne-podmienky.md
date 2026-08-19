@@ -2,6 +2,8 @@
 :: eyebrow: Právne dokumenty
 :: nav: legal
 :: order: 1
+:: id: terms
+:: alt: terms-and-conditions
 :: perex: Podmienky, za ktorých predávame referenčné látky na laboratórne a výskumné použitie. Prečítaj si najmä článok 3 o určení produktov a článok 4 o tom, komu môžeme dodať.
 :: updated: 17. 8. 2026
 

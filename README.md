@@ -1,28 +1,34 @@
 # ULTRA PEPTIDY — web a obsahový systém
 
-Katalóg výskumných peptidov. Stránky sa **generujú z dát**, takže pridanie
-produktu alebo zmena ceny je úprava jedného riadku v CSV — nie editovanie HTML.
-
----
+Katalóg výskumných peptidov **v slovenčine a angličtine**. Stránky sa
+**generujú z dát**, takže pridanie produktu alebo zmena ceny je úprava jedného
+riadku v CSV — a prejaví sa naraz v oboch jazykoch.
 
 ## Ako to je poskladané
 
 ```
-data/kategorie.csv          kategórie a ich poradie
-data/produkty.csv           katalóg: ceny, gramáž, sklad, čistota, šarža
-content/produkty/<slug>.md  popisný text produktu (voliteľné)
-templates/produkt.html      šablóna produktovej stránky
+data/kategorie.csv             kategórie, poradie a názvy v oboch jazykoch
+data/produkty.csv              katalóg: ceny, gramáž, sklad, čistota, šarža
+data/i18n/sk.json              slovenské texty rozhrania + adresy stránok
+data/i18n/en.json              anglické texty rozhrania + adresy stránok
+data/site.json                 adresa webu (pre sitemap a robots)
+content/produkty/<slug>.md     popis produktu po slovensky
+content/en/produkty/<slug>.md  ten istý popis po anglicky
+content/stranky/*.md           právne a informačné stránky (a content/en/stranky/)
+templates/*.html               šablóny — bez jediného natvrdo napísaného textu
         │
         ▼  node scripts/generate.mjs
-site/                       hotový web — TOTO SA NASADZUJE
+site/                          slovenská verzia   ┐ TOTO SA NASADZUJE
+site/en/                       anglická verzia    ┘
 ```
 
-`site/index.html` a `site/katalog.html` sú ručne navrhnuté stránky, do ktorých
-generátor dopĺňa len bloky medzi značkami `<!-- GEN:xxx -->`. Produktové stránky
-(`site/produkt-<slug>.html`) vznikajú celé zo šablóny.
+**Celý adresár `site/` je generovaný.** Nič v ňom needituj — prepíše to
+najbližší build. Výnimka sú statické súbory, ktoré generátor nevytvára:
+`assets/`, `.htaccess` v koreni a `.nojekyll`.
 
-> **Súbory `site/produkt-*.html` needituj.** Prepíše ich najbližší build.
-> Uprav dáta alebo `templates/produkt.html`.
+Dáta sú spoločné pre oba jazyky. Líšia sa len texty, názvy súborov
+(`produkt-bpc-157.html` ↔ `en/product-bpc-157.html`) a formát ceny —
+slovenčina píše `35,00 €`, angličtina `35.00 €`.
 
 ---
 
@@ -105,10 +111,47 @@ sa ručne nemení. `scripts/check.mjs` overí, že to sedí všade.
 
 ## Ako pridať kategóriu
 
-Riadok do `data/kategorie.csv`. Stĺpec `icon` je id symbolu zo SVG sprite
-(`i-syringe`, `i-face`, `i-heart`, `i-growth`, `i-brain`, `i-drop`).
-Pre novú ikonu pridaj `<symbol>` do sprite v `templates/produkt.html`,
-`site/index.html` a `site/katalog.html`.
+Riadok do `data/kategorie.csv`. Musí mať vyplnený **slovenský aj anglický
+názov** — bez jedného z nich build spadne. Stĺpec `icon` je id symbolu zo SVG
+sprite (`i-syringe`, `i-face`, `i-heart`, `i-growth`, `i-brain`, `i-drop`).
+Pre novú ikonu pridaj `<symbol>` do sprite v šablónach, ktoré ju používajú.
+
+---
+
+## Ako zmeniť text v rozhraní
+
+Každý text, ktorý nie je obsah produktu ani právna stránka, je v
+`data/i18n/<jazyk>.json` pod kľúčom. Šablóny obsahujú len značky
+`{{T_KLUC}}` — v HTML nie je žiadny text, ktorý by sa musel prekladať dvakrát.
+
+```json
+"ADD_TO_CART": "◆ Pridať do košíka",
+"STOCK_LOW":   "Posledné kusy",
+"SAVING_NOTE": "Pri 3 kusoch ušetríš {amount}."
+```
+
+Zložené zátvorky `{amount}`, `{n}`, `{skus}` dopĺňa generátor. Ak kľúč
+v jazyku chýba, build spadne s jeho menom — nikdy sa nenasadí stránka
+s prázdnym miestom.
+
+Texty v `site/assets/js/site.js` (košík, potvrdenia, e-mail s objednávkou) sú
+v slovníku `DICT` priamo v tom súbore. Skript je pre obe mutácie ten istý;
+jazyk si prečíta z `<html data-locale>`.
+
+## Ako pridať ďalší jazyk
+
+1. Skopíruj `data/i18n/en.json` na `data/i18n/<kód>.json` a prelož hodnoty.
+   `dir` je podadresár (`de`), `assets` musí zostať `../assets/`,
+   `routes` sú názvy súborov v tom jazyku.
+2. Pridaj stĺpec s názvami kategórií do `data/kategorie.csv` a nastav naň
+   `categoryField`.
+3. Prelož `content/<kód>/produkty/*.md` a `content/<kód>/stranky/*.md`.
+   V hlavičke právnej stránky uveď `:: alt: <slug v slovenčine>`, aby
+   prepínač jazyka vedel, kam skočiť.
+4. Doplň jazyk do `DICT` v `site/assets/js/site.js`.
+5. `node scripts/generate.mjs && node scripts/check.mjs`
+
+V šablónach sa nemení nič.
 
 ---
 
@@ -118,7 +161,7 @@ Pre novú ikonu pridaj `<symbol>` do sprite v `templates/produkt.html`,
 |---|---|
 | `node scripts/generate.mjs` | Vygeneruje web z dát |
 | `node scripts/generate.mjs --check` | Suchý beh, nič nezapíše |
-| `node scripts/check.mjs` | Overí, že každá položka má stránku, kartu, cenník a správnu cenu |
+| `node scripts/check.mjs` | Overí **v každom jazyku**, že každá položka má stránku, kartu, cenník a správnu cenu, a že v HTML nezostala nenahradená značka |
 | `bash scripts/build-prototyp.sh` | Zlúči web do jedného HTML pre náhľad |
 | `node scripts/export-woocommerce.mjs` | CSV pre import katalógu do WooCommerce |
 | `node scripts/package.mjs` | **Zloží `dist/` — presne to, čo sa nahráva na Websupport** |
@@ -237,10 +280,44 @@ a nepoužívaj Google Fonts CDN — v EÚ je to problém s GDPR.
 
 ## Čo ešte nie je hotové
 
+**Než sa začne predávať**
+
+- **Údaje predávajúceho.** Šesť právnych stránok má miesta `[DOPLNIŤ]` —
+  obchodné meno, sídlo, IČO, DIČ, register, e-mail, telefón, príslušný
+  inšpektorát SOI, spôsoby dopravy a platby. V pätičke je `IČO 00 000 000`.
+- **Kontakt.** Web nemá kontaktnú stránku ani e-mail v pätičke; adresa
+  `objednavky@ultrapeptidy.sk` žije len v `site.js` pri odoslaní košíka.
+- **Certifikáty analýzy.** Odkaz „Stiahnuť COA (PDF)" vedie na `#` na
+  všetkých 23 stránkach v oboch jazykoch. Web pritom sľubuje certifikát
+  ku každej šarži.
+- **Právne texty pre angličtinu.** Preklad je hotový, ale opisuje slovenského
+  predávajúceho a slovenské právo. Ak sa bude predávať mimo SR, musí ho
+  posúdiť advokát spolu so slovenským znením.
+- **Objednávka** končí e-mailom. Platby a stavy objednávok prídu s WooCommerce.
+- **Bariéra 18+** je zatiaľ len UI vrstva v `localStorage`. Na skutočnom
+  e-shope k tomu treba server-side cookie a audit záznam, inak nemá právnu váhu.
+
+**Nájditeľnosť**
+
+- **Doména.** Kým je `data/site.json` prázdny, `sitemap.xml` má relatívne
+  adresy (`/katalog.html`) — protokol sitemáp vyžaduje absolútne URL, takto ju
+  vyhľadávače odmietnu, a `robots.txt` nemá riadok `Sitemap:`. Po zapísaní
+  domény do `data/site.json` a jednom builde je oboje hotové.
+- **Meta pre zdieľanie.** Chýba `canonical`, `og:` a `twitter:` — odkaz
+  poslaný do správy sa zobrazí ako holá adresa bez obrázka.
+- **Štruktúrované dáta.** Bez `JSON-LD` typu `Product` sa vo výsledkoch
+  vyhľadávania neukáže cena ani dostupnosť.
+- **hreflang.** Prepínač jazyka na stránkach je, ale `<link rel="alternate"
+  hreflang>` nie — Google ho uznáva len s absolútnou adresou, takže má zmysel
+  doplniť ho až spolu s doménou.
+
+**Vzhľad a obsah**
+
 - **Fotky ostatných produktov.** Všetky používajú tú istú fľaštičku s vymeneným
   názvom. Jedna svetelná zostava a nafotiť celý katalóg je najväčší jednorazový
   skok v kvalite.
-- **Popisné texty.** Hotové sú MOTS-C a BPC-157, zvyšných 30 má šablónu.
-- **Košík, platby, právne stránky.**
-- **Bariéra 18+** je zatiaľ len UI vrstva v `localStorage`. Na skutočnom
-  e-shope k tomu treba server-side cookie a audit záznam, inak nemá právnu váhu.
+- **404.html** nenačítava `site.js` — nemá odznak košíka ani bariéru 18+.
+- **Anglické texty** písal prekladateľ bez rodného jazyka. Pred spustením
+  kampane na anglický trh sa oplatí korektúra rodeným hovoriacim.
+- **Katalóg nemá vyhľadávanie ani triedenie.** Pri 23 produktoch v šiestich
+  kategóriách to zatiaľ nechýba; pri ~40 už áno.

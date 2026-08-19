@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- GENEROVANÉ — needituj priamo v site/. Zdroj: templates/produkt.html + data/ + content/ -->
-<html lang="sk">
+<html lang="sk" data-assets="assets/" data-product-prefix="produkt-" data-cart-url="kosik.html" data-locale="sk">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -128,9 +128,7 @@
     <span class="holo-logo holo-logo--mark" style="width:56px;margin:0 auto 18px"><img src="assets/img/logo-mark.png" alt="" width="122" height="120"></span>
     <h2 id="gate-t">Potvrdenie vstupu</h2>
     <p>
-      Produkty na tejto stránke sú určené <strong>výhradne na výskumné a laboratórne účely</strong>
-      (<em>for research use only</em>). Nie sú liekmi, výživovými doplnkami ani kozmetikou a nie sú
-      určené na diagnostiku, liečbu ani podávanie ľuďom či zvieratám.
+      Produkty na tejto stránke sú určené <strong>výhradne na výskumné a laboratórne účely</strong> (<em>for research use only</em>). Nie sú liekmi, výživovými doplnkami ani kozmetikou a nie sú určené na diagnostiku, liečbu ani podávanie ľuďom či zvieratám.
     </p>
     <p>Vstupom potvrdzujete, že máte <strong>18 rokov alebo viac</strong> a rozumiete tomuto určeniu.</p>
     <div class="agegate__actions">
@@ -148,7 +146,7 @@
     </a>
     <nav class="up-nav" aria-label="Hlavná navigácia">
       <a href="katalog.html">Katalóg</a>
-      <a href="#" data-open-cennik>Cenník</a>
+      <a href="katalog.html#cennik" data-open-cennik>Cenník</a>
       <a href="index.html#cistota">Kvalita</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
@@ -156,6 +154,7 @@
       <button class="icon-btn" aria-label="Hľadať">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg>
       </button>
+      <div class="lang-switch" role="group" aria-label="Jazyk"><span class="lang-switch__cur" aria-current="true">SK</span><a class="lang-switch__opt" href="en/product-bpc-tb500.html" hreflang="en" lang="en">EN</a></div>
       <a class="icon-btn" href="kosik.html" aria-label="Košík">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4.5 8.5h15l-1.7 11H6.2z"/><path d="M8.5 8.5V8a3.5 3.5 0 017 0v.5"/></svg>
         <span class="icon-btn__badge" data-cart-count hidden>0</span>
@@ -250,8 +249,7 @@
 
       <div class="notice">
         <svg fill="none" stroke-width="1.5"><use href="#i-clock"/></svg>
-        <span><strong>Expedícia v pracovné dni.</strong> Lyofilizát je pri bežných prepravných časoch
-        teplotne odolný — skladovanie po doručení nájdeš v záložke nižšie.</span>
+        <span><strong>Expedícia v pracovné dni.</strong> Lyofilizát je pri bežných prepravných časoch teplotne odolný — skladovanie po doručení nájdeš v záložke nižšie.</span>
       </div>
       <div class="notice">
         <svg fill="none" stroke-width="1.5"><use href="#i-lock"/></svg>
@@ -322,10 +320,7 @@
 
     <p class="disclaimer">
       <svg fill="none" stroke-width="1.5"><use href="#i-warn"/></svg>
-      <span><strong>Účinnosť a bezpečnosť podávania tejto látky ľuďom nie sú dostatočne klinicky
-      potvrdené.</strong> Uvedené informácie sú výhradne súhrnom publikovaných výskumných zistení,
-      prevažne z laboratórnych a zvieracích modelov. Nejde o zdravotné tvrdenia ani o odporúčanie
-      použitia u ľudí. Produkt je určený výhradne na výskumné účely a nie je liekom.</span>
+      <span><strong>Účinnosť a bezpečnosť podávania tejto látky ľuďom nie sú dostatočne klinicky potvrdené.</strong> Uvedené informácie sú výhradne súhrnom publikovaných výskumných zistení, prevažne z laboratórnych a zvieracích modelov. Nejde o zdravotné tvrdenia ani o odporúčanie použitia u ľudí. Produkt je určený výhradne na výskumné účely a nie je liekom.</span>
     </p>
   </div>
 </section>
@@ -343,7 +338,7 @@
     <div class="tabpanel" role="tabpanel" id="p1" aria-labelledby="t1">
       <dl>
         <dt>Názov</dt><dd>BPC-157 + TB-500</dd>
-        <dt>Forma</dt><dd>Lyofilizat</dd>
+        <dt>Forma</dt><dd>Lyofilizát</dd>
         <dt>Kategória</dt><dd>Krása</dd>
       </dl>
       <table class="spec-variants">
@@ -556,8 +551,7 @@
       </div>
   </div>
   <p class="modal__foot">
-    Pomlčka v stĺpci „3+ ks“ znamená, že pre danú položku nie je stanovená množstevná cena.
-    Ceny sú konečné vrátane DPH.
+    Pomlčka v stĺpci „3+ ks“ znamená, že pre danú položku nie je stanovená množstevná cena. Ceny sú konečné vrátane DPH.
   </p>
 </dialog>
 
@@ -579,7 +573,7 @@
           <li><a href="katalog.html#na-chudnutie">Na chudnutie</a></li>
           <li><a href="katalog.html#krasa">Krása</a></li>
           <li><a href="katalog.html#regeneracia">Regenerácia a zdravie</a></li>
-          <li><a href="katalog.html#rastove-hormony">Rastové hormóny</a></li>
+          <li><a href="katalog.html#rastove-hormony">Rastové hormóny a peptidy</a></li>
           <li><a href="katalog.html#kognicia">Kognícia a fokus</a></li>
           <li><a href="katalog.html#pomocne">Pomocné produkty</a></li>
         </ul>
@@ -587,7 +581,7 @@
       <div>
         <h4>Informácie</h4>
         <ul>
-          <li><a href="#" data-open-cennik>Cenník</a></li>
+          <li><a href="katalog.html#cennik" data-open-cennik>Cenník</a></li>
           <li><a href="doprava-a-platba.html">Doprava a platba</a></li>
           <li><a href="index.html#faq">Časté otázky</a></li>
         </ul>
@@ -606,11 +600,7 @@
     </div>
 
     <p class="ruo-strip">
-      <strong>FOR RESEARCH USE ONLY.</strong> Všetky produkty na tejto stránke sú určené výhradne na
-      laboratórne a výskumné použitie. Nie sú liekmi, výživovými doplnkami, kozmetikou ani
-      zdravotníckymi pomôckami a nie sú určené na diagnostiku, prevenciu, liečbu ani na podávanie
-      ľuďom či zvieratám. Neposkytujeme dávkovanie ani zdravotné odporúčania. Nákup je možný len
-      osobám nad 18 rokov.
+      <strong>FOR RESEARCH USE ONLY.</strong> Všetky produkty na tejto stránke sú určené výhradne na laboratórne a výskumné použitie. Nie sú liekmi, výživovými doplnkami, kozmetikou ani zdravotníckymi pomôckami a nie sú určené na diagnostiku, prevenciu, liečbu ani na podávanie ľuďom či zvieratám. Neposkytujeme dávkovanie ani zdravotné odporúčania. Nákup je možný len osobám nad 18 rokov.
     </p>
 
     <div class="up-footer__legal">

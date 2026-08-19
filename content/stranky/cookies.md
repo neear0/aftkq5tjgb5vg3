@@ -2,6 +2,7 @@
 :: eyebrow: Právne dokumenty
 :: nav: legal
 :: order: 5
+:: alt: cookies
 :: perex: Aktuálne používame len technicky nutné úložisko v prehliadači. Žiadne analytické ani reklamné cookies tu nebežia.
 :: updated: 17. 8. 2026
 
@@ -14,7 +15,7 @@ Používa len **lokálne úložisko prehliadača** (`localStorage`) na dve veci:
 
 | Kľúč | Na čo | Trvanie |
 |---|---|---|
-| `up_ruo_ack_v2` | zapamätá si, že si potvrdil vek 18+ a určenie produktov | do vymazania údajov prehliadača |
+| `up_ruo_ack_v1` | zapamätá si, že si potvrdil vek 18+ a určenie produktov | do vymazania údajov prehliadača |
 | `up_cart_v1` | obsah košíka, aby sa nestratil pri prechode medzi stránkami | do vymazania údajov prehliadača |
 
 Toto úložisko je **technicky nutné** na fungovanie webu. Bez neho by sa ťa

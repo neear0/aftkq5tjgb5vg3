@@ -447,6 +447,31 @@ body::after {
   font: 700 .625rem/1 var(--up-font-mono);
 }
 
+/* ── Prepínač jazyka ─────────────────────────────────────────────────────
+   Dva krátke kódy vedľa seba, nie rozbaľovacie menu: pri dvoch jazykoch je
+   zoznam drahší na klik než samotné prepnutie. Aktívny jazyk nie je odkaz —
+   klik na jazyk, v ktorom už si, je len prekliknutie na tú istú stránku. */
+.lang-switch {
+  display: flex; align-items: center;
+  border: 1px solid var(--up-hairline);
+  border-radius: var(--up-r-pill);
+  background: var(--up-ink-2);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.lang-switch__cur,
+.lang-switch__opt {
+  padding: 0 9px;
+  height: 36px;
+  display: flex; align-items: center;
+  font: 600 .6875rem/1 var(--up-font-mono);
+  letter-spacing: .04em;
+  text-decoration: none;
+}
+.lang-switch__cur { color: var(--up-text); background: rgba(255,255,255,.05); }
+.lang-switch__opt { color: var(--up-text-mute); transition: color .25s var(--up-ease); }
+.lang-switch__opt:hover { color: var(--up-text); }
+
 /* ── Logo (skutočná značka z tlačených materiálov) ───────────────────────
    Cez značku prechádza ten istý holografický gradient a rovnakým tempom
    ako sa hýbe sieť na pozadí (26 s). mix-blend-mode:hue prenesie na logo

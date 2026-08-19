@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="sk" data-assets="assets/" data-product-prefix="produkt-" data-cart-url="kosik.html" data-locale="sk">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ULTRA PEPTIDY — výskumné peptidy najvyššej kvality</title>
-<meta name="description" content="Výskumné peptidy s certifikátom analýzy pre každú šaržu. 32 produktov v 6 kategóriách, diskrétne balenie. ">
+<meta name="description" content="Výskumné peptidy s certifikátom analýzy pre každú šaržu. 32 produktov v 6 kategóriách, diskrétne balenie.">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/ultrapeptidy.css">
@@ -154,9 +154,7 @@
     <span class="holo-logo holo-logo--mark" style="width:56px;margin:0 auto 18px"><img src="assets/img/logo-mark.png" alt="" width="122" height="120"></span>
     <h2 id="gate-t">Potvrdenie vstupu</h2>
     <p>
-      Produkty na tejto stránke sú určené <strong>výhradne na výskumné a laboratórne účely</strong>
-      (<em>for research use only</em>). Nie sú liekmi, výživovými doplnkami ani kozmetikou a nie sú
-      určené na diagnostiku, liečbu ani podávanie ľuďom či zvieratám.
+      Produkty na tejto stránke sú určené <strong>výhradne na výskumné a laboratórne účely</strong> (<em>for research use only</em>). Nie sú liekmi, výživovými doplnkami ani kozmetikou a nie sú určené na diagnostiku, liečbu ani podávanie ľuďom či zvieratám.
     </p>
     <p>Vstupom potvrdzujete, že máte <strong>18 rokov alebo viac</strong> a rozumiete tomuto určeniu.</p>
     <div class="agegate__actions">
@@ -175,7 +173,7 @@
     </a>
     <nav class="up-nav" aria-label="Hlavná navigácia">
       <a href="katalog.html">Katalóg</a>
-      <a href="#" data-open-cennik>Cenník</a>
+      <a href="katalog.html#cennik" data-open-cennik>Cenník</a>
       <a href="#cistota">Kvalita</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -183,6 +181,7 @@
       <button class="icon-btn" aria-label="Hľadať">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg>
       </button>
+      <div class="lang-switch" role="group" aria-label="Jazyk"><span class="lang-switch__cur" aria-current="true">SK</span><a class="lang-switch__opt" href="en/index.html" hreflang="en" lang="en">EN</a></div>
       <a class="icon-btn" href="kosik.html" aria-label="Košík">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4.5 8.5h15l-1.7 11H6.2z"/><path d="M8.5 8.5V8a3.5 3.5 0 017 0v.5"/></svg>
         <span class="icon-btn__badge" data-cart-count hidden>0</span>
@@ -229,7 +228,6 @@
       </div>
       <a class="section-link" href="katalog.html">Celý katalóg →</a>
     </div>
-    <!-- GEN:kategorie -->
     <div class="cat-nav">
       <a class="cat-chip" href="katalog.html#na-chudnutie"><svg fill="none"><use href="#i-syringe"/></svg><span class="cat-chip__name">Na chudnutie</span><span class="cat-chip__n">2</span></a>
       <a class="cat-chip" href="katalog.html#krasa"><svg fill="none"><use href="#i-face"/></svg><span class="cat-chip__name">Krása</span><span class="cat-chip__n">9</span></a>
@@ -238,7 +236,6 @@
       <a class="cat-chip" href="katalog.html#kognicia"><svg fill="none"><use href="#i-brain"/></svg><span class="cat-chip__name">Kognícia a fokus</span><span class="cat-chip__n">3</span></a>
       <a class="cat-chip" href="katalog.html#pomocne"><svg fill="none"><use href="#i-drop"/></svg><span class="cat-chip__name">Pomocné produkty</span><span class="cat-chip__n">1</span></a>
     </div>
-<!-- /GEN:kategorie -->
   </div>
 </section>
 
@@ -255,7 +252,6 @@
         <a class="section-link" href="katalog.html">Všetkých 32 →</a>
       </div>
     </div>
-    <!-- GEN:featured -->
     <div class="prod-grid">
       <article class="prod-card holo-border foil sheen">
         <a class="prod-card__media" href="produkt-reta.html" aria-label="Reta"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name">Reta</span></span></a>
@@ -307,7 +303,6 @@
         </div>
       </article>
     </div>
-<!-- /GEN:featured -->
   </div>
 </section>
 
@@ -337,34 +332,23 @@
     <div class="faq">
       <details open>
         <summary>Ako prebieha odoslanie a doprava?</summary>
-        <p>Objednávky expedujeme v pracovné dni. Zásielka ide v neutrálnom
-           obale bez označenia obsahu aj odosielateľa. Lyofilizovaný peptid je pri bežných
-           prepravných časoch teplotne odolný, takže chladený reťazec počas dopravy nepotrebuje —
-           dôležité je až skladovanie po doručení.</p>
+        <p>Objednávky expedujeme v pracovné dni. Zásielka ide v neutrálnom obale bez označenia obsahu aj odosielateľa. Lyofilizovaný peptid je pri bežných prepravných časoch teplotne odolný, takže chladený reťazec počas dopravy nepotrebuje — dôležité je až skladovanie po doručení.</p>
       </details>
       <details>
         <summary>Čo znamená „for research only“?</summary>
-        <p>Produkty sú určené výhradne na laboratórne a výskumné použitie. Nie sú liekmi, výživovými
-           doplnkami ani kozmetikou, nemajú registráciu na podávanie ľuďom a neposkytujeme k nim
-           dávkovanie ani zdravotné odporúčania.</p>
+        <p>Produkty sú určené výhradne na laboratórne a výskumné použitie. Nie sú liekmi, výživovými doplnkami ani kozmetikou, nemajú registráciu na podávanie ľuďom a neposkytujeme k nim dávkovanie ani zdravotné odporúčania.</p>
       </details>
       <details>
         <summary>Ako čítať certifikát analýzy (COA)?</summary>
-        <p>COA obsahuje číslo šarže, dátum testovania, laboratórium, metódu (typicky HPLC pre čistotu
-           a hmotnostnú spektrometriu pre identitu) a výslednú čistotu v percentách. Číslo šarže
-           na certifikáte musí byť rovnaké ako na etikete tvojej fľaštičky.</p>
+        <p>COA obsahuje číslo šarže, dátum testovania, laboratórium, metódu (typicky HPLC pre čistotu a hmotnostnú spektrometriu pre identitu) a výslednú čistotu v percentách. Číslo šarže na certifikáte musí byť rovnaké ako na etikete tvojej fľaštičky.</p>
       </details>
       <details>
         <summary>Ako mám skladovať lyofilizovaný peptid?</summary>
-        <p>Nerozpustený lyofilizát je v chlade a v tme stabilný dlhodobo. Po rekonštitúcii sa
-           stabilita výrazne skracuje a závisí od konkrétnej molekuly — konkrétne parametre
-           pre danú šaržu nájdeš na produktovej stránke v záložke Stabilita.</p>
+        <p>Nerozpustený lyofilizát je v chlade a v tme stabilný dlhodobo. Po rekonštitúcii sa stabilita výrazne skracuje a závisí od konkrétnej molekuly — konkrétne parametre pre danú šaržu nájdeš na produktovej stránke v záložke Skladovanie.</p>
       </details>
       <details>
         <summary>Ako funguje zľava od 3 kusov?</summary>
-        <p>Nižšia cena za kus platí od 3 kusov <strong>tej istej položky</strong> a je v cenníku
-           uvedená v stĺpci „3+ ks za kus". Pri niektorých položkách (KPV, GHRP-6, Bac Water)
-           množstevná cena stanovená nie je — v cenníku je namiesto nej pomlčka.</p>
+        <p>Nižšia cena za kus platí od 3 kusov <strong>tej istej položky</strong> a je v cenníku uvedená v stĺpci „3+ ks za kus“. Pri niektorých položkách (KPV, GHRP-6, Bac Water) množstevná cena stanovená nie je — v cenníku je namiesto nej pomlčka.</p>
       </details>
     </div>
   </div>
@@ -383,7 +367,6 @@
     </button>
   </div>
   <div class="modal__body">
-    <!-- GEN:cennik -->
       <div class="pricelist">
         <div class="pl-group">
           <div class="pl-group__head"><svg fill="none" stroke-linecap="round"><use href="#i-syringe"/></svg><h3 class="pl-group__title">Na chudnutie</h3></div>
@@ -466,11 +449,9 @@
           </table>
         </div>
       </div>
-<!-- /GEN:cennik -->
   </div>
   <p class="modal__foot">
-    Pomlčka v stĺpci „3+ ks" znamená, že pre danú položku nie je stanovená množstevná cena.
-    Ceny sú konečné vrátane DPH.
+    Pomlčka v stĺpci „3+ ks“ znamená, že pre danú položku nie je stanovená množstevná cena. Ceny sú konečné vrátane DPH.
   </p>
 </dialog>
 
@@ -493,7 +474,7 @@
           <li><a href="katalog.html#na-chudnutie">Na chudnutie</a></li>
           <li><a href="katalog.html#krasa">Krása</a></li>
           <li><a href="katalog.html#regeneracia">Regenerácia a zdravie</a></li>
-          <li><a href="katalog.html#rastove-hormony">Rastové hormóny</a></li>
+          <li><a href="katalog.html#rastove-hormony">Rastové hormóny a peptidy</a></li>
           <li><a href="katalog.html#kognicia">Kognícia a fokus</a></li>
           <li><a href="katalog.html#pomocne">Pomocné produkty</a></li>
         </ul>
@@ -501,34 +482,26 @@
       <div>
         <h4>Informácie</h4>
         <ul>
-<!-- GEN:navinfo -->
-          <li><a href="#" data-open-cennik>Cenník</a></li>
+          <li><a href="katalog.html#cennik" data-open-cennik>Cenník</a></li>
           <li><a href="doprava-a-platba.html">Doprava a platba</a></li>
           <li><a href="index.html#faq">Časté otázky</a></li>
-<!-- /GEN:navinfo -->
         </ul>
       </div>
       <div>
         <h4>Právne</h4>
         <ul>
-<!-- GEN:navlegal -->
           <li><a href="obchodne-podmienky.html">Všeobecné obchodné podmienky</a></li>
           <li><a href="odstupenie-od-zmluvy.html">Odstúpenie od zmluvy</a></li>
           <li><a href="reklamacny-poriadok.html">Reklamačný poriadok</a></li>
           <li><a href="ochrana-osobnych-udajov.html">Ochrana osobných údajov</a></li>
           <li><a href="cookies.html">Cookies</a></li>
           <li><a href="riesenie-sporov.html">Riešenie sporov</a></li>
-<!-- /GEN:navlegal -->
         </ul>
       </div>
     </div>
 
     <p class="ruo-strip">
-      <strong>FOR RESEARCH USE ONLY.</strong> Všetky produkty na tejto stránke sú určené výhradne na
-      laboratórne a výskumné použitie. Nie sú liekmi, výživovými doplnkami, kozmetikou ani
-      zdravotníckymi pomôckami a nie sú určené na diagnostiku, prevenciu, liečbu ani na podávanie
-      ľuďom či zvieratám. Neposkytujeme dávkovanie ani zdravotné odporúčania. Nákup je možný len
-      osobám nad 18 rokov.
+      <strong>FOR RESEARCH USE ONLY.</strong> Všetky produkty na tejto stránke sú určené výhradne na laboratórne a výskumné použitie. Nie sú liekmi, výživovými doplnkami, kozmetikou ani zdravotníckymi pomôckami a nie sú určené na diagnostiku, prevenciu, liečbu ani na podávanie ľuďom či zvieratám. Neposkytujeme dávkovanie ani zdravotné odporúčania. Nákup je možný len osobám nad 18 rokov.
     </p>
 
     <div class="up-footer__legal">

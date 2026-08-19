@@ -2,6 +2,7 @@
 :: eyebrow: Právne dokumenty
 :: nav: legal
 :: order: 4
+:: alt: privacy
 :: perex: Aké údaje spracúvame, prečo, ako dlho a aké máš práva. Zdravotné údaje nespracúvame a ani sa na ne nepýtame.
 :: updated: 17. 8. 2026
 

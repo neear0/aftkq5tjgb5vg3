@@ -2,6 +2,7 @@
 :: eyebrow: Právne dokumenty
 :: nav: legal
 :: order: 6
+:: alt: dispute-resolution
 :: perex: Ak nie si spokojný s tým, ako sme vyriešili reklamáciu, máš právo obrátiť sa na orgán alternatívneho riešenia sporov. Je to bezplatné.
 :: updated: 17. 8. 2026
 

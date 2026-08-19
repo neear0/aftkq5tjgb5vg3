@@ -78,7 +78,9 @@ for (const f of ['woocommerce-produkty.csv', 'WOOCOMMERCE.txt']) {
 /* ── 4) postup ───────────────────────────────────────────────────────────── */
 const skus = readFileSync(join(ROOT, 'data/produkty.csv'), 'utf8')
   .split(/\r?\n/).filter((l) => l.trim()).length - 1;
-const pages = readdirSync(webOut).filter((f) => f.endsWith('.html')).length;
+const countHtml = (dir) => readdirSync(dir, { withFileTypes: true })
+  .reduce((n, e) => n + (e.isDirectory() ? countHtml(join(dir, e.name)) : e.name.endsWith('.html') ? 1 : 0), 0);
+const pages = countHtml(webOut);   // vrátane jazykových podadresárov
 
 writeFileSync(join(DIST, 'NAHRAJ-MA.txt'),
 `NASADENIE NA WEBSUPPORT

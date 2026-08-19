@@ -2,6 +2,7 @@
 :: eyebrow: Informácie
 :: nav: info
 :: order: 1
+:: alt: shipping-and-payment
 :: perex: Expedujeme v pracovné dni v neutrálnom obale. Chladený reťazec lyofilizát nepotrebuje — vysvetlené nižšie.
 :: updated: 17. 8. 2026
 

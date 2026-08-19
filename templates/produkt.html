@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <!-- GENEROVANÉ — needituj priamo v site/. Zdroj: templates/produkt.html + data/ + content/ -->
-<html lang="sk">
+<html lang="{{LANG}}" data-assets="{{A}}" data-product-prefix="{{U_PRODUCT}}" data-cart-url="{{U_CART}}" data-locale="{{LANG}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{TITLE}} — ULTRA PEPTIDY</title>
-<meta name="description" content="{{PEREX}} Referenčná látka na laboratórne a výskumné použitie.">
+<meta name="description" content="{{PEREX}} {{T_META_DESC_SUFFIX}}">
 <meta name="theme-color" content="#0A0A0A">
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/ultrapeptidy.css">
+<link rel="icon" href="{{A}}img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="{{A}}css/ultrapeptidy.css">
 </head>
 <body>
 
@@ -125,38 +125,37 @@
 
 <div class="agegate" role="dialog" aria-modal="true" aria-labelledby="gate-t" hidden>
   <div class="agegate__card glass holo-border">
-    <span class="holo-logo holo-logo--mark" style="width:56px;margin:0 auto 18px"><img src="assets/img/logo-mark.png" alt="" width="122" height="120"></span>
-    <h2 id="gate-t">Potvrdenie vstupu</h2>
+    <span class="holo-logo holo-logo--mark" style="width:56px;margin:0 auto 18px"><img src="{{A}}img/logo-mark.png" alt="" width="122" height="120"></span>
+    <h2 id="gate-t">{{T_GATE_TITLE}}</h2>
     <p>
-      Produkty na tejto stránke sú určené <strong>výhradne na výskumné a laboratórne účely</strong>
-      (<em>for research use only</em>). Nie sú liekmi, výživovými doplnkami ani kozmetikou a nie sú
-      určené na diagnostiku, liečbu ani podávanie ľuďom či zvieratám.
+      {{T_GATE_P1}}
     </p>
-    <p>Vstupom potvrdzujete, že máte <strong>18 rokov alebo viac</strong> a rozumiete tomuto určeniu.</p>
+    <p>{{T_GATE_P2}}</p>
     <div class="agegate__actions">
-      <button class="btn-holo" data-gate-accept>Mám 18+ a rozumiem</button>
-      <button class="btn-ghost" data-gate-decline>Odísť</button>
+      <button class="btn-holo" data-gate-accept>{{T_GATE_ACCEPT}}</button>
+      <button class="btn-ghost" data-gate-decline>{{T_GATE_DECLINE}}</button>
     </div>
   </div>
 </div>
 
 <header class="up-header">
   <div class="up-container up-header__inner">
-    <a class="up-logo" href="index.html">
-      <span class="holo-logo holo-logo--mark"><img src="assets/img/logo-mark.png" alt="" width="122" height="120"></span>
+    <a class="up-logo" href="{{U_HOME}}">
+      <span class="holo-logo holo-logo--mark"><img src="{{A}}img/logo-mark.png" alt="" width="122" height="120"></span>
       <span class="up-logo__text">Ultra<small>peptidy</small></span>
     </a>
-    <nav class="up-nav" aria-label="Hlavná navigácia">
-      <a href="katalog.html">Katalóg</a>
-      <a href="#" data-open-cennik>Cenník</a>
-      <a href="index.html#cistota">Kvalita</a>
-      <a href="index.html#faq">FAQ</a>
+    <nav class="up-nav" aria-label="{{T_NAV_ARIA}}">
+      <a href="{{U_CATALOG}}">{{T_NAV_CATALOG}}</a>
+      <a href="{{U_CATALOG}}#cennik" data-open-cennik>{{T_NAV_PRICELIST}}</a>
+      <a href="{{U_HOME}}#cistota">{{T_NAV_QUALITY}}</a>
+      <a href="{{U_HOME}}#faq">FAQ</a>
     </nav>
     <div class="up-actions">
-      <button class="icon-btn" aria-label="Hľadať">
+      <button class="icon-btn" aria-label="{{T_SEARCH}}">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg>
       </button>
-      <a class="icon-btn" href="kosik.html" aria-label="Košík">
+      {{LANG_SWITCH}}
+      <a class="icon-btn" href="{{U_CART}}" aria-label="{{T_CART}}">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4.5 8.5h15l-1.7 11H6.2z"/><path d="M8.5 8.5V8a3.5 3.5 0 017 0v.5"/></svg>
         <span class="icon-btn__badge" data-cart-count hidden>0</span>
       </a>
@@ -167,9 +166,9 @@
 <main>
 <div class="up-container">
 
-  <nav class="breadcrumb" aria-label="Navigácia">
-    <a href="index.html">Domov</a> ›
-    <a href="katalog.html#{{CAT_SLUG}}">{{CAT_NAME}}</a> ›
+  <nav class="breadcrumb" aria-label="{{T_BREADCRUMB_ARIA}}">
+    <a href="{{U_HOME}}">{{T_HOME}}</a> ›
+    <a href="{{U_CATALOG}}#{{CAT_SLUG}}">{{CAT_NAME}}</a> ›
     <span aria-current="page">{{TITLE}}</span>
   </nav>
 
@@ -177,7 +176,7 @@
     <div class="pdp__gallery">
       <div class="pdp__main foil sheen">
         <span class="vial vial--lg{{VIAL_CLASS}}">
-          <img class="vial__photo" src="assets/img/vial.jpg" alt="Fľaštička {{TITLE}}"
+          <img class="vial__photo" src="{{A}}img/vial.jpg" alt="{{T_VIAL_ALT}} {{TITLE}}"
                width="306" height="812" fetchpriority="high" decoding="async">
           <span class="vial__name{{VIAL_NAME_CLASS}}">{{NAME}}</span>
         </span>
@@ -192,7 +191,7 @@
       <div class="pdp__meta">
         <span class="stock-pill{{STOCK_CLS}}" data-stock-pill>{{STOCK_LABEL}}</span>
         {{MG_CHIP}}
-        <span class="chip">Šarža <span data-batch>{{BATCH}}</span></span>
+        <span class="chip">{{T_BATCH}} <span data-batch>{{BATCH}}</span></span>
         {{PURITY_ROW}}
       </div>
 {{STRENGTHS}}
@@ -211,28 +210,27 @@
         </div>
         <div class="qty-row" style="margin-top:20px;margin-bottom:0">
           <div class="qty-stepper">
-            <button type="button" data-step="-1" aria-label="Znížiť množstvo">−</button>
-            <input type="number" value="1" min="1" max="99" aria-label="Množstvo">
-            <button type="button" data-step="1" aria-label="Zvýšiť množstvo">+</button>
+            <button type="button" data-step="-1" aria-label="{{T_QTY_DEC}}">−</button>
+            <input type="number" value="1" min="1" max="99" aria-label="{{T_QTY_LABEL}}">
+            <button type="button" data-step="1" aria-label="{{T_QTY_INC}}">+</button>
           </div>
           <div style="display:flex;flex-direction:column;justify-content:center;margin-left:auto;text-align:right">
-            <span class="price-row__label">Celkom</span>
+            <span class="price-row__label">{{T_TOTAL}}</span>
             <strong data-total style="font:500 1.375rem/1.2 var(--up-font-mono)">{{PRICE1}}</strong>
           </div>
         </div>
         <p class="price-save" data-save hidden></p>
       </div>
 
-      <button class="btn-holo btn-block" data-cta-anchor data-add-to-cart style="margin-bottom:16px">◆ Pridať do košíka</button>
+      <button class="btn-holo btn-block" data-cta-anchor data-add-to-cart style="margin-bottom:16px">{{T_ADD_TO_CART}}</button>
 
       <div class="notice">
         <svg fill="none" stroke-width="1.5"><use href="#i-clock"/></svg>
-        <span><strong>Expedícia v pracovné dni.</strong> Lyofilizát je pri bežných prepravných časoch
-        teplotne odolný — skladovanie po doručení nájdeš v záložke nižšie.</span>
+        <span>{{T_NOTE_SHIP}}</span>
       </div>
       <div class="notice">
         <svg fill="none" stroke-width="1.5"><use href="#i-lock"/></svg>
-        <span><strong>Diskrétne balenie.</strong> Neutrálny obal bez označenia obsahu ani odosielateľa.</span>
+        <span>{{T_NOTE_PACK}}</span>
       </div>
     </div>
   </div>
@@ -241,10 +239,10 @@
 <section class="trust-bar">
   <div class="up-container">
     <div class="trust-bar__grid">
-      <div class="trust-item"><svg fill="none" stroke-linecap="round"><use href="#i-micro"/></svg><span>Laboratórne testované</span></div>
-      <div class="trust-item"><svg fill="none" stroke-linecap="round"><use href="#i-doc"/></svg><span>Certifikát ku každej šarži</span></div>
-      <div class="trust-item"><svg fill="none" stroke-linecap="round"><use href="#i-check"/></svg><span>Bez plnív a prímesí</span></div>
-      <div class="trust-item"><svg fill="none" stroke-linecap="round"><use href="#i-lock"/></svg><span>Diskrétne balenie</span></div>
+      <div class="trust-item"><svg fill="none" stroke-linecap="round"><use href="#i-micro"/></svg><span>{{T_TRUST_LAB}}</span></div>
+      <div class="trust-item"><svg fill="none" stroke-linecap="round"><use href="#i-doc"/></svg><span>{{T_TRUST_COA}}</span></div>
+      <div class="trust-item"><svg fill="none" stroke-linecap="round"><use href="#i-check"/></svg><span>{{T_TRUST_PURE}}</span></div>
+      <div class="trust-item"><svg fill="none" stroke-linecap="round"><use href="#i-lock"/></svg><span>{{T_TRUST_PACK}}</span></div>
     </div>
   </div>
 </section>
@@ -257,35 +255,32 @@
 
     <p class="disclaimer">
       <svg fill="none" stroke-width="1.5"><use href="#i-warn"/></svg>
-      <span><strong>Účinnosť a bezpečnosť podávania tejto látky ľuďom nie sú dostatočne klinicky
-      potvrdené.</strong> Uvedené informácie sú výhradne súhrnom publikovaných výskumných zistení,
-      prevažne z laboratórnych a zvieracích modelov. Nejde o zdravotné tvrdenia ani o odporúčanie
-      použitia u ľudí. Produkt je určený výhradne na výskumné účely a nie je liekom.</span>
+      <span>{{T_DISCLAIMER}}</span>
     </p>
   </div>
 </section>
 
 <section class="up-section" id="coa" style="padding-top:0">
   <div class="up-container">
-    <div class="section-head"><h2 class="section-title">Manipulácia a dokumentácia</h2></div>
-    <div class="tabs" role="tablist" aria-label="Detaily produktu">
-      <button role="tab" id="t1" aria-controls="p1" aria-selected="true" tabindex="0">Špecifikácia</button>
-      <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Rekonštitúcia</button>
-      <button role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Skladovanie</button>
-      <button role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">Certifikát analýzy</button>
+    <div class="section-head"><h2 class="section-title">{{T_HANDLING_TITLE}}</h2></div>
+    <div class="tabs" role="tablist" aria-label="{{T_TABS_ARIA}}">
+      <button role="tab" id="t1" aria-controls="p1" aria-selected="true" tabindex="0">{{T_TAB_SPEC}}</button>
+      <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">{{T_TAB_RECON}}</button>
+      <button role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">{{T_TAB_STORAGE}}</button>
+      <button role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">{{T_TAB_COA}}</button>
     </div>
 
     <div class="tabpanel" role="tabpanel" id="p1" aria-labelledby="t1">
       <dl>
-        <dt>Názov</dt><dd>{{NAME}}</dd>
-        <dt>Forma</dt><dd>{{FORM}}</dd>
-        <dt>Kategória</dt><dd>{{CAT_NAME}}</dd>
+        <dt>{{T_DL_NAME}}</dt><dd>{{NAME}}</dd>
+        <dt>{{T_DL_FORM}}</dt><dd>{{FORM}}</dd>
+        <dt>{{T_DL_CATEGORY}}</dt><dd>{{CAT_NAME}}</dd>
       </dl>
       <table class="spec-variants">
         <caption>{{SPEC_CAPTION}}</caption>
         <thead><tr>
-          <th>Gramáž</th><th>Kat. číslo</th><th>Šarža</th><th>Čistota</th>
-          <th class="num">1 ks</th><th class="num">3+ ks</th>
+          <th>{{T_TH_MG}}</th><th>{{T_TH_REF}}</th><th>{{T_BATCH}}</th><th>{{T_PURITY}}</th>
+          <th class="num">{{T_PL_TH_ONE}}</th><th class="num">{{T_PL_TH_TIER}}</th>
         </tr></thead>
         <tbody>
 {{SPEC_ROWS}}
@@ -294,27 +289,27 @@
     </div>
     <div class="tabpanel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
       <dl>
-        <dt>Rozpúšťadlo</dt>
-        <dd>Bakteriostatická voda (Bac Water) — dostupná ako samostatná položka v kategórii Pomocné produkty.</dd>
-        <dt>Postup</dt>
-        <dd>Rozpúšťadlo aplikuj po stene fľaštičky, nie priamo na lyofilizát. Fľaštičku netrep — jemne otáčaj do úplného rozpustenia.</dd>
-        <dt>Poznámka</dt>
-        <dd>Neposkytujeme dávkovacie protokoly ani odporúčania na použitie u ľudí. Uvedené sú výhradne laboratórne postupy manipulácie.</dd>
+        <dt>{{T_RECON_SOLVENT}}</dt>
+        <dd>{{T_RECON_SOLVENT_TXT}}</dd>
+        <dt>{{T_RECON_STEPS}}</dt>
+        <dd>{{T_RECON_STEPS_TXT}}</dd>
+        <dt>{{T_RECON_NOTE}}</dt>
+        <dd>{{T_RECON_NOTE_TXT}}</dd>
       </dl>
     </div>
     <div class="tabpanel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
       <dl>
-        <dt>Lyofilizát (nerozpustený)</dt><dd>−20 °C, v tme, v originálnom obale.</dd>
-        <dt>Po rekonštitúcii</dt><dd>2–8 °C, chránené pred svetlom. Nemrznúť opakovane.</dd>
-        <dt>Preprava</dt><dd>Neutrálny obal, bez chladeného reťazca. Krátkodobé zvýšenie teploty počas prepravy nemá na lyofilizát zásadný vplyv.</dd>
+        <dt>{{T_STORE_LYO}}</dt><dd>{{T_STORE_LYO_TXT}}</dd>
+        <dt>{{T_STORE_RECON}}</dt><dd>{{T_STORE_RECON_TXT}}</dd>
+        <dt>{{T_STORE_SHIP}}</dt><dd>{{T_STORE_SHIP_TXT}}</dd>
       </dl>
     </div>
     <div class="tabpanel" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
       <dl>
-        <dt>Šarža</dt><dd>{{BATCH}}</dd>
-        <dt>Čistota</dt><dd>{{PURITY}}</dd>
-        <dt>Identita</dt><dd>Potvrdená hmotnostnou spektrometriou</dd>
-        <dt>Dokument</dt><dd><a class="section-link" href="#">Stiahnuť COA (PDF) →</a></dd>
+        <dt>{{T_BATCH}}</dt><dd>{{BATCH}}</dd>
+        <dt>{{T_PURITY}}</dt><dd>{{PURITY}}</dd>
+        <dt>{{T_COA_IDENTITY}}</dt><dd>{{T_COA_IDENTITY_TXT}}</dd>
+        <dt>{{T_COA_DOC}}</dt><dd><a class="section-link" href="#">{{T_COA_DOWNLOAD}}</a></dd>
       </dl>
     </div>
   </div>
@@ -324,8 +319,8 @@
   <div class="up-container">
     <div class="section-head">
       <div><p class="eyebrow">{{SAVING_NOTE}}</p>
-      <h2 class="section-title">Súvisiace položky</h2></div>
-      <a class="section-link" href="katalog.html">Celý katalóg →</a>
+      <h2 class="section-title">{{T_RELATED}}</h2></div>
+      <a class="section-link" href="{{U_CATALOG}}">{{T_ALL_CATALOG}}</a>
     </div>
     <div class="prod-grid">
 {{RELATED}}
@@ -338,17 +333,17 @@
     <span class="price-row__label" style="display:block" data-mcta-title="{{NAME}}">{{TITLE}}</span>
     <span class="mobile-cta__price">{{PRICE1}}</span>
   </div>
-  <button class="btn-holo" data-add-to-cart>Do košíka</button>
+  <button class="btn-holo" data-add-to-cart>{{T_ADD_TO_CART_SHORT}}</button>
 </div>
 </main>
 
 <dialog class="modal" id="cennik-modal" aria-labelledby="cennik-modal-t">
   <div class="modal__head">
     <div>
-      <p class="eyebrow">Ceny s DPH · množstevná cena od 3 kusov</p>
-      <h2 id="cennik-modal-t">Cenník</h2>
+      <p class="eyebrow">{{T_PL_EYEBROW}}</p>
+      <h2 id="cennik-modal-t">{{T_NAV_PRICELIST}}</h2>
     </div>
-    <button class="modal__close" data-close-modal aria-label="Zavrieť cenník">
+    <button class="modal__close" data-close-modal aria-label="{{T_PL_CLOSE}}">
       <svg width="17" height="17" fill="none" stroke="currentColor"><use href="#i-x"/></svg>
     </button>
   </div>
@@ -356,8 +351,7 @@
 {{PRICELIST}}
   </div>
   <p class="modal__foot">
-    Pomlčka v stĺpci „3+ ks“ znamená, že pre danú položku nie je stanovená množstevná cena.
-    Ceny sú konečné vrátane DPH.
+    {{T_PL_FOOT}}
   </p>
 </dialog>
 
@@ -365,33 +359,28 @@
   <div class="up-container">
     <div class="up-footer__grid">
       <div>
-        <a class="up-logo" href="index.html" style="margin-bottom:16px">
-          <span class="holo-logo holo-logo--mark"><img src="assets/img/logo-mark.png" alt="" width="122" height="120"></span>
+        <a class="up-logo" href="{{U_HOME}}" style="margin-bottom:16px">
+          <span class="holo-logo holo-logo--mark"><img src="{{A}}img/logo-mark.png" alt="" width="122" height="120"></span>
           <span class="up-logo__text">Ultra<small>peptidy</small></span>
         </a>
         <p style="font-size:var(--up-fs-sm);color:var(--up-text-mute);max-width:32ch;line-height:1.7">
-          Výskumné peptidy s certifikátom analýzy pre každú šaržu.
+          {{T_FOOT_TAGLINE}}
         </p>
       </div>
       <div>
-        <h4>Katalóg</h4>
+        <h4>{{T_NAV_CATALOG}}</h4>
         <ul>
-          <li><a href="katalog.html#na-chudnutie">Na chudnutie</a></li>
-          <li><a href="katalog.html#krasa">Krása</a></li>
-          <li><a href="katalog.html#regeneracia">Regenerácia a zdravie</a></li>
-          <li><a href="katalog.html#rastove-hormony">Rastové hormóny</a></li>
-          <li><a href="katalog.html#kognicia">Kognícia a fokus</a></li>
-          <li><a href="katalog.html#pomocne">Pomocné produkty</a></li>
+{{NAV_CATS}}
         </ul>
       </div>
       <div>
-        <h4>Informácie</h4>
+        <h4>{{T_FOOT_INFO}}</h4>
         <ul>
 {{NAV_INFO}}
         </ul>
       </div>
       <div>
-        <h4>Právne</h4>
+        <h4>{{T_FOOT_LEGAL}}</h4>
         <ul>
 {{NAV_LEGAL}}
         </ul>
@@ -399,19 +388,15 @@
     </div>
 
     <p class="ruo-strip">
-      <strong>FOR RESEARCH USE ONLY.</strong> Všetky produkty na tejto stránke sú určené výhradne na
-      laboratórne a výskumné použitie. Nie sú liekmi, výživovými doplnkami, kozmetikou ani
-      zdravotníckymi pomôckami a nie sú určené na diagnostiku, prevenciu, liečbu ani na podávanie
-      ľuďom či zvieratám. Neposkytujeme dávkovanie ani zdravotné odporúčania. Nákup je možný len
-      osobám nad 18 rokov.
+      {{T_RUO_STRIP}}
     </p>
 
     <div class="up-footer__legal">
-      <span>© 2026 ULTRA PEPTIDY · IČO 00 000 000 · DIČ 0000000000</span>
+      <span>{{T_FOOT_LEGALLINE}}</span>
     </div>
   </div>
 </footer>
 
-<script src="assets/js/site.js"></script>
+<script src="{{A}}js/site.js"></script>
 </body>
 </html>
