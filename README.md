@@ -31,8 +31,8 @@ generátor dopĺňa len bloky medzi značkami `<!-- GEN:xxx -->`. Produktové st
 **1. Riadok do `data/produkty.csv`**
 
 ```
-reference;slug;name;mg;category;form;purity;batch;stock;featured;price_gross_eur;price_net_eur;tier3_gross_eur;tier3_discount_gross_eur;active
-UP-NOVY-10;novy-peptid-10mg;Nový peptid;10 mg;regeneracia;Lyofilizat;99.10;NP-2409;in;0;55.00;44.715447;50.00;5.00;1
+reference;slug;name;mg;category;form;purity;batch;stock;featured;price_gross_eur;price_net_eur;tier3_gross_eur;tier3_discount_gross_eur;active;vial
+UP-NOVY-10;novy-peptid-10mg;Nový peptid;10 mg;regeneracia;Lyofilizat;99.10;NP-2409;in;0;55.00;44.715447;50.00;5.00;1;
 ```
 
 | Stĺpec | Čo tam patrí |
@@ -52,6 +52,7 @@ UP-NOVY-10;novy-peptid-10mg;Nový peptid;10 mg;regeneracia;Lyofilizat;99.10;NP-2
 | `tier3_gross_eur` | cena za kus od 3 ks; **nechaj prázdne**, ak neplatí |
 | `tier3_discount_gross_eur` | rozdiel oproti cene za 1 ks (pre neskorší e-shop) |
 | `active` | `1` = zobraziť, `0` = skryť bez mazania riadku |
+| `vial` | variant fotky fľaštičky. Prázdne = štandardná peptidová. `voda` = oceľovo-tyrkysová pre bakteriostatickú vodu. Neznáma hodnota zhodí build. |
 
 **2. Voliteľne text: `content/produkty/novy-peptid-10mg.md`**
 

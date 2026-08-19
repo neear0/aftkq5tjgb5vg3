@@ -78,6 +78,10 @@ const products = [...bySlug.entries()].map(([slug, variants]) => {
   };
 });
 
+/* Povolené varianty fľaštičky. Preklep v stĺpci 'vial' by inak vygeneroval
+   triedu, ktorú CSS nepozná, a fľaštička by ticho vyzerala ako peptidová. */
+const VIAL_VARIANTS = new Set(['voda']);
+
 /* ── validácia ───────────────────────────────────────────────────────────── */
 const problems = [];
 const catSlugs = new Set(categories.map((c) => c.slug));
@@ -94,6 +98,8 @@ for (const p of products) {
     if (v.tier !== null && v.tier >= v.price) problems.push(`${v.reference}: množstevná cena nie je nižšia`);
     if (v.name !== p.name) problems.push(`${v.reference}: názov sa nezhoduje so skupinou "${p.slug}"`);
     if (v.category !== p.category) problems.push(`${v.reference}: kategória sa nezhoduje so skupinou "${p.slug}"`);
+    if (v.vial && !VIAL_VARIANTS.has(v.vial)) problems.push(`${v.reference}: neznámy variant fľaštičky "${v.vial}"`);
+    if ((v.vial ?? '') !== (p.variants[0].vial ?? '')) problems.push(`${v.reference}: variant fľaštičky sa nezhoduje so skupinou "${p.slug}"`);
   }
   if (p.multi && p.variants.some((v) => !v.mg)) {
     problems.push(`${p.slug}: skupina s viacerými silami musí mať vyplnenú gramáž v každom riadku`);
@@ -245,6 +251,15 @@ const catIcon = (slug) => categories.find((c) => c.slug === slug)?.icon ?? 'i-dr
 const catName = (slug) => categories.find((c) => c.slug === slug)?.name ?? slug;
 const vialNameClass = (name) => (name.length >= 12 ? ' vial__name--xs' : name.length >= 8 ? ' vial__name--sm' : '');
 
+/** Variant fľaštičky zo stĺpca 'vial'. Prázdne = štandardná peptidová fotka.
+    Hodnota sa premietne na triedu .vial--<hodnota>, ktorá fotku prefarbí —
+    bac-water nie je peptid a nemá vyzerať ako peptid. Povolené hodnoty
+    kontroluje validácia nižšie, aby preklep ticho nezhodil vzhľad. */
+const vialVariant = (p) => {
+  const v = (p.variants[0].vial ?? '').trim();
+  return v ? ' vial--' + v : '';
+};
+
 /** Zoznam síl do jedného chipu: „10 · 30 · 40 mg" */
 function strengthChip(p) {
   if (!p.multi) return p.variants[0].mg ? `<span class="chip">${esc(p.variants[0].mg)}</span>` : '';
@@ -278,7 +293,7 @@ function card(p) {
     : '';
   return `
       <article class="prod-card holo-border foil sheen">
-        <a class="prod-card__media" href="${href}" aria-label="${esc(p.name)}"><span class="vial"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name${vialNameClass(p.name)}">${esc(p.name)}</span></span></a>
+        <a class="prod-card__media" href="${href}" aria-label="${esc(p.name)}"><span class="vial${vialVariant(p)}"><img class="vial__photo" src="assets/img/vial.jpg" alt="" width="306" height="812" loading="lazy" decoding="async"><span class="vial__name${vialNameClass(p.name)}">${esc(p.name)}</span></span></a>
         <div class="prod-card__body">
           <h3 class="prod-card__name"><a href="${href}">${esc(p.name)}</a></h3>${strengthChip(p)}
           <span class="stock-pill${st.cls}">${st.label}</span>${note}
@@ -458,6 +473,7 @@ function renderProductPage(tpl, p, pricelist) {
     PRICE3_NUM: String(v0.tier ?? v0.price),
     PRICE3_STYLE: v0.tier !== null ? '' : ' style="color:var(--up-text-mute)"',
     VIAL_NAME_CLASS: vialNameClass(p.name),
+    VIAL_CLASS: vialVariant(p),
     BLOCKS: renderBlocks(blocks),
     RELATED: renderRelated(p),
     PRICELIST: pricelist,

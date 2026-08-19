@@ -641,9 +641,13 @@ body::after {
 /* ==========================================================================
    Produktová karta
    ========================================================================== */
+/* auto-FILL, nie auto-fit. auto-fit zbalí prázdne stopy a zvyšné karty
+   roztiahne cez celú šírku — kategória s jedným produktom potom mala jednu
+   kartu širokú 1240 px. auto-fill stopy nechá stáť, takže karta má vždy
+   približne rovnakú šírku bez ohľadu na to, koľko ich v kategórii je. */
 .prod-grid {
   display: grid; gap: var(--up-sp-3);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
 }
 .prod-card {
   display: flex; flex-direction: column;
@@ -768,6 +772,16 @@ body::after {
 .vial__name--xs { font-size: max(8px, calc(var(--vial-w) * .085)); letter-spacing: 0; }
 
 .vial--lg { --vial-w: clamp(110px, 18vw, 170px); }
+
+/* Variant „voda" — bac-water nie je peptid a nemá vyzerať ako peptid.
+   Je to sterilná voda, nie lyofilizát, tak sa modrá fľaštička posunie do
+   oceľovo-tyrkysovej: nižšia sýtosť a posun odtieňa. Stále je to tá istá
+   fotka, len prefarbená — keď pribudne skutočná fotka bac-water, stačí
+   tu vymeniť filter za vlastný src a trieda ostane rovnaká.
+   Priraďuje ju stĺpec 'vial' v data/produkty.csv, nie ručne v HTML. */
+.vial--voda .vial__photo {
+  filter: saturate(.32) hue-rotate(-28deg) brightness(1.1);
+}
 
 /* fľaštička sa škáluje s kartou; bez podpory container queries ostane 82px */
 @supports (container-type: inline-size) {
