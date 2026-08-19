@@ -390,6 +390,33 @@ body::after {
 .up-nav a:hover { color: var(--up-text); }
 .up-nav a:hover::after { right: 0; }
 
+/* Na úzkych displejoch sa logo, navigácia a akcie do jedného riadku nezmestia.
+   Hlavička preto pretekala: pri viewporte 390 px mal dokument scrollWidth
+   493 px, a keďže body má overflow-x:hidden, polovica navigácie aj košík boli
+   ticho orezané a nedostupné — bez posuvníka, ktorý by to prezradil.
+   Riešenie je zalomenie na dva riadky: logo + akcie hore, navigácia pod nimi.
+   Štyri odkazy sa na druhý riadok zmestia aj na 360 px, overflow-x je len
+   poistka. Jeden riadok prestáva stačiť okolo 600 px, 699 je rezerva nad tým. */
+@media (max-width: 699px) {
+  .up-header__inner {
+    flex-wrap: wrap;
+    height: auto;
+    gap: var(--up-sp-3);
+    padding-block: 10px;
+  }
+  .up-actions { margin-left: auto; }
+  .up-nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    gap: var(--up-sp-5);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .up-nav::-webkit-scrollbar { display: none; }
+  .up-nav a { white-space: nowrap; }
+}
+
 .up-actions { display: flex; align-items: center; gap: var(--up-sp-3); }
 .icon-btn {
   /* position + padding:0 sú tu nutné:
@@ -676,7 +703,9 @@ body::after {
   letter-spacing: -.01em;
 }
 .chip {
-  display: inline-flex; align-items: center;
+  /* gap, nie medzera v markupe: flex kontajner zahodí textové uzly, ktoré sú
+     len biele znaky, takže zo "Šarža <span>BW-2408</span>" bola "ŠaržaBW-2408". */
+  display: inline-flex; align-items: center; gap: .35em;
   padding: 3px 9px;
   border-radius: var(--up-r-pill);
   border: 1px solid var(--up-hairline);
